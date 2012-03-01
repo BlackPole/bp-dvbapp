@@ -18,6 +18,7 @@ libenigma_gui_a_SOURCES = \
 	epixmap.cpp \
 	epositiongauge.cpp \
 	eslider.cpp \
+	egauge.cpp \
 	esubtitle.cpp \
 	evideo.cpp \
 	ewidget.cpp \
@@ -40,6 +41,7 @@ guiinclude_HEADERS = \
 	epixmap.h \
 	epositiongauge.h \
 	eslider.h \
+	egauge.h \
 	esubtitle.h \
 	evideo.h \
 	ewidget.h \
