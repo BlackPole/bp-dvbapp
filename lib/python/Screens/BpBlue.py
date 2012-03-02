@@ -14,7 +14,7 @@ from ServiceReference import ServiceReference
 from os import system, listdir, chdir, getcwd, rename as os_rename
 
 #from BhEpgPanel import DeliteEpgPanel
-#from BhSettings import DeliteSettings
+from Screens.BpSet import DeliteSettings
 #from BhInfo import DeliteInfo
 #from BhUtils import BhU_get_Version, BhU_check_proc_version
 import socket
@@ -61,8 +61,7 @@ class DeliteBluePanel(Screen):
 		self.noImpl()
 
 	def Settings(self):
-#		self.session.open(DeliteSettings)
-		self.noImpl()
+		self.session.open(DeliteSettings)
 		
 	def autoCam(self):
 		self.noImpl()
