@@ -67,7 +67,7 @@ class DeliteBluePanel(Screen):
 		self.noImpl()
 		
 	def keyRed(self):
-		self.noImpl()
+		self.bhCrossepgPanel()
 
 	def populate_List(self):
 		self.camnames = {}
@@ -213,6 +213,10 @@ class DeliteBluePanel(Screen):
 	
 	def noImpl(self):
 		self.session.open(MessageBox, "Sorry, function not available in Black Pole", MessageBox.TYPE_INFO)
+		
+	def bhCrossepgPanel(self):
+		from Plugins.SystemPlugins.CrossEPG.crossepg_main import crossepg_main
+		crossepg_main.setup(self.session)
 
 class Nab_DoStartCam2(Screen):
 	skin = """
