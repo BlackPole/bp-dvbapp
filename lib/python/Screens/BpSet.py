@@ -135,26 +135,26 @@ class DeliteSettings(Screen):
 		res = (name, png, idx)
 		self.list.append(res)
 		
-		mypixmap = mypath + "icons/infopanel_samba.png"
-		png = LoadPixmap(mypixmap)
-		name = "UPnP Client Djmount"
-		idx = 7
-		res = (name, png, idx)
-		self.list.append(res)
+#		mypixmap = mypath + "icons/infopanel_samba.png"
+#		png = LoadPixmap(mypixmap)
+#		name = "UPnP Client Djmount"
+#		idx = 7
+#		res = (name, png, idx)
+#		self.list.append(res)
 		
-		mypixmap = mypath + "icons/infopanel_samba.png"
-		png = LoadPixmap(mypixmap)
-		name = "UPnP Server MiniDlna"
-		idx = 8
-		res = (name, png, idx)
-		self.list.append(res)
+#		mypixmap = mypath + "icons/infopanel_samba.png"
+#		png = LoadPixmap(mypixmap)
+#		name = "UPnP Server MiniDlna"
+#		idx = 8
+#		res = (name, png, idx)
+#		self.list.append(res)
 		
-		mypixmap = mypath + "icons/infopanel_samba.png"
-		png = LoadPixmap(mypixmap)
-		name = "Tuner Server"
-		idx = 9
-		res = (name, png, idx)
-		self.list.append(res)
+#		mypixmap = mypath + "icons/infopanel_samba.png"
+#		png = LoadPixmap(mypixmap)
+#		name = "Tuner Server"
+#		idx = 9
+#		res = (name, png, idx)
+#		self.list.append(res)
 		
 		mypixmap = mypath + "icons/mountwizard.png"
 		png = LoadPixmap(mypixmap)
