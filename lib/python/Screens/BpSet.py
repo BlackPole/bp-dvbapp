@@ -7,10 +7,11 @@ from Components.Pixmap import Pixmap
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config, ConfigYesNo, ConfigText, ConfigSelection, ConfigClock
 from Components.Sources.List import List
+from Components.Network import iNetwork
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists, pathExists, resolveFilename, SCOPE_CURRENT_SKIN
 from os import system, remove as os_remove, rename as os_rename, popen, getcwd, chdir
-
+from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
 
 class DeliteSettings(Screen):
 	skin = """
