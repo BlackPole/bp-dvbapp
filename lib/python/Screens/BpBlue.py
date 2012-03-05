@@ -1,22 +1,17 @@
 from Screens.Screen import Screen
-
-from enigma import iServiceInformation, eTimer
-
+from Screens.MessageBox import MessageBox
+from Screens.BpSet import DeliteSettings
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.MenuList import MenuList
 from Components.Sources.List import List
 from Components.config import config, ConfigSubsection, ConfigText
-from Screens.MessageBox import MessageBox
+from Components.About import about
 from Tools.Directories import fileExists
 from ServiceReference import ServiceReference
-from os import system, listdir, chdir, getcwd, rename as os_rename
-
-#from BhEpgPanel import DeliteEpgPanel
-from Screens.BpSet import DeliteSettings
-#from BhInfo import DeliteInfo
-#from BhUtils import BhU_get_Version, BhU_check_proc_version
+from os import system, listdir, chdir, getcwd, rename as os_rename, remove as os_remove
+from enigma import iServiceInformation, eTimer
 import socket
 
 config.delite = ConfigSubsection()
@@ -58,7 +53,7 @@ class DeliteBluePanel(Screen):
 		}, -1)
 		
 	def nInfo(self):
-		self.noImpl()
+		self.session.open(BhsysInfo)
 
 	def Settings(self):
 		self.session.open(DeliteSettings)
@@ -241,6 +236,68 @@ class Nab_DoStartCam2(Screen):
 		self.activityTimer.stop()
 		del self.activityTimer
 		self.close()
+
+class BhsysInfo(Screen):
+	skin = """
+	<screen position="center,center" size="800,600" title="Black Pole Info" flags="wfNoBorder">
+		<widget name="lab1" position="50,25" halign="left" size="700,550" zPosition="1" font="Regular;20" valign="top" transparent="1" />
+	</screen>"""
+	
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self["lab1"] =  Label()
+
+		self.onShow.append(self.updateInfo)
+		
+		self["myactions"] = ActionMap(["OkCancelActions"],
+		{
+			"ok": self.close,
+			"cancel": self.close,
+		}, -1)
+		
+	def updateInfo(self):
+		rc = system("df -h > /tmp/syinfo.tmp")
+		text = "BOX\n"
+		text += "Brand:\tVuplus\n"
+		f = open("/proc/stb/info/vumodel",'r')
+ 		text += "Model:\t" + f.readline()
+ 		f.close()
+		f = open("/proc/stb/info/chipset",'r')
+ 		text += "Chipset:\t" + f.readline() +"\n"
+ 		f.close()
+		text += "MEMORY\n"
+		f = open("/proc/meminfo",'r')
+		text += f.readline()
+		text += f.readline()
+		text += f.readline()
+		text += f.readline()
+		f.close()
+		text += "\nSTORAGE\n"
+		f = open("/tmp/syinfo.tmp",'r')
+		line = f.readline()
+		parts = line.split()
+		text += parts[0] + "\t" + parts[1].strip() + "      " + parts[2].strip() + "    " + parts[3].strip() + "    " + parts[4] + "\n"
+		line = f.readline()
+		parts = line.split()
+		text += "Flash" + "\t" + parts[1].strip() + "  " + parts[2].strip()  + "  " +  parts[3].strip()  + "  " +  parts[4] + "\n"
+ 		for line in f.readlines():
+			if line.find('/media/') != -1:
+				line = line.replace('/media/', '   ')
+				parts = line.split()
+				text += parts[5] + "\t" + parts[1].strip() + "  " + parts[2].strip() + "  " + parts[3].strip() + "  " + parts[4] + "\n"
+		f.close()
+		os_remove("/tmp/syinfo.tmp")
+		
+		text += "\nSoftware\n"
+		f = open("/etc/bpversion",'r')
+		text += "Firmware v.:\t" + f.readline()
+		f.close()
+		text += "DvbApp v.: \t" +  about.getEnigmaVersionString() + "\n"
+		text += "Kernel v.: \t" +  about.getKernelVersionString() + "\n"
+		
+		self["lab1"].setText(text)
+		
+
 
 
 class DeliteBp:
