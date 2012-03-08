@@ -6,8 +6,9 @@ from Components.ActionMap import ActionMap
 from Components.Sources.List import List
 from Components.Label import Label
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, fileExists, pathExists, createDir
-from os import system, listdir, chdir, getcwd, remove as os_remove
 from Tools.LoadPixmap import LoadPixmap
+from os import system, listdir, chdir, getcwd, remove as os_remove
+from Plugins.SystemPlugins.SoftwareManager.plugin import PacketManager
 from enigma import eDVBDB
 
 
@@ -51,6 +52,13 @@ class DeliteAddons(Screen):
 		if mypath == "/usr/share/enigma2/":
 			mypath = "/usr/share/enigma2/skin_default/"
 		
+		mypixmap = mypath + "icons/addons_manager.png"
+		png = LoadPixmap(mypixmap)
+		name = "Online Feeds packages"
+		idx = 0
+		res = (name, png, idx)
+		self.list.append(res)
+		
 		mypixmap = mypath + "icons/nabpackpanel.png"
 		png = LoadPixmap(mypixmap)
 		name = "Manual Install Bh packges"
@@ -79,13 +87,16 @@ class DeliteAddons(Screen):
 		self.sel = self["list"].getCurrent()
 		if self.sel:
 			self.sel = self.sel[2]
-		
-		if self.sel == 1:
+			
+		if self.sel == 0:
+			self.session.open(PacketManager, "/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager")
+		elif self.sel == 1:
 			self.checkPanel()
 		elif self.sel == 2:
 			self.checkPanel2()
 		elif self.sel == 3:
 			self.session.open(Nab_uninstPanel)
+	
 	
 	def checkPanel(self):
 		check = 0
