@@ -75,7 +75,7 @@
 				<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
 				<item level="0" entryID="timezone_setup"><setup id="timezone"/></item>
 			</menu>
-			<menu weight="10" text="SoftCam / CI" entryID="cam_setup">
+			<menu weight="10" text="Common Interface" entryID="cam_setup">
 				<id val="cam" />
 				<item weight="10" level="1" text="Common Interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
 			</menu>
