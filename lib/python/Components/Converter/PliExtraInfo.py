@@ -219,6 +219,9 @@ class PliExtraInfo(Poll, Converter, object):
 				+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata)) + self.createOrbPos(feraw) + "\n"\
 				+ addspace(self.createCryptoBar(info)) + self.current_source + "\n"\
 				+ addspace(self.createCryptoSpecial(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
+		
+		if self.type == "AllFreq_info":
+			return "Freq: " + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata)) + " Sr: " + addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata))
 
 		return _("invalid type")
 
