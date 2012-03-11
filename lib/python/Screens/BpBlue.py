@@ -284,7 +284,8 @@ class BhsysInfo(Screen):
 			if line.find('/media/') != -1:
 				line = line.replace('/media/', '   ')
 				parts = line.split()
-				text += parts[5] + "\t" + parts[1].strip() + "  " + parts[2].strip() + "  " + parts[3].strip() + "  " + parts[4] + "\n"
+				if len(parts) == 6:
+					text += parts[5] + "\t" + parts[1].strip() + "  " + parts[2].strip() + "  " + parts[3].strip() + "  " + parts[4] + "\n"
 		f.close()
 		os_remove("/tmp/syinfo.tmp")
 		
