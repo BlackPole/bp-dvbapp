@@ -371,14 +371,20 @@
 			<widget name="nfreq_info" position="60,59" size="320,26" halign="left" font="Regular;20" zPosition="3" transparent="1" foregroundColor="white" backgroundColor="transpBlack"/>
 	-->		
 			
+			<widget source="session.CurrentService" render="Label" zPosition="6" position="280,92" size="240,24" halign="left" font="Regular;20" foregroundColor="white" transparent="1" backgroundColor="transpBlack">
+				<convert type="PliExtraInfo">CamName</convert>
+			</widget>
+			<widget source="session.CurrentService" render="Label"  position="608,38" size="540,20" halign="right" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack">
+				<convert type="PliExtraInfo">EcmInfo</convert>
+			</widget>
+			<widget source="session.CurrentService" render="Label"  position="60,38" size="590,20" halign="left" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack">
+				<convert type="PliExtraInfo">NetInfo</convert>
+			</widget>
 			<widget source="session.CurrentService" render="Label" position="40,59" size="370,30" halign="left" font="Regular;20" zPosition="3" transparent="1" foregroundColor="white" backgroundColor="transpBlack">
 				<convert type="PliExtraInfo">AllFreq_info</convert>
 			</widget>
 			<widget source="session.CurrentService" render="Label" position="862,59" size="200,26" halign="right" font="Regular;20"  zPosition="3" foregroundColor="white" transparent="1" backgroundColor="transpBlack">
 				<convert type="PliExtraInfo">OrbitalPosition</convert>
-			</widget>
-			<widget source="session.CurrentService" render="Label"  position="608,38" size="540,20" halign="right" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack">
-				<convert type="PliExtraInfo">CryptoSpecial</convert>
 			</widget>
 			<eLabel text="Fps:" zPosition="4" position="324,656" size="70,24" halign="center" font="Regular;20" foregroundColor="grey" transparent="1" backgroundColor="transpBlack" />
 			<eLabel text="Date:" zPosition="4" position="792,98" size="80,24" halign="center" font="Regular;20" foregroundColor="grey" transparent="1" backgroundColor="transpBlack" />
@@ -402,6 +408,9 @@
 			<widget name="button_emu" text="Emulator" backgroundColor="background"  transparent="1" position="590,100" size="220,24" halign="left" font="OLED;24" foregroundColor="#fcc000" zPosition="12" />
 			<widget name="button_spider" text="Network" backgroundColor="background"  transparent="1" position="590,100" size="220,24" halign="left" font="OLED;24" foregroundColor="#f23d21" zPosition="13" />
 			-->
+			<widget source="session.CurrentService" render="Label" position="590,96" size="220,30" halign="left" font="OLED;26" zPosition="4" foregroundColor="red" transparent="1" backgroundColor="transpBlack">
+				<convert type="PliExtraInfo">E-C-N</convert>
+			</widget>
 		</screen> 
 	
 	<!-- 8 Delite GreenPanel ( 4S )-->
