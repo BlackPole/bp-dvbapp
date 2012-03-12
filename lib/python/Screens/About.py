@@ -12,16 +12,23 @@ class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
+		try:
+			f = open("/etc/bpversion",'r')
+ 			name = f.readline().strip()
+ 			f.close()
+		except:
+			name = "Black Pole"
+			
 		
 		AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
 		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
 		AboutText += _("Kernel Version: ") + about.getKernelVersionString() + "\n"
 		
-		EnigmaVersion = "Enigma: " + about.getEnigmaVersionString()
+		EnigmaVersion = "Firmware: " + name
 		self["EnigmaVersion"] = StaticText(EnigmaVersion)
 		AboutText += EnigmaVersion + "\n"
 		
-		ImageVersion = _("Last Upgrade: ") + about.getImageVersionString()
+		ImageVersion = "Team Homesite: vuplus-community.net"
 		self["ImageVersion"] = StaticText(ImageVersion)
 		AboutText += ImageVersion + "\n"
 
