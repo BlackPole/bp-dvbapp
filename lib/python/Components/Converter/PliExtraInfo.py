@@ -1,4 +1,5 @@
 # shamelessly copied from pliExpertInfo (Vali, Mirakels, Littlesat)
+# Extended for Black Pole by meo.
 
 from enigma import iServiceInformation
 from Components.Converter.Converter import Converter
@@ -103,19 +104,19 @@ class PliExtraInfo(Poll, Converter, object):
 		symbolrate = fedata.get("symbol_rate")
 		if symbolrate:
 			return str(symbolrate / 1000)
-		return ""
+		return "29900"
 			
 	def createPolarization(self,fedata):
 		polarization = fedata.get("polarization_abbreviation")
 		if polarization:
 			return polarization
-		return ""
+		return "H"
 
 	def createFEC(self,fedata):
 		fec = fedata.get("fec_inner")
 		if fec:
 			return fec
-		return ""
+		return "2/3"
 
 	def createModulation(self,fedata):
 		modulation = fedata.get("modulation")
@@ -129,10 +130,13 @@ class PliExtraInfo(Poll, Converter, object):
 			return tunertype
 		return ""
 
-	def createTunerSystem(self,fedata):
-		tunersystem = fedata.get("system")
-		if tunersystem:
+	def createTunerSystem(self,feraw,fedata):
+		tunertype = feraw.get("tuner_type")
+		if tunertype == "DVB-S":
+			tunersystem = fedata.get("system")
 			return tunersystem
+		if tunertype:
+			return tunertype
 		return ""
 
 	def createOrbPos(self,feraw):
@@ -145,6 +149,16 @@ class PliExtraInfo(Poll, Converter, object):
 
 	def createProviderName(self,info):
 		return info.getInfoString(iServiceInformation.sProvider)
+		
+	def get_caName(self):
+		try:
+			f = open("/etc/CurrentBhCamName",'r')
+ 			name = f.readline().strip()
+ 			f.close()
+		except:
+			name = "Common Interface"
+		return name
+			
 
 	@cached
 	def getText(self):
@@ -160,11 +174,11 @@ class PliExtraInfo(Poll, Converter, object):
 		if self.type == "CryptoBar":
 			self.getCryptoInfo(info)
 			return self.createCryptoBar(info)
-
+		
 		if self.type == "CryptoSpecial":
 			self.getCryptoInfo(info)
 			return self.createCryptoSpecial(info)
-
+			
 		if self.type == "ResolutionString":
 			return self.createResolution(info)
 
@@ -185,7 +199,7 @@ class PliExtraInfo(Poll, Converter, object):
 
 		if self.type == "TransponderFrequency":
 			return self.createFrequency(fedata)
-
+			
 		if self.type == "TransponderSymbolRate":
 			return self.createSymbolRate(fedata)
 
@@ -205,23 +219,39 @@ class PliExtraInfo(Poll, Converter, object):
 			return self.createTunerType(feraw)	
 
 		if self.type == "TunerSystem":
-			return self.createTunerSystem(fedata)
+			return createTunerSystem(feraw,fedata)
 
 		if self.type == "All":
 			self.getCryptoInfo(info)
 			if config.usage.show_cryptoinfo.value:
-				return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
+				return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(feraw,fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
 				+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata)) + self.createOrbPos(feraw) + "\n"\
 				+ addspace(self.createCryptoBar(info)) + addspace(self.createCryptoSpecial(info)) + "\n"\
 				+ addspace(self.createVideoCodec(info)) + self.createResolution(info)
 			else:
-				return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
+				return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(feraw,fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
 				+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata)) + self.createOrbPos(feraw) + "\n"\
 				+ addspace(self.createCryptoBar(info)) + self.current_source + "\n"\
 				+ addspace(self.createCryptoSpecial(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
-		
+
 		if self.type == "AllFreq_info":
 			return "Freq: " + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata)) + " Sr: " + addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata))
+
+		if self.type == "CamName":
+			return self.get_caName()
+
+		if self.type == "EcmInfo":
+			data = self.ecmdata.getEcmData()
+			return data[4]
+		
+		if self.type == "E-C-N":
+			data = self.ecmdata.getEcmData()
+			return data[5]
+		
+		if self.type == "NetInfo":
+			data = self.ecmdata.getEcmData()
+			return data[0]
+		
 
 		return _("invalid type")
 
