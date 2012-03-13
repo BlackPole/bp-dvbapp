@@ -8,7 +8,7 @@ from Components.Label import Label
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, fileExists, pathExists, createDir
 from Tools.LoadPixmap import LoadPixmap
 from os import system, listdir, chdir, getcwd, remove as os_remove
-from Plugins.SystemPlugins.SoftwareManager.plugin import PacketManager
+from Plugins.SystemPlugins.SoftwareManager.plugin import PacketManager, PluginManager
 from enigma import eDVBDB
 
 
@@ -54,29 +54,36 @@ class DeliteAddons(Screen):
 		
 		mypixmap = mypath + "icons/addons_manager.png"
 		png = LoadPixmap(mypixmap)
-		name = "Online Feeds packages"
+		name = "Online Feeds Extensions"
 		idx = 0
+		res = (name, png, idx)
+		self.list.append(res)
+		
+		mypixmap = mypath + "icons/addons_manager.png"
+		png = LoadPixmap(mypixmap)
+		name = "Online Feeds all Packages"
+		idx = 1
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/nabpackpanel.png"
 		png = LoadPixmap(mypixmap)
 		name = "Manual Install Bh packges"
-		idx = 1
+		idx = 2
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/ipkpackpanel.png"
 		png = LoadPixmap(mypixmap)
 		name = "Manual Install Ipk packges"
-		idx = 2
+		idx = 3
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/uninstpanel.png"
 		png = LoadPixmap(mypixmap)
 		name = "Addons Uninstall Panel"
-		idx = 3
+		idx = 4
 		res = (name, png, idx)
 		self.list.append(res)
 		
@@ -89,12 +96,14 @@ class DeliteAddons(Screen):
 			self.sel = self.sel[2]
 			
 		if self.sel == 0:
+			self.session.open(PluginManager, "/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager")
+		elif self.sel == 1:	
 			self.session.open(PacketManager, "/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager")
-		elif self.sel == 1:
-			self.checkPanel()
 		elif self.sel == 2:
-			self.checkPanel2()
+			self.checkPanel()
 		elif self.sel == 3:
+			self.checkPanel2()
+		elif self.sel == 4:
 			self.session.open(Nab_uninstPanel)
 	
 	
