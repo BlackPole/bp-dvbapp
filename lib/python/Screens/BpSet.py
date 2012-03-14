@@ -12,6 +12,8 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists, pathExists, resolveFilename, SCOPE_CURRENT_SKIN
 from os import system, remove as os_remove, rename as os_rename, popen, getcwd, chdir
 from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
+from Plugins.SystemPlugins.UIPositionSetup.plugin import UIPositionSetup
+from Plugins.SystemPlugins.UI3DSetup.plugin import UI3DSetupScreen
 
 class DeliteSettings(Screen):
 	skin = """
@@ -49,30 +51,28 @@ class DeliteSettings(Screen):
 		self.sel = self.sel[2]
 		
 		if self.sel == 0:
-			self.session.open(BhSetupOSD3)
+			self.session.open(BhNetBrowser)
 		elif self.sel == 1:
-			self.session.open(BhSetupIntEpg)
+			self.session.open(BhSetupOSD3)
 		elif self.sel == 2:
-			self.session.open(BhSetupRecord)
+			self.session.open(UIPositionSetup)
 		elif self.sel == 3:
-			self.session.open(RecordPathsSettings)
+			self.session.open(UI3DSetupScreen)
 		elif self.sel == 4:
-			self.session.open(BhSetupSubtitle)
+			self.session.open(BhSetupIntEpg)
 		elif self.sel == 5:
-			self.session.open(BhSetupAutolanguage)
+			self.session.open(BhSetupRecord)
 		elif self.sel == 6:
-			self.session.open(BhSetupHttpStream)
+			self.session.open(RecordPathsSettings)
 		elif self.sel == 7:
-#			self.session.open(BhSetupBhDjmount)
-			self.noYet()
+			self.session.open(BhSetupSubtitle)
 		elif self.sel == 8:
-#			self.session.open(BhSetupBhMiniDlna)
-			self.noYet()
+			self.session.open(BhSetupAutolanguage)
 		elif self.sel == 9:
+			self.session.open(BhSetupHttpStream)
+		elif self.sel == 10:
 #			self.session.open(BhTunerServer)
 			self.noYet()
-		elif self.sel == 10:
-			self.session.open(BhNetBrowser)
 		else:
 			self.noYet()
 		
@@ -87,61 +87,76 @@ class DeliteSettings(Screen):
 		if mypath == "/usr/share/enigma2/":
 			mypath = "/usr/share/enigma2/skin_default/"
 		
+		mypixmap = mypath + "icons/mountwizard.png"
+		png = LoadPixmap(mypixmap)
+		name = "Network Browse & Mountpoints"
+		idx = 0
+		res = (name, png, idx)
+		self.list.append(res)
+		
 		mypixmap = mypath + "icons/infopanel_osd.png"
 		png = LoadPixmap(mypixmap)
 		name = "Osd settings"
-		idx = 0
+		idx = 1
+		res = (name, png, idx)
+		self.list.append(res)
+		
+		mypixmap = mypath + "icons/infopanel_osd.png"
+		png = LoadPixmap(mypixmap)
+		name = "Osd Position setup"
+		idx = 2
+		res = (name, png, idx)
+		self.list.append(res)
+		
+		mypixmap = mypath + "icons/infopanel_osd.png"
+		png = LoadPixmap(mypixmap)
+		name = "Osd 3D setup"
+		idx = 3
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/infopanel_samba.png"
 		png = LoadPixmap(mypixmap)
 		name = "Internal Epg settings"
-		idx = 1
+		idx = 4
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/infopanel_cron.png"
 		png = LoadPixmap(mypixmap)
 		name = "Record settings"
-		idx = 2
+		idx = 5
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/infopanel_space.png"
 		png = LoadPixmap(mypixmap)
 		name = "Recording paths"
-		idx = 3
+		idx = 6
 		res = (name, png, idx)
 		self.list.append(res)
 				
 		mypixmap = mypath + "icons/infopanel_kmod.png"
 		png = LoadPixmap(mypixmap)
 		name = "Subtitle settings"
-		idx = 4
+		idx = 7
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/inadynsettings.png"
 		png = LoadPixmap(mypixmap)
 		name = "Auto language settings"
-		idx = 5
+		idx = 8
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/infopanel_samba.png"
 		png = LoadPixmap(mypixmap)
 		name = "Http stream settings"
-		idx = 6
+		idx = 9
 		res = (name, png, idx)
 		self.list.append(res)
 		
-#		mypixmap = mypath + "icons/infopanel_samba.png"
-#		png = LoadPixmap(mypixmap)
-#		name = "UPnP Client Djmount"
-#		idx = 7
-#		res = (name, png, idx)
-#		self.list.append(res)
 		
 #		mypixmap = mypath + "icons/infopanel_samba.png"
 #		png = LoadPixmap(mypixmap)
@@ -157,12 +172,6 @@ class DeliteSettings(Screen):
 #		res = (name, png, idx)
 #		self.list.append(res)
 		
-		mypixmap = mypath + "icons/mountwizard.png"
-		png = LoadPixmap(mypixmap)
-		name = "Network Browse & Mountpoints"
-		idx = 10
-		res = (name, png, idx)
-		self.list.append(res)
 		
 		self["list"].list = self.list
 		
