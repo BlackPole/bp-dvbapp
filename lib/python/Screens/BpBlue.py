@@ -8,7 +8,7 @@ from Components.Sources.List import List
 from Components.About import about
 from Tools.Directories import fileExists
 from ServiceReference import ServiceReference
-from os import system, listdir, chdir, getcwd, rename as os_rename, remove as os_remove
+from os import system, listdir, remove as os_remove
 from enigma import iServiceInformation, eTimer
 import socket
 
