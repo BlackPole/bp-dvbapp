@@ -1,12 +1,10 @@
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Screens.BpSet import DeliteSettings
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.MenuList import MenuList
 from Components.Sources.List import List
-from Components.config import config, ConfigSubsection, ConfigText
 from Components.About import about
 from Tools.Directories import fileExists
 from ServiceReference import ServiceReference
@@ -14,16 +12,14 @@ from os import system, listdir, chdir, getcwd, rename as os_rename, remove as os
 from enigma import iServiceInformation, eTimer
 import socket
 
-config.delite = ConfigSubsection()
-config.delite.fp = ConfigText(default="")
 
 class DeliteBluePanel(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		
-		self["lab1"] = Label(_("xx CAMs Installed"))
+		self["lab1"] = Label()
 		self["lab2"] = Label(_("Set Default CAM"))
-		self["lab3"] = Label(_("Active CAM"))
+		self["lab3"] = Label()
 		self["Ilab1"] = Label()
 		self["Ilab2"] = Label()
 		self["Ilab3"] = Label()
@@ -31,38 +27,23 @@ class DeliteBluePanel(Screen):
 		self["activecam"] = Label()
 		self["Ecmtext"] = ScrollLabel()
 		
-		self.emlist = []
-		self.populate_List()
-		self["list"] = MenuList(self.emlist)
-		totcam = str(len(self.emlist))
-		self["lab1"].setText(totcam + "   CAMs Installed")
-		
-		self.onShow.append(self.updateBP)
-		#self.onClose.append(self.delTimer)
-		
-		self["myactions"] = ActionMap(["ColorActions", "OkCancelActions", "DirectionActions"],
+		self["actions"] = ActionMap(["ColorActions", "OkCancelActions", "DirectionActions"],
 		{
 			"ok": self.keyOk,
 			"cancel": self.close,
-			"green": self.autoCam,
+			"green": self.keyGreen,
 			"red": self.keyRed,
-			"yellow": self.nInfo,
-			"blue": self.Settings,
+			"yellow": self.keyYellow,
+			"blue": self.keyBlue,
 			"up": self["Ecmtext"].pageUp,
 			"down": self["Ecmtext"].pageDown
 		}, -1)
 		
-	def nInfo(self):
-		self.session.open(BhsysInfo)
-
-	def Settings(self):
-		self.session.open(DeliteSettings)
-		
-	def autoCam(self):
-		self.noImpl()
-		
-	def keyRed(self):
-		self.bhCrossepgPanel()
+		self.emlist = []
+		self.populate_List()
+		self["list"] = MenuList(self.emlist)
+		self["lab1"].setText("%d  CAMs Installed" % (len(self.emlist)))
+		self.onShow.append(self.updateBP)
 
 	def populate_List(self):
 		self.camnames = {}
@@ -71,70 +52,48 @@ class DeliteBluePanel(Screen):
 			if fil.find('Ncam_') != -1:
 				f = open("/usr/camscript/" + fil,'r')
 				for line in f.readlines():
+					line = line.strip()
 					if line.find('CAMNAME=') != -1:
-						line = line.strip()
-						cn = line[9:-1]
-						self.emlist.append(cn)
-						self.camnames[cn] = "/usr/camscript/" + fil
-						
-						
+						name = line[9:-1]
+						self.emlist.append(name)
+						self.camnames[name] = "/usr/camscript/" + fil
 				f.close()
-		if fileExists("/etc/BhCamConf") == False:
-			out = open("/etc/BhCamConf", "w")
-			out.write("delcurrent|/usr/camscript/Ncam_Ci.sh\n")
-			out.write("deldefault|/usr/camscript/Ncam_Ci.sh\n")
-			out.close()
 
 	def updateBP(self):
-		name = "N/A"; provider = "N/A"; aspect = "N/A"; videosize  = "N/A"
-		myserviceinfo = ""
-		myservice = self.session.nav.getCurrentService()
-		if myservice is not None:
-			myserviceinfo = myservice.info()
-			if self.session.nav.getCurrentlyPlayingServiceReference():
-				name = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
-
-			provider = self.getServiceInfoValue(iServiceInformation.sProvider, myserviceinfo)
-			aspect = self.getServiceInfoValue(iServiceInformation.sAspect, myserviceinfo)
+		try:
+			name = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
+			sinfo = self.session.nav.getCurrentService().info()
+			provider = self.getServiceInfoValue(iServiceInformation.sProvider, sinfo)
+			wide = self.getServiceInfoValue(iServiceInformation.sAspect, sinfo)
+			width = sinfo and sinfo.getInfo(iServiceInformation.sVideoWidth) or -1
+			height = sinfo and sinfo.getInfo(iServiceInformation.sVideoHeight) or -1	
+			videosize = "%dx%d" %(width, height)
+			aspect = "16:9" 
 			if aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
 				aspect = "4:3"
-			else:
-				aspect = "16:9"
-				
-			if myserviceinfo:	
-				width = myserviceinfo and myserviceinfo.getInfo(iServiceInformation.sVideoWidth) or -1
-				height = myserviceinfo and myserviceinfo.getInfo(iServiceInformation.sVideoHeight) or -1
-				if width != -1 and height != -1:
-					videosize = "%dx%d" %(width, height)
+		except:
+			name = "N/A"; provider = "N/A"; aspect = "N/A"; videosize  = "N/A"	
 		
 		self["Ilab1"].setText("Name: " + name)
 		self["Ilab2"].setText("Provider: " + provider)
 		self["Ilab3"].setText("Aspect Ratio: " + aspect)
 		self["Ilab4"].setText("Videosize: " + videosize)
-		
-		self.currentcam = "/usr/camscript/Ncam_Ci.sh"
+	
 		self.defaultcam = "/usr/camscript/Ncam_Ci.sh"
 		f = open("/etc/BhCamConf",'r')
 		for line in f.readlines():
    			parts = line.strip().split("|")
-			if parts[0] == "delcurrent":
-				self.currentcam = parts[1]
-			elif parts[0] == "deldefault":
+			if parts[0] == "deldefault":
 				self.defaultcam = parts[1]
 		f.close()
 			
-		defCamname = "Common Interface"
-		curCamname = "Common Interface"	
-			
+		self.defCamname =  "Common Interface"	
 		for c in self.camnames.keys():
 			if self.camnames[c] == self.defaultcam:
-				defCamname = c
-			if  self.camnames[c] == self.currentcam:
-				curCamname = c	
-		
+				self.defCamname = c
 		pos = 0
 		for x in self.emlist:
-			if x == defCamname:
+			if x == self.defCamname:
 				self["list"].moveToIndex(pos)
 				break
 			pos += 1
@@ -143,22 +102,16 @@ class DeliteBluePanel(Screen):
 		if fileExists("/tmp/ecm.info"):
 			f = open("/tmp/ecm.info",'r')
  			for line in f.readlines():
-     				line = line.replace('\n', '')
-				line = line.strip()
-				if len(line) > 3:
-					mytext = mytext + line + "\n"
+				mytext = mytext + line.strip() + "\n"
  			f.close()
 		if len(mytext) < 5:
 			mytext = "\n\n    Ecm Info not available."
-		
-		
-		self["activecam"].setText(curCamname)
+				
+		self["activecam"].setText(self.defCamname)
 		self["Ecmtext"].setText(mytext)
 
 
 	def getServiceInfoValue(self, what, myserviceinfo):
-		if myserviceinfo is None:
-			return ""
 		v = myserviceinfo.getInfo(what)
 		if v == -2:
 			v = myserviceinfo.getInfoString(what)
@@ -171,66 +124,71 @@ class DeliteBluePanel(Screen):
 		self.sel = self["list"].getCurrent()
 		self.newcam = self.camnames[self.sel]
 		
-		inme = open("/etc/BhCamConf",'r')
-		out = open("/etc/BhCamConf.tmp",'w')
-		for line in inme.readlines():
-			if line.find("delcurrent") == 0:
-				line = "delcurrent|" + self.newcam + "\n"
-			elif line.find("deldefault") == 0:
-				line = "deldefault|" + self.newcam + "\n"	
-			out.write(line)
+		out = open("/etc/BhCamConf",'w')
+		out.write("deldefault|" + self.newcam + "\n")
 		out.close()
-		inme.close()
-		os_rename("/etc/BhCamConf.tmp", "/etc/BhCamConf")
-
+		
 		out = open("/etc/CurrentBhCamName", "w")
 		out.write(self.sel)
 		out.close()
 		cmd = "cp -f " + self.newcam + " /usr/bin/StartBhCam"
 		system (cmd)
+		cmd = "STOP_CAMD," + self.defaultcam
+		self.sendtoBh_sock(cmd)
+		self.session.openWithCallback(self.keyOk2, startstopCam, self.defCamname, "stopping")
 		
-		mydata = "STOP_CAMD," + self.currentcam
+	def keyOk2(self):
+		cmd = "NEW_CAMD," + self.newcam
+		self.sendtoBh_sock(cmd)
+		oldcam = self.camnames[self.sel]
+		self.session.openWithCallback(self.myclose, startstopCam, self.sel, "starting")
+		
+		
+	def sendtoBh_sock(self, data):
 		client_socket = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
 		client_socket.connect("/tmp/Blackhole.socket")
-		client_socket.send(mydata)
+		client_socket.send(data)
             	client_socket.close()
-		mydata = "NEW_CAMD," + self.newcam
-		client_socket = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-		client_socket.connect("/tmp/Blackhole.socket")
-		client_socket.send(mydata)
-            	client_socket.close()
-		
-		self.session.openWithCallback(self.myclose, Nab_DoStartCam2, self.sel)
 				
+	def keyYellow(self):
+		self.session.open(BhsysInfo)
+
+	def keyBlue(self):
+		from Screens.BpSet import DeliteSettings
+		self.session.open(DeliteSettings)
+		
+	def keyGreen(self):
+		self.session.open(MessageBox, "Sorry, function not available in Black Pole", MessageBox.TYPE_INFO)
+		
+	def keyRed(self):
+		from Plugins.SystemPlugins.CrossEPG.crossepg_main import crossepg_main
+		crossepg_main.setup(self.session)
 
 	def myclose(self):
 		self.close()
 	
-	def noImpl(self):
-		self.session.open(MessageBox, "Sorry, function not available in Black Pole", MessageBox.TYPE_INFO)
-		
-	def bhCrossepgPanel(self):
-		from Plugins.SystemPlugins.CrossEPG.crossepg_main import crossepg_main
-		crossepg_main.setup(self.session)
 
-class Nab_DoStartCam2(Screen):
+class startstopCam(Screen):
 	skin = """
-	<screen position="center,center" size="300,200" title="Black Pole" flags="wfNoBorder">
-		<widget name="lab1" position="10,10" halign="center" size="280,180" zPosition="1" font="Regular;20" valign="center" transparent="1" />
+	<screen position="center,center" size="360,200" title="Black Pole" flags="wfNoBorder">
+		<widget name="lab1" position="10,10" halign="center" size="340,180" zPosition="1" font="Regular;20" valign="center" transparent="1" />
 	</screen>"""
 	
-	def __init__(self, session, title):
+	def __init__(self, session, name, what):
 		Screen.__init__(self, session)
 		
-		msg = "Please wait while starting\n" + title + "..."
+		msg = "Please wait while %s\n %s ..." % (what, name)
 		self["lab1"] = Label(msg)
-
+		self.delay = 800
+		if what == "starting":
+			self.delay= 3000
+		
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.end)
 		self.onShow.append(self.startShow)
 		
 	def startShow(self):
-		self.activityTimer.start(1500)
+		self.activityTimer.start(self.delay)
 
 	def end(self):
 		self.activityTimer.stop()
