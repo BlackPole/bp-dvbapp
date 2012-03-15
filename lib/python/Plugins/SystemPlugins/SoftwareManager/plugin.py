@@ -282,7 +282,8 @@ class UpdatePluginMenu(Screen):
 			currentEntry = current[0]
 			if self.menu == 0:
 				if (currentEntry == "software-update"):
-					self.checkTraficLight()
+					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to update your Black Pole image?")+"\n"+_("\nAfter pressing OK, please wait!"))
+#					self.checkTraficLight()
 				elif (currentEntry == "software-restore"):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
