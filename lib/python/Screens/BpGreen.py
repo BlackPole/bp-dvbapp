@@ -5,13 +5,56 @@ from Screens.Console import Console
 from Components.ActionMap import ActionMap
 from Components.Sources.List import List
 from Components.Label import Label
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, fileExists, pathExists, createDir
+from Components.PluginComponent import plugins
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_SKIN_IMAGE, fileExists, pathExists, createDir
 from Tools.LoadPixmap import LoadPixmap
-from os import system, listdir, chdir, getcwd, remove as os_remove
+from Plugins.Plugin import PluginDescriptor
 from Plugins.SystemPlugins.SoftwareManager.plugin import PacketManager, PluginManager
+from os import system, listdir, chdir, getcwd, remove as os_remove
 from enigma import eDVBDB
 
+class DeliteGreenPanel(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		
+		self.list = []
+		self["list"] = List(self.list)
+		self.updateList()
+		
+		self["actions"] = ActionMap(["WizardActions", "ColorActions"],
+		{
+			"ok": self.runPlug,
+			"back": self.close,
+			"red": self.notAval,
+			"green": self.notAval,
+			"yellow": self.addoNs,
+			"blue": self.notAval
+		}, -1)
+			
+	def runPlug(self):
+		mysel = self["list"].getCurrent()
+		if mysel:
+			plugin = mysel[3]
+			plugin(session=self.session)
+		
+	def updateList(self):
+		self.list = [ ]
+		self.pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
+		for plugin in self.pluginlist:
+			if plugin.icon is None:
+				png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/plugin.png"))
+			else:
+				png = plugin.icon
+			res = (plugin.name, plugin.description, png, plugin)
+			self.list.append(res)
+		
+		self["list"].list = self.list	
+	
+	def addoNs(self):
+		self.session.open(DeliteAddons)
 
+	def notAval(self):
+		self.session.open(MessageBox, "Sorry, function not available in Black Pole", MessageBox.TYPE_INFO)
 
 class DeliteAddons(Screen):
 	skin = """
@@ -298,7 +341,7 @@ class DeliteGp:
 			})
 
 	def showDeliteGp(self):
-		self.session.openWithCallback(self.callNabAction, DeliteAddons)
+		self.session.openWithCallback(self.callNabAction, DeliteGreenPanel)
 
 	def callNabAction(self, *args):
 		if len(args):
