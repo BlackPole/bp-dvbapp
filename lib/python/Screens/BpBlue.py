@@ -58,6 +58,11 @@ class DeliteBluePanel(Screen):
 						self.emlist.append(name)
 						self.camnames[name] = "/usr/camscript/" + fil
 				f.close()
+				
+		if fileExists("/etc/BhCamConf") == False:
+			out = open("/etc/BhCamConf", "w")
+			out.write("deldefault|/usr/camscript/Ncam_Ci.sh\n")
+			out.close()
 
 	def updateBP(self):
 		try:
