@@ -58,11 +58,6 @@ class DeliteBluePanel(Screen):
 						self.emlist.append(name)
 						self.camnames[name] = "/usr/camscript/" + fil
 				f.close()
-				
-		if fileExists("/etc/BhCamConf") == False:
-			out = open("/etc/BhCamConf", "w")
-			out.write("deldefault|/usr/camscript/Ncam_Ci.sh\n")
-			out.close()
 
 	def updateBP(self):
 		try:
@@ -85,12 +80,13 @@ class DeliteBluePanel(Screen):
 		self["Ilab4"].setText("Videosize: " + videosize)
 	
 		self.defaultcam = "/usr/camscript/Ncam_Ci.sh"
-		f = open("/etc/BhCamConf",'r')
-		for line in f.readlines():
-   			parts = line.strip().split("|")
-			if parts[0] == "deldefault":
-				self.defaultcam = parts[1]
-		f.close()
+		if fileExists("/etc/BhCamConf"):
+			f = open("/etc/BhCamConf",'r')
+			for line in f.readlines():
+   				parts = line.strip().split("|")
+				if parts[0] == "deldefault":
+					self.defaultcam = parts[1]
+			f.close()
 			
 		self.defCamname =  "Common Interface"	
 		for c in self.camnames.keys():
