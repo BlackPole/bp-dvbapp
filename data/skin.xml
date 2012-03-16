@@ -1,19 +1,19 @@
 <skin>
  	<!--
-     ################### Skin_Default_ Army_skin_default_VU_1.7.1-2.x_v.1.2_BH ####################
+     ################### Skin_Default_Army_MoodBlueHD_VU_0.1.x_v.1.0_BP ####################
 
     QUESTA SKIN E' PROTETTA DA COPYRIGHT E PUO' ESSERE USATA SOLO PER
-	LE IMMAGINI  BLACK HOLE. IL CODICE DELLA SKIN PUO' ESSERE MODIFICATO
+	LE IMMAGINI  BLACK POLE. IL CODICE DELLA SKIN PUO' ESSERE MODIFICATO
 	SOLO PER USO PERSONALE MA SIA IL CODICE E SIA LA GRAFICA DI QUESTA
 	SKIN NON POSSONO ESSERE USATI PER FARE SKIN DIVERSE O PER ADATTARE
-	QUESTA STESSA SKIN A IMMAGINI DIFFERENTI DALLA  BLACK HOLE.
+	QUESTA STESSA SKIN A IMMAGINI DIFFERENTI DALLA  BLACK POLE.
 	
-	THIS SKIN IS COPYRIGHT PROTECTED AND IS FOR  BLACK HOLE IMAGES ONLY.
+	THIS SKIN IS COPYRIGHT PROTECTED AND IS FOR  BLACK POLE IMAGES ONLY.
 	YOU CAN MODIFY THIS SKIN ONLY FOR PERSONAL USE BUT YOU CANNOT USE THIS
 	SKIN CODE AND GRAPHICS TO MAKE A NEW SKIN OR TO ADAPT THIS SKIN FOR
 	DIFFERENT IMAGES.
 
-    ###################  Skin_Default_ Army_skin_default_VU_1.7.1-2.x_v.1.2_BH  ####################
+    ###################  Skin_Default_Army_MoodBlueHD_VU_0.1.x_v.1.0_BP  ####################
     -->
 	<output id="0">
 		<resolution xres="1280" yres="720" bpp="32" />
@@ -42,7 +42,8 @@
 	<!-- 2 Fonts -->
 <fonts>
 	    <font filename="Army_Regular_L.ttf" name="Regular" scale="95" />
-	    <font filename="Army_Bold_G.ttf" name="RegularAA" scale="100" />
+	  <!--  <font filename="Army_Bold_G.ttf" name="RegularAA" scale="100" />-->
+	   <font filename="esp_0.ttf" name="RegularAA" scale="100" />
 		<font filename="army-digital.ttf" name="LCD" scale="100" />
 		<font filename="goodtime.ttf" name="OLED" scale="100" />
 		<font filename="tuxtxt.ttf" name="Console" scale="100" />
@@ -66,7 +67,7 @@
 		<color name="LabelForeground" color="#ffffff"/>
 		<color name="ListboxBackground" color="#000000"/>
 		<color name="ListboxForeground" color="#ffffff"/>
- 		<color name="ListboxSelectedBackground" color="#11362d"/> 
+ 		<color name="ListboxSelectedBackground" color="#003253"/> 
 	 	<color name="ListboxSelectedForeground" color="#ffffff"/> 
 		<color name="ListboxMarkedBackground" color="#253658a4"/>
 		<color name="ListboxMarkedForeground" color="#0099ff"/>
@@ -86,8 +87,8 @@
 		<pixmap pos="bpBottomRight"	filename="skin_default/bs_br-fs8.png"/>
 		</borderset>
 	<borderset name="bsListboxEntry">
-		<pixmap pos="bpTop" 		filename="skin_default/h-green.png"/>
-		<pixmap pos="bpBottom" 		filename="skin_default/h-green.png"/>
+		<pixmap pos="bpTop" 		filename="skin_default/h-crome.png"/>
+		<pixmap pos="bpBottom" 		filename="skin_default/h-crome.png"/>
 		</borderset>
 	</windowstyle>
 	<!--  5 Main screen colors (id=1 LCD) -->
@@ -110,8 +111,7 @@
 		<ePixmap position="0,0" zPosition="1" size="1280,200" pixmap="skin_default/infobar_light-fs8.png" /> 
     	<ePixmap position="200,98" zPosition="2" size="10,16" pixmap="skin_default/icons/icon_event.png" alphatest="on" />
     	<eLabel text="Date:" zPosition="8" position="940,144" size="80,24" halign="right" font="Regular;20" foregroundColor="grey" transparent="1" backgroundColor="transpBlack" />
-    	<eLabel text="Rsv:" zPosition="4" position="750,144" size="70,24" halign="right" font="Regular;20" foregroundColor="grey" transparent="1" backgroundColor="transpBlack" />
-	    
+   <!-- 	<eLabel text="Rsv/Fps:" zPosition="4" position="740,144" size="100,24" halign="right" font="Regular;20" foregroundColor="grey" transparent="1" backgroundColor="transpBlack" />-->
 	<widget source="global.CurrentTime" render="Bhclock" position="1163,106" zPosition="4" size="40,40" transparent="1" >
 			<convert type="BhAnalogic">Hours</convert>	
 	</widget>
@@ -123,14 +123,11 @@
 	</widget>
 	 	<widget source="global.CurrentTime" render="Label" position="826,146" 	size="300,22" zPosition="2"	font="Regular;18" halign="right" backgroundColor="transpBlack" foregroundColor="white" transparent="1" >
 		<convert type="ClockToText">Format:%d.%m.%Y</convert>
-	</widget>
-		<widget source="session.CurrentService" render="Label" zPosition="4" position="813,146" size="55,22" halign="right" font="Regular;18" foregroundColor="white" transparent="1" backgroundColor="#999999">
-            <convert type="ServiceInfo">VideoWidth</convert>
-        </widget>
-        <eLabel text="x" zPosition="4" position="874,146" size="15,22" halign="left" font="Regular;18" foregroundColor="white" transparent="1" backgroundColor="#999999" />
-        <widget source="session.CurrentService" render="Label" zPosition="4" position="890,146" size="55,22" halign="left" font="Regular;18" foregroundColor="white" transparent="1" backgroundColor="#999999">
-            <convert type="ServiceInfo">VideoHeight</convert>	
 		</widget>
+	<!-- 	<widget source="session.CurrentService" render="Label" position="820,146" size="160,80" transparent="1" zPosition="4" foregroundColor="foreground" font="Regular;20" valign="top" halign="right">
+			<convert type="PliExtraInfo">ResolutionString</convert>
+		</widget>
+	-->	
 <!-- Channel Number -->
 <widget source="session.CurrentService" render="ChannelNumber" borderWidth="2" position="375,40" size="100,32" zPosition="2" font="Regular;28" halign="left" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background" />
 	    <widget source="session.CurrentService" render="Label" position="375,40" size="530,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
@@ -202,10 +199,15 @@
 		</widget>
 	</screen>
 	<!-- 7 Black Pole (extra) second Infobar  -->
-		<screen name="SecondInfoBar" flags="wfNoBorder" position="0,0" size="1280,720" title="Black Hole" backgroundColor="transparent"  >
-			<ePixmap position="0,0" zPosition="1" size="1280,720" pixmap="skin_default/infobar-fs8.png" /> 
+		<screen name="SecondInfoBar" flags="wfNoBorder" position="0,0" size="1280,720" title="Black Pole" backgroundColor="transparent"  >
+			<ePixmap position="0,0" zPosition="1" size="1280,720" pixmap="skin_default/infobar-fs8.png" />
 			<ePixmap position="539,69" zPosition="2" size="202,6" pixmap="skin_default/bar_snr_osd.png" alphatest="on" />
 			<ePixmap position="200,586" zPosition="2" size="21,14" pixmap="skin_default/icons/icon_event.png" alphatest="on" />
+		<!--	<ePixmap position="0,140" zPosition="2" size="1280,270" pixmap="skin_default/box_epg.png" alphatest="on" />-->
+			<!-- 	<eLabel position="fill" backgroundColor="transpBlack" zPosition="-50"/> -->
+	   <!--	<widget source="session.CurrentService" render="Label" position="60,45" size="700,80" transparent="1" zPosition="1" foregroundColor="foreground" font="Regular;20" valign="top" halign="left">
+			<convert type="PliExtraInfo">All</convert>
+		</widget>-->
 			<widget source="global.CurrentTime" render="Bhclock" position="1164,50" zPosition="4" size="40,40" transparent="1" >
 				<convert type="BhAnalogic">Hours</convert>	
 			</widget>
@@ -230,13 +232,9 @@
 			</widget>
 			<widget source="global.CurrentTime" render="Label" position="860,100" 	size="300,22" zPosition="2"	font="Regular;18" halign="left" backgroundColor="transpBlack" foregroundColor="white" transparent="1" >
 				<convert type="ClockToText">Format:%d.%m.%Y</convert>
-			</widget>
-			<widget source="session.CurrentService" render="Label" zPosition="6" position="1086,658" size="55,22" halign="right" font="Regular;18" foregroundColor="white" transparent="1" backgroundColor="#999999">
-				<convert type="ServiceInfo">VideoWidth</convert>
-			</widget>
-			<eLabel text="x" zPosition="6" position="1147,658" size="15,22" halign="left" font="Regular;18" foregroundColor="white" transparent="1" backgroundColor="#999999" />
-			<widget source="session.CurrentService" render="Label" zPosition="6" position="1162,658" size="55,22" halign="left" font="Regular;18" foregroundColor="white" transparent="1" backgroundColor="#999999">
-				<convert type="ServiceInfo">VideoHeight</convert>	
+				</widget>
+		    <widget source="session.CurrentService" render="Label" position="1060,656" size="160,80" transparent="1" zPosition="4" foregroundColor="foreground" font="Regular;20" valign="top" halign="right">
+			<convert type="PliExtraInfo">ResolutionString</convert>
 			</widget>	
 			<widget source="session.CurrentService" render="Picon" position="60,571" size="130,80" zPosition="10" transparent="1" alphatest="on">
 				<convert type="ServiceName">Reference</convert>
@@ -299,9 +297,6 @@
 				<convert type="ServiceInfo">SubservicesAvailable</convert>
 				<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="session.CurrentService" render="Label" zPosition="4" position="350,656" size="55,24" halign="right" font="Regular;20" foregroundColor="white" transparent="1" backgroundColor="#999999">
-				<convert type="ServiceInfo">Framerate</convert>	
-			</widget>
 			<!--Turner Status (Nim) A-B-C-D -->
 			<eLabel text="A" position="439,655" zPosition="1" size="20,22" font="Regular;20" halign="center" foregroundColor="grey" backgroundColor="background" transparent="1"/>
 			<eLabel text="B" position="461,655" zPosition="1" size="20,22" font="Regular;20" halign="center" foregroundColor="grey" backgroundColor="background" transparent="1"/>
@@ -347,31 +342,16 @@
 				<convert type="ValueRange">3,3</convert>
 				<convert type="ConditionalShowHide"/>
 			</widget>
-			<!--Turner DVB-S/C/T -->
-			<widget source="session.FrontendInfo" render="FixedLabel" text="DVB-S" position="900,656" zPosition="3" size="80, 24" font="Regular;20"  halign="left" foregroundColor="white" backgroundColor="transpBlack" transparent="1">
-				<convert type="FrontendInfo">TYPE</convert>
-				<convert type="ValueRange">0,0</convert>
-				<convert type="ConditionalShowHide" />
-			</widget>
-			<widget source="session.FrontendInfo" render="FixedLabel" text="DVB-C" position="900,656" zPosition="3" size="80, 24" font="Regular; 20"  halign="left" foregroundColor="white" backgroundColor="transpBlack" transparent="1">
-				<convert type="FrontendInfo">TYPE</convert>
-				<convert type="ValueRange">1,1</convert>
-				<convert type="ConditionalShowHide" />
-			</widget>
-			<widget source="session.FrontendInfo" render="FixedLabel" text="DVB-T" position="900,656" zPosition="3" size="80, 24" font="Regular; 20"  halign="left" foregroundColor="white" backgroundColor="transpBlack" transparent="1">
-				<convert type="FrontendInfo">TYPE</convert>
-				<convert type="ValueRange">2,2</convert>
-				<convert type="ConditionalShowHide" />
-			</widget>
-			
+				<widget source="session.CurrentService" render="Label" position="900,656" size="90,80" transparent="1" zPosition="3" foregroundColor="white" backgroundColor="transpBlack" font="Regular;20" valign="top" halign="left">
+			<convert type="PliExtraInfo">TunerType</convert>
+		</widget>
 	<!--  		<widget name="cam_info" zPosition="6" position="240,90" size="240,24" halign="left" font="Regular;20" foregroundColor="white" transparent="1" backgroundColor="transpBlack"/>
 			<widget name="ecm_info" position="608,38" size="540,20" halign="right" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack"/>
 			<widget name="netcard_info" position="60,38" size="590,20" halign="left" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack"/>
 			<widget name="orbital_pos" position="862,59" size="200,26" halign="right" font="Regular;20"  zPosition="3" foregroundColor="white" transparent="1" backgroundColor="transpBlack"/>	
 			<widget name="nfreq_info" position="60,59" size="320,26" halign="left" font="Regular;20" zPosition="3" transparent="1" foregroundColor="white" backgroundColor="transpBlack"/>
 	-->		
-			
-			<widget source="session.CurrentService" render="Label" zPosition="6" position="280,92" size="240,24" halign="left" font="Regular;20" foregroundColor="white" transparent="1" backgroundColor="transpBlack">
+				<widget source="session.CurrentService" render="Label" zPosition="6" position="310,88" size="240,24" halign="left" font="Regular;20" foregroundColor="white" transparent="1" backgroundColor="transpBlack">
 				<convert type="PliExtraInfo">CamName</convert>
 			</widget>
 			<widget source="session.CurrentService" render="Label"  position="608,38" size="540,20" halign="right" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack">
@@ -380,15 +360,18 @@
 			<widget source="session.CurrentService" render="Label"  position="60,38" size="590,20" halign="left" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack">
 				<convert type="PliExtraInfo">NetInfo</convert>
 			</widget>
-			<widget source="session.CurrentService" render="Label" position="40,59" size="370,30" halign="left" font="Regular;20" zPosition="3" transparent="1" foregroundColor="white" backgroundColor="transpBlack">
+			<widget source="session.CurrentService" render="Label" position="60,59" size="370,30" halign="left" font="Regular;20" zPosition="3" transparent="1" foregroundColor="white" backgroundColor="transpBlack">
 				<convert type="PliExtraInfo">AllFreq_info</convert>
 			</widget>
 			<widget source="session.CurrentService" render="Label" position="862,59" size="200,26" halign="right" font="Regular;20"  zPosition="3" foregroundColor="white" transparent="1" backgroundColor="transpBlack">
 				<convert type="PliExtraInfo">OrbitalPosition</convert>
 			</widget>
-			<eLabel text="Fps:" zPosition="4" position="324,656" size="70,24" halign="center" font="Regular;20" foregroundColor="grey" transparent="1" backgroundColor="transpBlack" />
+	<!--		<widget source="session.CurrentService" render="Label"  position="608,38" size="540,20" halign="right" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack">
+				<convert type="PliExtraInfo">CryptoSpecial</convert>
+			</widget>
+		-->
 			<eLabel text="Date:" zPosition="4" position="792,98" size="80,24" halign="center" font="Regular;20" foregroundColor="grey" transparent="1" backgroundColor="transpBlack" />
-			<eLabel text="Rsv:" zPosition="4" position="1040,656" size="70,24" halign="center" font="Regular;20" foregroundColor="grey" transparent="1" backgroundColor="transpBlack" />
+			<eLabel text="Rsv/Fps:" zPosition="4" position="990,656" size="100,24" halign="center" font="Regular;20" foregroundColor="grey" transparent="1" backgroundColor="transpBlack" />
 			<eLabel text="Snr:" zPosition="3" position="426,59" size="70,24" halign="center" font="Regular;20" foregroundColor="grey" transparent="1" backgroundColor="transpBlack" />
 			<widget source="session.FrontendStatus" render="Label" position="472,59" zPosition="3" size="70,24" halign="center" font="Regular;20" foregroundColor="white" transparent="1" backgroundColor="transpBlack">
 				<convert type="FrontendInfo">SNR</convert>
@@ -400,30 +383,37 @@
 			<widget source="session.FrontendStatus" render="Label" 	position="814,59" zPosition="3" size="70,24" font="Regular;20" foregroundColor="white" backgroundColor="transpBlack" transparent="1" >
 				<convert type="FrontendInfo">BER</convert> 
 			</widget>	
-			<widget source="session.CurrentService" render="Label" position="30,92" size="240,30" backgroundColor="transpBlack" transparent="1" zPosition="2" foregroundColor="white" font="Regular;20" valign="top" halign="left">
+			<widget source="session.CurrentService" render="Label" position="60,88" size="240,30" backgroundColor="transpBlack" transparent="1" zPosition="2" foregroundColor="white" font="Regular;20" valign="top" halign="left">
 				<convert type="PliExtraInfo">CryptoBar</convert>
 			</widget>
 		<!--	<widget name="button_fta" text="Free to Air" backgroundColor="background"  transparent="1" position="590,100" size="220,24" halign="left" font="OLED;22" foregroundColor="#aaaaaa" zPosition="10" />
 			<widget name="button_card" text="Card" backgroundColor="background" transparent="1" position="590,100" size="220,24" halign="left" font="OLED;24" foregroundColor="#56C856" zPosition="11" />
 			<widget name="button_emu" text="Emulator" backgroundColor="background"  transparent="1" position="590,100" size="220,24" halign="left" font="OLED;24" foregroundColor="#fcc000" zPosition="12" />
 			<widget name="button_spider" text="Network" backgroundColor="background"  transparent="1" position="590,100" size="220,24" halign="left" font="OLED;24" foregroundColor="#f23d21" zPosition="13" />
-			-->
-			<widget source="session.CurrentService" render="Label" position="590,96" size="220,30" halign="left" font="OLED;26" zPosition="4" foregroundColor="red" transparent="1" backgroundColor="transpBlack">
+		-->	
+			<widget source="session.CurrentService" render="Label" position="590,96" size="220,30" halign="left" font="OLED;26" zPosition="4" foregroundColor="#f23d21" transparent="1" backgroundColor="transpBlack">
 				<convert type="PliExtraInfo">E-C-N</convert>
 			</widget>
+	<!--		<eLabel text="Now:" position="60,150" size="63,26" zPosition="3" font="Regular; 22" foregroundColor="white" transparent="1" />
+		<widget source="session.Event_Now" render="Label" position="60,188" size="570,370" font="Regular; 20" zPosition="3" transparent="1">
+			<convert type="EventName">ExtendedDescription</convert>
+		</widget>
+		<eLabel text="Next:" position="650,150" size="63,26" zPosition="3" font="Regular; 22" foregroundColor="white" transparent="1"  />
+		<widget source="session.Event_Next" render="Label" position="650,188" size="570,370" font="Regular; 20" zPosition="3" transparent="1">
+			<convert type="EventName">ExtendedDescription</convert>
+		</widget>-->
 		</screen> 
-	
 	<!-- 8 Delite GreenPanel ( 4S )-->
-	<screen name="DeliteGreenPanel" position="0,0" size="1280,720" title="Black Hole E2 Green Panel" backgroundColor="transparent" flags="wfNoBorder">
+	<screen name="DeliteGreenPanel" position="0,0" size="1280,720" title="Black Pole Green Panel" backgroundColor="transparent" flags="wfNoBorder">
 		<ePixmap position="0,0" zPosition="-1" size="1280,720" pixmap="skin_default/frame_base-fs8.png"  />
 		<ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
 		<ePixmap position="960,470" zPosition="-1" size="250,160" pixmap="skin_default/menu/icons_gp.png" alphatest="on" />
-		<ePixmap position="764,103" zPosition="2" size="26,504" pixmap="skin_default/scroll_help.png" alphatest="blend" transparent="1" />
+		<ePixmap position="764,103" zPosition="2" size="26,504" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 		<ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
 		<ePixmap position="0,650" zPosition="-1" size="1280,60" pixmap="skin_default/buttons_gp.png" alphatest="blend" transparent="1" />
 		<ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
 		<widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>
-		<eLabel text="Black Hole Green Panel" position="80,30" size="450,36" font="RegularAA;28" halign="left" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1"/>
+		<eLabel text="Black Pole Green Panel" position="80,30" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/>
 		<widget source="list" render="Listbox" position="80,105" zPosition="1" size="710,500" scrollbarMode="showOnDemand" selectionPixmap="skin_default/icons/listselection710x50-fs8.png"  transparent="1">
              <convert type="TemplatedMultiContent">
                  {"template": [
@@ -439,7 +429,7 @@
           <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
              </widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -447,34 +437,34 @@
             </widget>
 	</screen>
 	<!-- 9 Delite BluePanel ( 4S )-->
-	<screen name="DeliteBluePanel" position="0,0" size="1280,720"  title="Black Hole Blue Panel" backgroundColor="transparent" flags="wfNoBorder">
+	<screen name="DeliteBluePanel" position="0,0" size="1280,720"  title="Black Pole Blue Panel" backgroundColor="transparent" flags="wfNoBorder">
         <ePixmap position="0,0" zPosition="-1" size="1280,720" pixmap="skin_default/frame_base-fs8.png"  />
         <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
         <ePixmap position="960,470" zPosition="-1" size="250,160" pixmap="skin_default/menu/icons_bp.png" alphatest="on" />
         <ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
-        <ePixmap position="0,650" zPosition="-1" size="1280,40" pixmap="skin_default/buttons_bp.png" alphatest="blend" transparent="1" />
+        <ePixmap position="38,650" zPosition="-1" size="1280,40" pixmap="skin_default/buttons_bp.png" alphatest="blend" transparent="1" />
         <ePixmap position="109,175" zPosition="-1" size="253,25" pixmap="skin_default/buttons_cam.png" alphatest="blend" transparent="1" />
         <ePixmap position="510,124" zPosition="3" size="60,40" pixmap="skin_default/button_ok.png" alphatest="blend" transparent="1" />
        	<ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
 		<widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>
-        <eLabel text="Black Hole Blue Panel" position="80,30" size="400,36" font="RegularAA;28" halign="left" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1"/> 
+        <eLabel text="Black Pole Blue Panel" position="80,30" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/> 
         <widget name="lab1" position="129,90" size="230,25" font="Regular;24" zPosition="2"  backgroundColor="transpBlack" transparent="1"/>
         <widget name="list" position="75,126" size="710,38" zPosition="2" selectionPixmap="skin_default/icons/listselection450x38_S-fs8.png"  transparent="1"/> 
         <widget name="lab2" position="139,172" size="190,24" font="Regular;20" halign="center" valign="center" zPosition="2" backgroundColor="transpBlack" transparent="1"/>
-    	<widget name="lab3" position="79,201" size="120,28" font="Regular;24" halign="left" zPosition="2" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1"/> 
+    	<widget name="lab3" position="79,201" size="120,28" font="Regular;24" halign="left" zPosition="2" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1"/> 
         <widget name="activecam" position="160,201" size="350,28" font="Regular;24" halign="left" zPosition="2" backgroundColor="#333333" transparent="1"/>
         <widget name="Ilab1" position="79,227" size="350,28" font="Regular;24" zPosition="2" backgroundColor="transpBlack" transparent="1"/>
         <widget name="Ilab2" position="79,260" size="350,28" font="Regular;24" zPosition="2" backgroundColor="transpBlack" transparent="1"/>
         <widget name="Ilab3" position="79,285" size="350,28" font="Regular;24" zPosition="2" backgroundColor="transpBlack" transparent="1"/>
         <widget name="Ilab4" position="79,314" size="350,28" font="Regular;24" zPosition="2" backgroundColor="transpBlack" transparent="1"/>
-        <widget name="Ecmtext" position="79,350" size="440,300" font="Regular;20" zPosition="2" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1"/>
+        <widget name="Ecmtext" position="79,350" size="440,300" font="Regular;20" zPosition="2" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1"/>
         <applet type="onLayoutFinish">
 		self[&quot;list&quot;].instance.setItemHeight(38)
 		        </applet>
           <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
              </widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -482,7 +472,7 @@
             </widget>
     </screen>
 	<!-- 10  DeliteAutocamMan ( 2 ) -->
-	<screen name="DeliteAutocamMan" position="center,center" size="800,520" title="Black Hole Autocam Manager">
+	<screen name="DeliteAutocamMan" position="center,center" size="800,520" title="Black Pole Autocam Manager">
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-2" position="0,0" size="800,520" alphatest="on" />
         <widget name="defaultcam" position="20,20" size="760,30" font="Regular;24" halign="center" valign="center" backgroundColor="#9f1313" />
         <widget source="list" render="Listbox" position="20,70" size="760,400" scrollbarMode="showOnDemand" transparent="1" >
@@ -494,14 +484,14 @@
 		<widget name="key_yellow" position="450,460" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
         </screen>
      <!-- 11 DeliteSetupAutocam ( 1 ) -->
-    <screen name="DeliteSetupAutocam" position="center,center" size="800,340" title="Black Hole Autocam Setup">
+    <screen name="DeliteSetupAutocam" position="center,center" size="800,340" title="Black Pole Autocam Setup">
      <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="800,340" alphatest="on" />
         <widget name="config" position="20,20" size="760,280" scrollbarMode="showOnDemand" transparent="1" />
         <ePixmap position="275,280" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
         <widget name="key_red" position="275,280" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
     </screen>
     <!-- 12 DeliteKernelModules ( 2 ) -->
-    <screen name="DeliteKernelModules" position="center,center" size="800,340" title="Black Hole Extra Kernel Modules">
+    <screen name="DeliteKernelModules" position="center,center" size="800,340" title="Black Pole Extra Kernel Modules">
      <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="800,340" alphatest="on" />
         <widget name="config" position="20,20" size="760,280" scrollbarMode="showOnDemand" transparent="1" />
        <ePixmap position="100,280" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
@@ -532,7 +522,7 @@
       	<widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>	   
       	<ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
       	<ePixmap position="960,470" zPosition="-1" size="250,160" pixmap="skin_default/menu/add_manager.png" alphatest="on" /> 
-	    <eLabel text="Black Hole Addons Manager" position="80,30" zPosition="2" size="500,34" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="#11362d" />  
+	    <eLabel text="Black Pole Addons Manager" position="80,30" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/>  
 			<widget source="list" render="Listbox" position="80,90" size="710,440" zPosition="4" scrollbarMode="showOnDemand" selectionPixmap="skin_default/icons/listselection450x38-fs8.png"  backgroundColorSelected="#10000000" transparent="1">
             <convert type="TemplatedMultiContent">
                 {"template": [
@@ -547,7 +537,7 @@
 		 <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
 		</widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -557,7 +547,7 @@
 	<!-- 15 Delite DownArea -->
 	<screen name="Nab_downArea" position="0,0" size="1280,720" backgroundColor="transparent" flags="wfNoBorder">
 	    <ePixmap pixmap="skin_default/frame_base-fs8.png" position="0,0" zPosition="-3" size="1280,720"  /> 
-	   	<eLabel text="Black Hole E2 Downloads Manager" position="80,30" zPosition="2" size="500,34" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="#11362d" /> 
+	   	<eLabel text="Black Pole Downloads Manager" position="80,30" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/> 
 	   	<ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />   
 	   	  <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />     
         <ePixmap position="960,470" zPosition="-1" size="250,160" pixmap="skin_default/menu/downloads.png" alphatest="on" />
@@ -582,8 +572,8 @@
             </widget>
 	</screen>
 	<!-- 16 Delite DownCategory -->
-	<screen name="Nab_downCat" position="center,center" size="1130,520" title="Black Hole E2 Downloads Manager">
-	   <ePixmap position="1084,15" zPosition="2" size="26,478" pixmap="skin_default/scroll_dow.png" alphatest="blend" transparent="1" />
+	<screen name="Nab_downCat" position="center,center" size="1130,520" title="Black Pole Downloads Manager">
+	   <ePixmap position="1084,15" zPosition="2" size="26,478" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1130,520" alphatest="on" />
 		<widget source="list" render="Listbox" position="20,20" size="1090,468" zPosition="1" scrollbarMode="showOnDemand" transparent="1" >
             <convert type="TemplatedMultiContent">
@@ -597,7 +587,7 @@
         </widget>
 	</screen>
 	<!-- 17 Delite Show Addon Description ( 2 ) -->
-	<screen name="Nab_ShowDownFile" position="center,center" size="1130,460" title="Black Hole E2 Package Details">	
+	<screen name="Nab_ShowDownFile" position="center,center" size="1130,460" title="Black Pole Package Details">	
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1130,460" alphatest="on" />	
 		<widget name="infotext" position="20,20" size="1090,360" font="Regular;24" transparent="1" />
 		<ePixmap position="210,400" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
@@ -606,12 +596,12 @@
 		<widget name="key_yellow"  position="670,400" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
 	</screen>
 	<!-- 17A Delite Show Addons Preview -->
-	<screen name="Nab_ShowPreviewFile" position="0,0" size="1280,720" title="Black Hole E2 Preview" flags="wfNoBorder">
+	<screen name="Nab_ShowPreviewFile" position="0,0" size="1280,720" title="Black PolePreview" flags="wfNoBorder">
         <widget name="lab1" position="0,0" size="1280,720" zPosition="1" transparent="1" />
         <widget name="lab2" position="310,38" size="660,30" zPosition="2" font="OLED;26" halign="center" valign="center" backgroundColor="black" foregroundColor="white" transparent="1" />
     </screen>
 	<!-- 18 Delite Manual Addon  Panel -->
-	<screen name="Nab_downPanel" position="center,center" size="1130,520" title="Black Hole E2 Manual Install Packages">
+	<screen name="Nab_downPanel" position="center,center" size="1130,520" title="Black Pole Manual Install Packages">
  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1130,520" alphatest="on" />	
 		<widget source="list" render="Listbox" position="20,20" size="1090,468" zPosition="1" scrollbarMode="showOnDemand" transparent="1" >
             <convert type="TemplatedMultiContent">
@@ -625,7 +615,7 @@
         </widget>
 	</screen>
 	<!-- 19 Delite Manual Addon Ipk Panel -->
-	<screen name="Nab_downPanelIPK" position="center,center" size="1130,520" title="Black Hole E2 Manual Install Ipk Packages ">
+	<screen name="Nab_downPanelIPK" position="center,center" size="1130,520" title="Black Pole Manual Install Ipk Packages ">
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1130,520" alphatest="on" />	
 		<widget name="warntext" position="50,460" size="880,100" font="Regular;24" halign="center" valign="center" backgroundColor="#1f771f" />
 		<widget source="list" render="Listbox" position="20,20" size="1090,468" zPosition="1" scrollbarMode="showOnDemand" transparent="1" >
@@ -640,7 +630,7 @@
         </widget>
 	</screen>
 	<!-- 20 Delite Uninstall Panel -->
-	<screen name="Nab_uninstPanel" position="center,center" size="1130,520" title="Black Hole E2 Uninstall Panel">
+	<screen name="Nab_uninstPanel" position="center,center" size="1130,520" title="Black Pole Uninstall Panel">
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1130,520" alphatest="on" />	
 		<widget source="list" render="Listbox" position="20,20" size="1090,468" zPosition="1" scrollbarMode="showOnDemand" transparent="1" >
             <convert type="TemplatedMultiContent">
@@ -654,14 +644,14 @@
         </widget>
 	</screen>
 	<!-- 21 Delite Stats -->
-	<screen name="Nab_Stats" position="center,center" size="1130,520" title="Black Hole E2 Statistics">
+	<screen name="Nab_Stats" position="center,center" size="1130,520" title="Black Pole Statistics">
 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1130,520" alphatest="on" />	
 		<widget name="infotext" position="20,20" size="1090,500" font="Regular;24" transparent="1" />
 	</screen>	
 	<!-- 22 Delite Script ( 1 S ) -->
 	<screen name="DeliteScript" position="0,0" size="1280,720" backgroundColor="transparent" flags="wfNoBorder">
     	<ePixmap pixmap="skin_default/frame_base-fs8.png" position="0,0" zPosition="-3" size="1280,720" /> 
-	 	<eLabel text="Black Hole E2 Script Panel" position="80,30" zPosition="2" size="500,34" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="#11362d" /> 
+	 	<eLabel text="Black Pole Script Panel" position="80,30" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/> 
 	 	<ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
 	 	  <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
 	 		<ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
@@ -683,19 +673,19 @@
           <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
              </widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
 			<convert type="EventTime">Progress</convert>
             </widget>
 	</screen>
-	<!-- 23 Delite E2 Settings -->
+	<!-- 23 Delite extra Settings -->
 	<screen name="DeliteSettings" position="0,0" size="1280,720" backgroundColor="transparent" flags="wfNoBorder">
 		<ePixmap pixmap="skin_default/frame_base-fs8.png" position="0,0" zPosition="-3" size="1280,720"  /> 
-		<eLabel text="Black Hole E2 Settings" position="80,30" size="410,34" font="RegularAA;28" halign="left" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1"/>
+		<eLabel text="Black Pole Extra Settings" position="80,30" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/>
 		<ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
-		<ePixmap position="764,108" zPosition="5" size="26,494" pixmap="skin_default/scroll_tv.png" alphatest="blend" transparent="1" />
+		<ePixmap position="764,108" zPosition="5" size="26,494" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 		 <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
 		<ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
 		<ePixmap position="960,470" zPosition="-1" size="250,160" pixmap="skin_default/menu/setting.png" alphatest="on" />	
@@ -714,7 +704,7 @@
           <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
              </widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -722,7 +712,7 @@
             </widget>
 	</screen>
 	<!-- 24 Delite Osd Setup (1 ) -->
-		<screen name="DeliteSetupOSD2" position="center,center" size="710,340" title="Black Hole E2 Osd Settings">
+		<screen name="DeliteSetupOSD2" position="center,center" size="710,340" title="Black Pole Osd Settings">
 		<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,340" alphatest="on" />	
         <widget name="lsinactive" position="20,20" zPosition="1" pixmap="skin_default/icons/ninactive.png" size="32,32" alphatest="on"/>
         <widget name="lsactive" position="20,20" zPosition="2" pixmap="skin_default/icons/nactive.png" size="32,32" alphatest="on"/>
@@ -739,16 +729,16 @@
 		<widget name="key_red" position="230,280" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
     </screen>
 	<!-- 25 Delite Osd Setup2_Conf2 ( 1 )-->
-    	<screen name="DeliteSetupOSDConf2" position="center,center" size="710,340" title="Black Hole E2 OSD Setup">
+    	<screen name="DeliteSetupOSDConf2" position="center,center" size="710,340" title="Black Pole OSD Setup">
     	<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,340" alphatest="on" />	
         <widget name="config" position="20,20" size="670,200" scrollbarMode="showOnDemand"  transparent="1" />
          <ePixmap position="230,280" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
 		<widget name="key_red" position="230,280" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
     </screen>
-    	 <!--26 DeliteEpgPanel_E2 EPG Settings ( 4 )-->
-   <screen name="DeliteEpgPanel" position="center,center" size="1130,520" title="Black Hole E2 EPG Settings">
+    	 <!--26 DeliteEpgPanel_EPG Settings ( 4 )-->
+   <screen name="DeliteEpgPanel" position="center,center" size="1130,520" title="Black Pole EPG Settings">
    <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1130,520" alphatest="on" />	
-   <ePixmap position="1044,205" zPosition="2" size="26,250" pixmap="skin_default/scroll_epg.png" alphatest="blend" transparent="1" />
+   <ePixmap position="1044,205" zPosition="2" size="26,250" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
         <widget name="lsinactive" position="20,20" zPosition="1" pixmap="skin_default/icons/ninactive.png" size="32,32" alphatest="on"/>
         <widget name="lsactive" position="20,20" zPosition="2" pixmap="skin_default/icons/nactive.png" size="32,32" alphatest="on"/>
         <widget name="lab1" position="60,20" size="400,30" font="Regular;24" valign="center" transparent="1"/>
@@ -773,15 +763,15 @@
 	 	<widget name="key_yellow"  position="578,460" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
 		<widget name="key_blue"  position="854,460" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
     </screen>
-     <!-- 27 DeliteEpgGlobalSetup_ E2 EPG Setup ( 1 )-->
-    <screen name="DeliteEpgGlobalSetup"  position="center,center" size="710,340" title="Black Hole E2 EPG Setup">
+     <!-- 27 DeliteEpgGlobalSetup_EPG Setup ( 1 )-->
+    <screen name="DeliteEpgGlobalSetup"  position="center,center" size="710,340" title="Black Pole EPG Setup">
     <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,340" alphatest="on" />	
         <widget name="config" position="20,20" size="670,280" scrollbarMode="showOnDemand" transparent="1" />
         <ePixmap position="230,280" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
 		<widget name="key_red" position="230,280" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
     </screen>
       <!-- 28  DeliteExtdatProv ( 2 )-->
-    <screen name="DeliteExtdatProv" position="center,center" size="1130,460" title="Black Hole E2 EPG Settings">
+    <screen name="DeliteExtdatProv" position="center,center" size="1130,460" title="Black Pole EPG Settings">
     <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1130,460" alphatest="on" />	
         <widget name="lab1" position="60,20" size="300,30" font="Regular;22" transparent="1"/>
         <widget name="labprov" position="300,60" size="530,30" font="Regular;24"/>
@@ -800,7 +790,7 @@
         <widget name="key_yellow" position="670,400" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
     </screen>
     <!-- 29 DeliteExtdatSetup ( 1 ) -->
-    <screen name="DeliteExtdatSetup" position="center,center" size="800,340" title="Black Hole E2 EPG Setup">
+    <screen name="DeliteExtdatSetup" position="center,center" size="800,340" title="Black Pole EPG Setup">
     <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="800,340" alphatest="on" />	
         <widget name="lab1" position="20,20" size="240,30" font="Regular;22" transparent="1"/>
         <widget name="labprov" position="270,20" size="340,30" font="Regular;24"/>
@@ -809,7 +799,7 @@
         <widget name="key_red" position="275,280" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
     </screen>
      <!-- 30 DeliteEpgAddProvider ( 2 ) -->
-    <screen name="DeliteEpgAddProvider" position="center,center" size="800,340" title="Black Hole EpgPanel: Add External epg Server">
+    <screen name="DeliteEpgAddProvider" position="center,center" size="800,340" title="Black Pole EpgPanel: Add External epg Server">
     <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="800,340" alphatest="on" />	
         <widget name="lab1" position="20,20" size="760,120" font="Regular;24" halign="center" transparent="1"/>
         <widget name="config" position="20,160" size="760,120" scrollbarMode="showOnDemand" transparent="1" />
@@ -818,8 +808,8 @@
         <widget name="key_red" position="100,280" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
         <widget name="key_green" position="450,280" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
     </screen>
-    <!--31 DeliteOpenepgProv_E2 EPG Settings ( 3 ) -->
-    <screen name="DeliteOpenepgProv" position="center,center" size="1130,520" title="Black Hole E2 EPG Settings">
+    <!--31 DeliteOpenepgProv_EPG Settings ( 3 ) -->
+    <screen name="DeliteOpenepgProv" position="center,center" size="1130,520" title="Black Pole EPG Settings">
     <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1130,520" alphatest="on" />	
         <widget name="lab1" position="60,20" size="300,30" font="Regular;24" transparent="1"/>
         <widget name="labprov" position="300,20" size="400,30" font="Regular;24"/>
@@ -841,8 +831,8 @@
         <widget name="key_green" position="440,460" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
         <widget name="key_yellow" position="785,460" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
     </screen>
-     <!-- 32 DeliteOepgSetup_ E2 EPG Setup ( 1 )-->
-    <screen name="DeliteOepgSetup" position="center,center" size="600,340" title="Black Hole E2 EPG Setup">
+     <!-- 32 DeliteOepgSetup_EPG Setup ( 1 )-->
+    <screen name="DeliteOepgSetup" position="center,center" size="600,340" title="Black Pole EPG Setup">
     <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="600,340" alphatest="on" />	
         <widget name="lab1" position="20,20" size="240,30" font="Regular;24" transparent="1"/>
         <widget name="labprov" position="270,20" size="340,30" font="Regular;24"/>
@@ -850,8 +840,8 @@
         <ePixmap position="175,280" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
 		<widget name="key_red" position="175,280" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
     </screen>
-    <!-- 33 DeliteXmltepgProv_ E2 EPG Settings ( 3 )-->
-    <screen name="DeliteXmltepgProv" position="center,center" size="1130,520" title="Black Hole E2 EPG Settings">
+    <!-- 33 DeliteXmltepgProv_EPG Settings ( 3 )-->
+    <screen name="DeliteXmltepgProv" position="center,center" size="1130,520" title="Black Pole EPG Settings">
     <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1130,520" alphatest="on" />	
         <widget name="lab1" position="60,20" size="300,30" font="Regular;24" transparent="1"/>
         <widget name="labprov" position="300,20" size="400,30" font="Regular;24"/>
@@ -875,8 +865,8 @@
         <widget name="key_green" position="440,460" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
         <widget name="key_yellow" position="785,460" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
     </screen>
-      <!-- 34 DeliteXepgSetup_ E2 EPG Setup ( 1 )-->
-    <screen name="DeliteXepgSetup" position="center,center" size="600,340" title="Black Hole E2 EPG Setup">
+      <!-- 34 DeliteXepgSetup_EPG Setup ( 1 )-->
+    <screen name="DeliteXepgSetup" position="center,center" size="600,340" title="Black Pole EPG Setup">
     <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="600,340" alphatest="on" />	
         <widget name="lab1" position="20,20" size="240,30" font="Regular;24" transparent="1"/>
         <widget name="labprov" position="270,20" size="340,30" font="Regular;24"/>
@@ -901,15 +891,15 @@
         <ePixmap position="175,180" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
 		<widget name="key_red" position="175,180" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
     </screen>
-     <!-- 37 DeliteDownEpgNow_ Black Hole Epg Download ( 1 )--> 
-    <screen name="DeliteDownEpgNow" position="0,0" size="1280,720" title="Black Hole Epg Download"  flags="wfNoBorder" backgroundColor="transparent">
+     <!-- 37 DeliteDownEpgNow_ Black PoleEpg Download ( 1 )--> 
+    <screen name="DeliteDownEpgNow" position="0,0" size="1280,720" title="Black Pole Epg Download"  flags="wfNoBorder" backgroundColor="transparent">
         <ePixmap position="240,510" size="800,140" zPosition="10" pixmap="skin_default/frame_5.png" />
         <widget name="lab1" position="250,534" size="780,300" zPosition="11" font="Regular;20" halign="center" transparent="1"/>
         <ePixmap position="515,570" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="11" />
 	  	<widget name="key_red" position="515,570" size="250,40" zPosition="12" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
     </screen>
     <!-- 38 Epg Search -->
-	<screen name="Nab_EpgSearch" position="center,center" size="800,520" title="Black Hole Epg Search">
+	<screen name="Nab_EpgSearch" position="center,center" size="800,520" title="Black Pole Epg Search">
 	<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="800,520" alphatest="on" />	
 		 <widget source="list" render="Listbox" position="20,20" size="760,506" zPosition="1" scrollbarMode="showOnDemand" transparent="1" >
             <convert type="TemplatedMultiContent">
@@ -925,7 +915,7 @@
         </widget>
 	</screen>
 	<!-- 39 Epg Search Last (1) -->
-	<screen name="Nab_EpgSearchLast" position="center,center" size="800,340" title="Black Hole Epg Search History">
+	<screen name="Nab_EpgSearchLast" position="center,center" size="800,340" title="Black Pole Epg Search History">
 	<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="800,340" alphatest="on" />	
 		<ePixmap position="275,280" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
         <widget name="key_red" position="345,288" zPosition="2" size="250,40" font="Regular;24" halign="left" valign="center" backgroundColor="transpBlack" transparent="1" /> 
@@ -940,27 +930,27 @@
             </convert>
         </widget>
 	</screen>
-	   <!-- 40 Nab_debOut_Black Hole Message --> 
-    <screen name="Nab_debOut" position="center,center" size="600,240" title="Black Hole Message">
+	   <!-- 40 Nab_debOut_Black PoleMessage --> 
+    <screen name="Nab_debOut" position="center,center" size="600,240" title="Black Pole Message">
    <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="600,240" alphatest="on" />	
         <widget name="outlabel" position="20,20" size="560,230" font="Regular;20" halign="center" valign="center" transparent="1"/>
     </screen>
  	<!-- 41 StartCamPop  -->
-	<screen name="Nab_DoStartCam" position="center,center" size="484,250" title="Black Hole E2" flags="wfNoBorder">
+	<screen name="Nab_DoStartCam" position="center,center" size="484,250" title="Black Pole" flags="wfNoBorder">
 		<widget name="connect" position="0,0" size="484,250" zPosition="-1" pixmaps="skin_default/startcam_1.png,skin_default/startcam_2.png,skin_default/startcam_3.png,skin_default/startcam_4.png" transparent="1" />
 		<widget name="lab1" position="10,168" halign="center" size="460,60" zPosition="1" font="Regular;20" valign="top" transparent="1" />
 	</screen>
 	<!-- 42 ConnectPop  -->
-	<screen name="Nab_ConnectPop" position="center,center" size="484,240" title="Black Hole E2" flags="wfNoBorder">
+	<screen name="Nab_ConnectPop" position="center,center" size="484,240" title="Black Pole" flags="wfNoBorder">
 		<widget name="connect" position="0,0" size="484,250" zPosition="-1" pixmaps="skin_default/connection_1.png,skin_default/connection_2.png,skin_default/connection_3.png,skin_default/connection_4.png,skin_default/connection_5.png" transparent="1" />
 		<widget name="lab1" position="13,186" halign="center" size="460,60" zPosition="1" font="Regular;20" valign="top" transparent="1" />
 	</screen>
  <!--  43 DeliteInfo  -->
-	<screen name="DeliteInfo" position="0,0" size="1280,720" title="Black Hole E2 System Info" flags="wfNoBorder" >
+	<screen name="DeliteInfo" position="0,0" size="1280,720" title="Black PoleSystem Info" flags="wfNoBorder" >
 		<ePixmap pixmap="skin_default/background_system.png" position="0,0" size="1280,720" alphatest="on"  transparent="1" />
 		<ePixmap position="870,310"  size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />  
 			<ePixmap position="832,81" zPosition="1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
-		 <eLabel text="System Info" position="80,30" size="410,34" font="RegularAA;28" halign="left" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1"/>      
+		 <eLabel text="System Info" position="80,30" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/>      
 	 <ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
       	<widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>	
 		<widget name="ramg" position="104,256" size="80,80" zPosition="1" borderColor="#df0b13" transparent="1" />
@@ -985,15 +975,35 @@
         <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
              </widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
 			<convert type="EventTime">Progress</convert>
             </widget>
 	</screen>	
-	<!-- 44 Black Hole Epg Backup  ( 2 )-->
-		<screen name="Bh_Bepg_main" position="center,center" size="700,340" title="Black Hole Epg Backup" >
+	<!--  43A BhsysInfo  -->
+	<screen name="BhsysInfo" position="0,0" size="1280,720" title="Black Pole Info" flags="wfNoBorder">
+	<ePixmap position="0,0" zPosition="-1" size="1280,720" pixmap="skin_default/frame_base-fs8.png"  />
+        <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
+        <ePixmap position="960,470" zPosition="-1" size="250,160" pixmap="skin_default/menu/system.png" alphatest="on" />
+        <ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
+       	<ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
+		<widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>
+        <eLabel text="Black Pole Info" position="80,30" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/> 
+        <widget name="lab1" position="80,90" halign="left" size="700,550" zPosition="1" font="Regular;20" valign="top" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1"/> 
+          <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
+		<convert type="ServiceName">Name</convert>
+             </widget>
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
+			<convert type="EventName">Name</convert>
+					</widget>		
+		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
+			<convert type="EventTime">Progress</convert>
+            </widget>
+    </screen>
+	<!-- 44 Black PoleEpg Backup  ( 2 )-->
+		<screen name="Bh_Bepg_main" position="center,center" size="700,340" title="Black PoleEpg Backup" >
 		    <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-2" position="0,0" size="700,340" alphatest="on" />	
             <widget name="lab1" position="20,20" size="680,64" font="Regular;24" valign="center" foregroundColor="white" backgroundColor="background" transparent="1"/>
             <widget name="lab2" position="20,140" size="300,32" font="Regular;24" valign="center" foregroundColor="white" backgroundColor="background" transparent="1"/>
@@ -1004,8 +1014,8 @@
             <widget name="key_red" position="67,260" zPosition="1" size="250,40" font="Regular;24"  halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
             <widget name="key_green" position="383,260" zPosition="1" size="250,40" font="Regular;24"  halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
         </screen>
-	<!-- 45 Black Hole Device Mountpoints Setup  ( 2 )-->
-	<screen name="Bh_Bepg_setuP" position="center,center" size="900,340" title="Black Hole Devices Mountpoints Setup">
+	<!-- 45 Black PoleDevice Mountpoints Setup  ( 2 )-->
+	<screen name="Bh_Bepg_setuP" position="center,center" size="900,340" title="Black PoleDevices Mountpoints Setup">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="900,340" alphatest="on" />	
         <widget name="config" position="20,10" size="860,290" scrollbarMode="showOnDemand" transparent="1" />
         <ePixmap pixmap="skin_default/buttons/red25.png" position="133,260" size="250,40" alphatest="on" />
@@ -1014,9 +1024,9 @@
         <widget name="key_green" position="517,260" zPosition="1" size="250,40" font="Regular;24"  halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
     </screen>
 	<!-- 46 Delite Fast Plugin ( 1 )-->
-	<screen name="DeliteSetupFp" position="center,center" size="800,520" title="Black Hole E2 Fast Plugin Setup">
+	<screen name="DeliteSetupFp" position="center,center" size="800,520" title="Black PoleFast Plugin Setup">
 	    <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="700,520" alphatest="on" />	
-	      <ePixmap position="729,15" zPosition="2" size="26,410" pixmap="skin_default/scroll_brow.png" alphatest="blend" transparent="1" />
+	      <ePixmap position="729,15" zPosition="2" size="26,410" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 	    <ePixmap position="290,460" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
 		<widget name="key_red" position="280,460" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
         <widget source="list" render="Listbox" position="45,20" size="710,400" scrollbarMode="showOnDemand" selectionPixmap="skin_default/icons/listselection710x50-fs8.png"  transparent="1">
@@ -1033,7 +1043,7 @@
         </widget>
 	</screen>
 	<!-- 47 Delite Inadyn ( 3 )-->
-	<screen name="DeliteInadyn" position="center,center" size="950,420" title="Black Hole E2 Inadyn Manager">
+	<screen name="DeliteInadyn" position="center,center" size="950,420" title="Black PoleInadyn Manager">
 	    <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="950,420" alphatest="on" />	
 		<widget name="linactive" position="20,20" zPosition="1" pixmap="skin_default/icons/ninactive.png" size="32,32"  alphatest="on" />
 		<widget name="lactive" position="20,30" zPosition="2" pixmap="skin_default/icons/nactive.png" size="32,32"  alphatest="on" />
@@ -1061,7 +1071,7 @@
 		<widget name="key_yellow" position="650,250" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
 	</screen>
 	<!-- 48 Delite Inadyn Conf ( 1+1)-->
-	<screen name="DeliteInaSetup" position="center,center" size="710,340" title="Black Hole E2 Inadyn Setup">
+	<screen name="DeliteInaSetup" position="center,center" size="710,340" title="Black PoleInadyn Setup">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,340" alphatest="on" />	
 		<widget name="config" position="20,20" size="670,200" scrollbarMode="showOnDemand"   transparent="1"/>
 		<ePixmap position="390,280" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
@@ -1070,12 +1080,12 @@
         <eLabel text="Virtual Keyboard" position="70,280" size="250,40" zPosition="2" halign="center" valign="center" font="Regular;24" foregroundColor="white" backgroundColor="background" transparent="1" /> 
 	</screen>
 	<!-- 49 Delite Inadyn Log -->
-	<screen name="DeliteInaLog" position="center,center" size="800,340" title="Black Hole E2 Inadyn Setup">
+	<screen name="DeliteInaLog" position="center,center" size="800,340" title="Black PoleInadyn Setup">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="800,340" alphatest="on" />	
 		<widget name="infotext" position="20,20" size="760,480" font="Regular;20"  transparent="1"/>
 	</screen>
 	<!-- 50 Delite Swap ( 3 )-->
-	<screen name="DeliteSwap" position="center,center" size="950,290" title="Black Hole E2 Swap File Manager">
+	<screen name="DeliteSwap" position="center,center" size="950,290" title="Black PoleSwap File Manager">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="950,290" alphatest="on" />	
 		<widget name="linactive" position="20,20" zPosition="1" pixmap="skin_default/icons/ninactive.png" size="32,32"  alphatest="on" />
 		<widget name="lactive" position="20,20" zPosition="2" pixmap="skin_default/icons/nactive.png" size="32,32"  alphatest="on" />
@@ -1095,7 +1105,7 @@
 		<widget name="key_yellow" position="650,200" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
 	</screen>
 	<!-- 51 Delite Hdd ( 3 )-->
-	<screen name="DeliteHdd" position="center,center" size="950,480" title="Black Hole E2 Hard Disk Panel">
+	<screen name="DeliteHdd" position="center,center" size="950,480" title="Black PoleHard Disk Panel">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="950,480" alphatest="on" />	
 		<widget name="infotext" position="20,20" size="910,380" font="Regular;20"  transparent="1"/>
 		<widget name="lab1" position="20,400" size="100,32" font="Regular;24" valign="center" transparent="1"/>
@@ -1109,7 +1119,7 @@
 		<widget name="key_yellow" position="680,300" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
 	</screen>
 	<!-- 52 Delite Openvpn ( 4 )-->
-	<screen name="DeliteOpenvpn" position="center,center" size="950,340" title="Black Hole E2 OpenVpn Panel">
+	<screen name="DeliteOpenvpn" position="center,center" size="950,340" title="Black PoleOpenVpn Panel">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="950,340" alphatest="on" />	
 		<widget name="lab1" position="20,20" size="310,64" font="Regular;24" valign="center" foregroundColor="white" backgroundColor="transpBlack" transparent="1"/>
 		<widget name="lab1a" position="190,20" size="530,64" font="Regular;24" valign="center" foregroundColor="white" backgroundColor="transpBlack" transparent="1"/>
@@ -1128,12 +1138,12 @@
 		<widget name="key_blue" position="680,240" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
 	</screen>
 	<!-- 53 Delite OpenvpnLog -->
-	<screen name="DeliteVpnLog" position="center,center" size="800,340" title="Black Hole E2 OpenVpn Log">
+	<screen name="DeliteVpnLog" position="center,center" size="800,340" title="Black PoleOpenVpn Log">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="800,340" alphatest="on" />	
 		<widget name="infotext" position="20,20" size="760,310" font="Regular;22"  transparent="1"/>
 	</screen>
 	<!-- 54 Delite Samba ( 3 )-->
-	<screen name="DeliteSamba" position="center,center" size="950,240" title="Black Hole E2 Samba Panel">
+	<screen name="DeliteSamba" position="center,center" size="950,240" title="Black PoleSamba Panel">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="950,240" alphatest="on" />	
 		<widget name="lab1" position="20,50" size="400,32" font="Regular;24" valign="center" transparent="1"/>
 		<widget name="labactive" position="310,50" size="250,32" font="Regular;24" valign="center" transparent="1"/>
@@ -1148,7 +1158,7 @@
 		<widget name="key_yellow" position="680,160" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
 	</screen>
 	<!-- 55 Delite Telnet ( 2 )-->
-	<screen name="DeliteTelnet" position="center,center" size="710,340" title="Black Hole E2 Telnet Panel">
+	<screen name="DeliteTelnet" position="center,center" size="710,340" title="Black PoleTelnet Panel">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,340" alphatest="on" />	
 		<widget name="lab1" position="20,20" size="680,64" font="Regular;24" valign="center" transparent="1"/>
 		<widget name="lab2" position="20,140" size="300,32" font="Regular;24" valign="center" transparent="1"/>
@@ -1160,7 +1170,7 @@
         <widget name="key_green" position="390,280" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
 	</screen>
 	<!-- 56 Delite Ftp ( 2 )-->
-	<screen name="DeliteFtp" position="center,center" size="800,340" title="Black Hole E2 Ftp Panel">
+	<screen name="DeliteFtp" position="center,center" size="800,340" title="Black PoleFtp Panel">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="800,340" alphatest="on" />	
 		<widget name="lab1" position="20,20" size="880,64" font="Regular;24" valign="center" transparent="1"/>
 		<widget name="lab2" position="20,140" size="300,32" font="Regular;24" valign="center" transparent="1"/>
@@ -1174,7 +1184,7 @@
 	<!-- 57 Delite Nfs ( 3 )-->
 	<!-- 58 Delite Nfs - Setup Config ( 1 )-->
 	<!-- 59 DeliteCronMang ( 2 )-->
-	<screen name="DeliteCronMang" position="center,center" size="710,520" title="Black Hole E2 Cron Manager">
+	<screen name="DeliteCronMang" position="center,center" size="710,520" title="Black PoleCron Manager">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,520" alphatest="on" />	
         <widget source="list" render="Listbox" position="20,20" size="670,460" scrollbarMode="showOnDemand"   transparent="1" >
             <convert type="StringList" />
@@ -1185,7 +1195,7 @@
 		<widget name="key_yellow" position="390,460" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
         </screen>
      <!-- 60 DeliteSetupCronConf ( 1+1 )-->
-       <screen name="DeliteSetupCronConf" position="center,center" size="710,340" title="Black Hole E2 Cron Setup">
+       <screen name="DeliteSetupCronConf" position="center,center" size="710,340" title="Black PoleCron Setup">
          <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,340" alphatest="on" />	
         <widget name="config" position="20,20" size="670,420" scrollbarMode="showOnDemand"  transparent="1"/>
         <ePixmap position="70,280" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
@@ -1200,18 +1210,18 @@
 	<!-- 65 Delite Test Mount Wizard ( 1 )-->
 	<!-- 66 Delite Mount Editor ( 4 )-->
 	<!-- 67 DeliteProcInfo -->
-	<screen name="NabProcInfo" position="center,center" size="600,340" title="Black Hole E2 Process Info">
+	<screen name="NabProcInfo" position="center,center" size="600,340" title="Black PoleProcess Info">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="600,340" alphatest="on" />	
 		<widget name="pibartit" zPosition="2" position="10,20" size="560,30" font="Regular;22" valign="center" transparent="1" foregroundColor="white" backgroundColor="transpBlack" />
 		<widget name="infotext" position="20,70" size="560,250" font="Regular;20" transparent="1"/>
 	</screen>
 	<!-- 68 DeliteEnInfo -->
-	<screen name="NabEnsetInfo" position="center,center" size="710,460" title="Black Hole E2 Enigma Settings Info">
+	<screen name="NabEnsetInfo" position="center,center" size="710,460" title="Black PoleEnigma Settings Info">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,460" alphatest="on" />	
 		<widget name="infotext" position="20,20" size="670,390" font="Regular;20" transparent="1"/>
 	</screen>
 	<!-- 69 DeliteDevicesPanel ( 2 )-->
-	<screen name="DeliteDevicesPanel" position="center,center" size="800,520" title="Black Hole Devices Manager">
+	<screen name="DeliteDevicesPanel" position="center,center" size="800,520" title="Black PoleDevices Manager">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="800,520" alphatest="on" />	
         <widget source="list" render="Listbox" position="20,20" size="760,510" scrollbarMode="showOnDemand" transparent="1" >
             <convert type="TemplatedMultiContent">
@@ -1232,7 +1242,7 @@
 		<widget name="key_yellow" position="450,460" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
     </screen>
     <!-- 70-DeliteSetupDevicePanelConfl ( 2 )-->
-    <screen name="DeliteSetupDevicePanelConf" position="center,center" size="950,420" title="Black Hole Devices Mountpoints Setup">
+    <screen name="DeliteSetupDevicePanelConf" position="center,center" size="950,420" title="Black PoleDevices Mountpoints Setup">
       <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="950,420" alphatest="on" />	
         <widget name="config" position="20,10" size="910,275" scrollbarMode="showOnDemand" transparent="1"/>
         <widget name="Linconn" position="20,285" size="910,20" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313"/>
@@ -1242,10 +1252,10 @@
         <widget name="key_green" position="550,360" zPosition="1" size="250,40" font="Regular;20" halign="center" valign="center" backgroundColor="transpBlack" transparent="1"/>
     </screen>
 	<!-- 71 DeliteCCCInfo -->
-	<screen name="DeliteCCcMain"  position="0,0" size="1280,720" title="Black Hole E2 CCcam Info" backgroundColor="transparent" >
+	<screen name="DeliteCCcMain"  position="0,0" size="1280,720" title="Black PoleCCcam Info" backgroundColor="transparent" >
 		<ePixmap position="0,0" zPosition="-1" size="1280,720" pixmap="skin_default/frame_base-fs8.png"  />
 		<ePixmap position="960,470"  size="250,160" pixmap="skin_default/menu/cccam_info.png" alphatest="on" />
-        <eLabel text="Black Hole E2 CCcam Info" position="80,30" size="410,34" font="RegularAA;28" halign="left" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1"/>
+        <eLabel text="Black Pole CCcam Info" position="80,30" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/>
         <ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
           <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
        	<ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
@@ -1265,7 +1275,7 @@
 			 <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
 		</widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -1273,7 +1283,7 @@
             </widget>
 	</screen>
 	<!-- 72 DeliteCCCSetup ( 2 )-->
-	<screen name="DeliteCCcSetup"  position="center,center" size="710,460" title="Black Hole E2 CCcam Info Setup">
+	<screen name="DeliteCCcSetup"  position="center,center" size="710,460" title="Black PoleCCcam Info Setup">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,460" alphatest="on" />	
 		<widget name="lab1" position="20,20" size="670,120" font="Regular;24" valign="center" transparent="1"/>
 		<widget name="config" position="20,140" size="670,250" scrollbarMode="showOnDemand"  transparent="1"/>
@@ -1283,13 +1293,13 @@
         <eLabel text="Virtual Keyboard" position="70,400" size="250,40" zPosition="2" halign="center" valign="center" font="Regular;24" foregroundColor="white" backgroundColor="background" transparent="1" /> 
 	</screen>
 	<!-- 73 DeliteCCCHo -->
-	<screen name="DeliteCCcHo" position="center,center" size="710,460" title="Black Hole Cccam Main Info">
+	<screen name="DeliteCCcHo" position="center,center" size="710,460" title="Black PoleCccam Main Info">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,460" alphatest="on" />	
 		<widget name="infotext" position="20,20" size="670,360" font="Regular;22" transparent="1"/>
 		<widget name="Linconn" position="8,382" size="694,50" font="Regular;22" halign="center" valign="center" backgroundColor="#9f1313" />
 	</screen>
 	<!-- 74 DeliteCCcEnt -->
-	<screen name="DeliteCCcEnt" position="center,center" size="710,460" title="Black Hole Cccam Entitlements Info">
+	<screen name="DeliteCCcEnt" position="center,center" size="710,460" title="Black PoleCccam Entitlements Info">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,460" alphatest="on" />	
 		<widget name="infotext" position="20,20" size="670,360" font="Regular;22" transparent="1"/>
 		<widget name="Linconn" position="8,382" size="694,50" font="Regular;22" halign="center" valign="center" backgroundColor="#9f1313" />
@@ -1397,7 +1407,7 @@
 	 	 <ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
 	     <ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
 	      <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
-      	 <widget source="title" render="Label" position="80,30" size="500,32" font="RegularAA;28" halign="left" foregroundColor="#3ab297" backgroundColor="#11362d" transparent="1"/>
+      	 <widget source="title" render="Label" position="80,30" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="#11362d" transparent="1"/>
       	 <widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>
          <widget source="menu" render="Listbox" position="80,90" size="710,494" scrollbarMode="showNever" selectionPixmap="skin_default/icons/listselection450x38-fs8.png" backgroundPixmap="skin_default/icons/butselection.png" transparent="1">
         	<convert type="TemplatedMultiContent">
@@ -1410,7 +1420,7 @@
 		 <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
 		</widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -1467,7 +1477,7 @@
 	    <ePixmap position="960,470" zPosition="-1" size="250,160" pixmap="skin_default/menu/information.png" alphatest="on" />
 	  	<ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
 	  	  <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />	
-       	<widget source="title" render="Label" position="80,30" size="500,32" font="RegularAA;28" halign="left" foregroundColor="#3ab297" backgroundColor="#11362d" transparent="1"/>
+       	<widget source="title" render="Label" position="80,30" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="#11362d" transparent="1"/>
        	<ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
       	<widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>
 		<widget source="menu" render="Listbox" position="80,90" size="710,440" scrollbarMode="showNever" selectionPixmap="skin_default/icons/listselection450x38-fs8.png"  backgroundPixmap="skin_default/icons/butselection.png" transparent="1">
@@ -1481,7 +1491,7 @@
 			 <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
 		</widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -1494,7 +1504,7 @@
         <ePixmap position="960,470" zPosition="-1" size="250,160" pixmap="skin_default/menu/setup.png" alphatest="on" />
  	    <ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
  	      <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />	
-      	<widget source="title" render="Label" position="80,30" size="500,32" font="RegularAA;28" halign="left" foregroundColor="#3ab297" backgroundColor="#11362d" transparent="1"/>
+      	<widget source="title" render="Label" position="80,30" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="#11362d" transparent="1"/>
       	<ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
       	<widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>	     
 		<widget source="menu" render="Listbox" position="80,90" size="710,440" scrollbarMode="showNever" selectionPixmap="skin_default/icons/listselection450x38-fs8.png"  backgroundPixmap="skin_default/icons/butselection.png" transparent="1">
@@ -1508,7 +1518,7 @@
 		 <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
 		</widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -1521,7 +1531,7 @@
 	    <ePixmap position="960,470" zPosition="-1" size="250,160" pixmap="skin_default/menu/scan.png" alphatest="on" />	
 		<ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
 		  <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
-      	<widget source="title" render="Label" position="80,30" size="500,32" font="RegularAA;28" halign="left" foregroundColor="#3ab297" backgroundColor="#11362d" transparent="1"/>
+      	<widget source="title" render="Label" position="80,30" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="#11362d" transparent="1"/>
       	<ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
       	<widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>	    	
 			<widget source="menu" render="Listbox" position="80,90" size="710,440" scrollbarMode="showNever" selectionPixmap="skin_default/icons/listselection450x38-fs8.png"  backgroundPixmap="skin_default/icons/butselection.png" transparent="1">
@@ -1535,7 +1545,7 @@
 			 <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
 		</widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -1547,9 +1557,9 @@
 	    <ePixmap position="0,0" zPosition="-1" size="1280,720" pixmap="skin_default/frame_base-fs8.png"  />
 	    <ePixmap position="960,470" zPosition="-1" size="250,160" pixmap="skin_default/menu/system.png" alphatest="on" />	
 		<ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
-		<ePixmap position="764,110" zPosition="2" size="26,494" pixmap="skin_default/scroll_tv.png" alphatest="blend" transparent="1" />
+		<ePixmap position="764,110" zPosition="2" size="26,494" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 		 <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
-      	<widget source="title" render="Label" position="80,30" size="500,32" font="RegularAA;28" halign="left" foregroundColor="#3ab297" backgroundColor="#11362d" transparent="1"/>
+      	<widget source="title" render="Label" position="80,30" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="#11362d" transparent="1"/>
         <ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
       	<widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>	    
 			<widget source="menu" render="Listbox" position="80,110" size="710,494" scrollbarMode="showOnDemand" selectionPixmap="skin_default/icons/listselection450x38-fs8.png"  backgroundPixmap="skin_default/icons/butselection.png" transparent="1">
@@ -1563,7 +1573,7 @@
 		 <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
 		</widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -1576,7 +1586,7 @@
 	    <ePixmap position="960,470" zPosition="-1" size="250,160" pixmap="skin_default/menu/hdd.png" alphatest="on" />
 		<ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
 		  <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />	
-      	<widget source="title" render="Label" position="80,30" size="500,32" font="RegularAA;28" halign="left" foregroundColor="#3ab297" backgroundColor="#11362d" transparent="1"/>
+      	<widget source="title" render="Label" position="80,30" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="#11362d" transparent="1"/>
       	<ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
       	<widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>	    
 			<widget source="menu" render="Listbox" position="80,90" size="710,440" scrollbarMode="showNever" selectionPixmap="skin_default/icons/listselection450x38-fs8.png"  backgroundPixmap="skin_default/icons/butselection.png" transparent="1">
@@ -1590,7 +1600,7 @@
 			 <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
 		</widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -1603,7 +1613,7 @@
         <ePixmap position="960,470" zPosition="-1" size="250,160" pixmap="skin_default/menu/shutdown.png" alphatest="on" />	
 	    <ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
 	      <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
-       	<widget source="title" render="Label" position="80,30" size="500,32" font="RegularAA;28" halign="left" foregroundColor="#3ab297" backgroundColor="#11362d" transparent="1"/>
+       	<widget source="title" render="Label" position="80,30" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="#11362d" transparent="1"/>
       	<ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
       	<widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>	    
 		<widget source="menu" render="Listbox" position="80,90" size="710,440" scrollbarMode="showNever" selectionPixmap="skin_default/icons/listselection450x38-fs8.png"  backgroundPixmap="skin_default/icons/butselection.png" transparent="1">
@@ -1617,7 +1627,7 @@
 			 <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
 		</widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -1630,17 +1640,17 @@
 		<ePixmap position="900,110" zPosition="-1" size="280,210" pixmap="skin_default/prev.png" alphatest="blend" transparent="1" />
 		<ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
 		<ePixmap position="870,400" zPosition="2" size="350,46" pixmap="skin_default/logoBH.png" alphatest="blend" transparent="1" />
-		<eLabel text="About" position="80,30" size="410,34" font="RegularAA;28" halign="left" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1"/>	
-		<eLabel text="Black Hole" position="78,110" size="600,32" font="Regular;26" halign="left" backgroundColor="transpBlack" transparent="1"/>	
-		<widget source="EnigmaVersion" render="Label" position="78,150"	size="580,28" font="Regular;24" halign="left" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1"/> 
-		<widget source="ImageVersion" render="Label" position="78,180" 	size="580,28" font="Regular;24" halign="left" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1"/> 
-		<widget source="FPVersion" render="Label" position="78,220" size="580,28" font="Regular;24" halign="left" backgroundColor="transpBlack" transparent="1" />
-		<widget source="TunerHeader" render="Label" position="78,250" size="580,28" font="Regular;24" halign="left" backgroundColor="transpBlack" transparent="1" />
-		<widget source="Tuner0" render="Label"	position="78,280" size="580,28" font="Regular;24" halign="left" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1"/> 
-		<widget source="Tuner1" render="Label" 	position="78,310" size="580,28" font="Regular;24" halign="left" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1"/> 
-		<widget source="Tuner2" render="Label" 	position="78,340" size="580,28" font="Regular;24" halign="left" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1"/> 
-		<widget source="Tuner3" render="Label" 	position="78,370" size="580,28" font="Regular;24" halign="left" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1"/> 
-		<widget source="HDDHeader" render="Label" 	position="78,430" 	size="580,28" font="Regular;24" halign="left" backgroundColor="transpBlack" transparent="1" />
+		<eLabel text="About" position="80,30" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/>	
+	<!-- 	<eLabel text="Black Pole" position="78,110" size="600,32" font="Regular;26" halign="left" backgroundColor="transpBlack" transparent="1"/>-->	
+		<widget source="EnigmaVersion" render="Label" position="78,150"	size="650,28" font="Regular;24" halign="left" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1"/> 
+		<widget source="ImageVersion" render="Label" position="78,180" 	size="650,28" font="Regular;24" halign="left" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1"/> 
+		<widget source="FPVersion" render="Label" position="78,220" size="650,28" font="Regular;24" halign="left" backgroundColor="transpBlack" transparent="1" />
+		<widget source="TunerHeader" render="Label" position="78,250" size="650,28" font="Regular;24" halign="left" backgroundColor="transpBlack" transparent="1" />
+		<widget source="Tuner0" render="Label"	position="78,280" size="650,28" font="Regular;24" halign="left" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1"/> 
+		<widget source="Tuner1" render="Label" 	position="78,310" size="650,28" font="Regular;24" halign="left" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1"/> 
+		<widget source="Tuner2" render="Label" 	position="78,340" size="650,28" font="Regular;24" halign="left" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1"/> 
+		<widget source="Tuner3" render="Label" 	position="78,370" size="650,28" font="Regular;24" halign="left" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1"/> 
+		<widget source="HDDHeader" render="Label" 	position="78,430" 	size="650,28" font="Regular;24" halign="left" backgroundColor="transpBlack" transparent="1" />
 		<widget source="hddA" render="Label" position="78,460" 	size="650,28" font="Regular;24" halign="left" backgroundColor="transpBlack" transparent="1" />
 	</screen>
  <!-- Adapter Setup  -->
@@ -1696,7 +1706,7 @@
 			<screen name="WlanSelection" position="center,center" size="950,520" title="Wireless Network Adapter Selection..." >
 		 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="950,520" alphatest="on" />	
 		<widget name="menulist"  position="20,20" size="910,150" zPosition="2" enableWrapAround="1" scrollbarMode="showOnDemand"  transparent="1"/>
-		<widget source="description" render="Label" position="205,400" size="540,50" font="Regular;20" halign="center" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" />
+		<widget source="description" render="Label" position="205,400" size="540,50" font="Regular;20" halign="center" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" />
 		<ePixmap pixmap="skin_default/buttons/red25.png" position="150,460" size="250,40" alphatest="blend"/>
 		<ePixmap pixmap="skin_default/buttons/green25.png" position="550,460" size="250,40" alphatest="blend"/>
 		<widget source="key_red" render="Label" position="150,460" size="250,40" zPosition="1" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1"/>
@@ -1706,7 +1716,7 @@
 		<screen name="WlanSetup" position="center,center" size="950,520" title="Wireless Network Setup Menu..." >
 		<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="950,520" alphatest="on" />	
 		<widget name="menulist"  position="20,20" size="910,150" zPosition="2" enableWrapAround="1" scrollbarMode="showOnDemand"  transparent="1"/>
-		<widget source="description" render="Label" position="205,380" size="540,50" font="Regular;20" halign="center" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" />
+		<widget source="description" render="Label" position="205,380" size="540,50" font="Regular;20" halign="center" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" />
 		<ePixmap pixmap="skin_default/buttons/red25.png" position="150,460" size="250,40" alphatest="blend"/>
 		<ePixmap pixmap="skin_default/buttons/green25.png" position="550,460" size="250,40" alphatest="blend"/>
 		<widget source="key_red" render="Label" position="150,460" size="250,40" zPosition="1" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1"/>
@@ -1763,7 +1773,7 @@
 		}
 		</convert>
 		</widget>
-		<widget source="introduction" render="Label" position="365,390" size="400,30" zPosition="11" font="Regular;24"  halign="center" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" />
+		<widget source="introduction" render="Label" position="365,390" size="400,30" zPosition="11" font="Regular;24"  halign="center" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" />
 		<ePixmap pixmap="skin_default/buttons/red25.png" position="95,460" size="250,40" alphatest="on"/>
 		<ePixmap pixmap="skin_default/buttons/green25.png" position="440,460" size="250,40" alphatest="on"/>
 		<ePixmap pixmap="skin_default/buttons/yellow25.png" position="785,460" size="250,40" alphatest="on"/>
@@ -1856,25 +1866,26 @@
 		</widget>
 	</screen>
 	<!-- 98 Bouquet selector  -->
-	<screen name="BouquetSelector" position="center,center" size="710,460" title="Choose bouquet">
+	<screen name="BouquetSelector" position="center,center" size="710,340" title="Choose bouquet">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,460" alphatest="on" />	
-		<widget name="menu" position="20,20" size="670,400" scrollbarMode="showOnDemand" transparent="1" />
+		<widget name="menu" position="20,20" size="670,275" scrollbarMode="showOnDemand" transparent="1" />
 	</screen>
 	<!-- 99 ChannelContextMenu -->
 	<screen name="ChannelContextMenu" position="center,center"  size="600,340"  title="Channellist menu">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="600,340" alphatest="on" />	
-		<widget name="menu" position="20,20" size="560,260" scrollbarMode="showOnDemand" transparent="1" />
+		<widget name="menu" position="20,20" size="560,275" scrollbarMode="showOnDemand" transparent="1" />
 	</screen>
 	<!-- 100 Channel selection - TV ( 4+4 )-->
 	<screen name="ChannelSelection" position="0,0" size="1280,720" title="Channel Selection"  flags="wfNoBorder">
 		<ePixmap  position="0,0" zPosition="-1" size="1280,720" pixmap="skin_default/frame_base-fs8.png"  />
 	    <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
-		<ePixmap position="872,378" zPosition="1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
-		<ePixmap position="764,93" zPosition="2" size="26,494" pixmap="skin_default/scroll_tv.png" alphatest="blend" transparent="1" />
-		<eLabel text="Channel Selection TV" position="60,30" zPosition="2" size="400,32" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="transpBlack" />  
+		<ePixmap position="874,356" zPosition="1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
+		<ePixmap position="764,93" zPosition="2" size="26,494" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
+		<ePixmap position="888,482" zPosition="2" size="300,26" pixmap="skin_default/next.png" alphatest="blend" transparent="1" />
+		<eLabel text="Channel Selection TV" position="60,30" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/> 
 		<ePixmap position="832,79" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
       	<widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>
-		<widget name="list"  position="70,100" size="720,484" scrollbarMode="showOnDemand" foregroundColorServiceNotAvail="#666666" serviceItemHeight="32" serviceNumberFont="Regular;18" serviceNameFont="Regular;24" serviceInfoFont="Regular;24" colorServiceDescription="#3ab297" picServiceEventProgressbar="skin_default/pl.png" selectionPixmap="skin_default/icons/listselection700x32-fs8.png" transparent="1" />
+		<widget name="list"  position="70,100" size="720,484" scrollbarMode="showOnDemand" foregroundColorServiceNotAvail="#666666" serviceItemHeight="32" serviceNumberFont="Regular;18" serviceNameFont="Regular;24" serviceInfoFont="Regular;24" colorServiceDescription="#58bcff" picServiceEventProgressbar="skin_default/pl.png" selectionPixmap="skin_default/icons/listselection700x32-fs8.png" transparent="1" />
 		<ePixmap position="56,650" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="2" />
 		<ePixmap position="362,650" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="2" />
 		<ePixmap position="668,650" size="250,40" pixmap="skin_default/buttons/yellow25.png" alphatest="on" zPosition="2" />
@@ -1883,31 +1894,37 @@
 		<widget position="362,650" size="250,36" name="key_green" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" zPosition="3" />
 		<widget position="668,650" size="250,36" name="key_yellow" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" zPosition="3" />
 		<widget position="974,650" size="250,36" name="key_blue" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" zPosition="3" />
-		<ePixmap position="80,584" zPosition="2" size="700,38" pixmap="skin_default/epg_but.png" alphatest="blend" transparent="1" />
+		<!-- <ePixmap position="80,584" zPosition="2" size="700,38" pixmap="skin_default/epg_but.png" alphatest="blend" transparent="1" />-->
 		<ePixmap position="882,30" zPosition="2" size="74,36" pixmap="skin_default/buttons/key_menu1.png" transparent="1" alphatest="on" /> 
 		<ePixmap position="982,30" zPosition="2" size="74,36" pixmap="skin_default/buttons/key_epg.png" transparent="1" alphatest="on" /> 
 		<ePixmap position="1082,30" zPosition="2" size="74,36" pixmap="skin_default/buttons/key_exit.png" transparent="1" alphatest="on" /> 
-		<widget source="ServiceEvent" render="Label" position="822,300" zPosition="1" size="420,28" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="transpBlack" transparent="1" noWrap="1">
+		<widget source="ServiceEvent" render="Label" position="822,304" zPosition="1" size="420,28" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="transpBlack" transparent="1" noWrap="1">
 		<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="ServiceEvent" render="Label" position="822,328" size="420,26" zPosition="2" halign="center" font="Regular;20" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" noWrap="1">
+        <widget source="ServiceEvent" render="Label" position="822,504" size="420,26" zPosition="2" halign="center" font="Regular;20" foregroundColor="grey" backgroundColor="transpBlack" transparent="1" noWrap="1">
+            <convert type="EventName">NextName</convert>
+        </widget>
+        <widget source="ServiceEvent" render="Label" position="824,528" zPosition="1" size="430,112" font="Regular;19" foregroundColor="grey" transparent="1" >
+            <convert type="EventName">NextDescription</convert>
+        </widget>
+		<widget source="ServiceEvent" render="Label" position="822,328" size="420,26" zPosition="2" halign="center" font="Regular;20" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" noWrap="1">
 		<convert type="EventName">Name</convert>
 		</widget>	
-		<widget source="ServiceEvent" render="Label" position="939,350" zPosition="2" size="80,28" font="Regular;22" halign="right" transparent="1" >
+		<widget source="ServiceEvent" render="Label" position="793,350" zPosition="2" size="80,28" font="Regular;22" halign="right" transparent="1" >
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText"></convert>
 		</widget>
-			<widget source="ServiceEvent" render="Label" position="1026,350" zPosition="2" size="90,28" font="Regular;22" halign="left" transparent="1" >
+			<widget source="ServiceEvent" render="Label" position="1172,350" zPosition="2" size="90,28" font="Regular;22" halign="left" transparent="1" >
 			<convert type="EventTime">EndTime</convert>
-			<convert type="ClockToText">Format:- %H:%M</convert>
+			<convert type="ClockToText">Format: %H:%M</convert>
 		</widget>
-		<widget source="ServiceEvent" render="Progress" position="872,378" 	zPosition="2" pixmap="skin_default/chan_p_bar.png" size="300,14" transparent="1" >
+		<widget source="ServiceEvent" render="Progress" position="874,356" 	zPosition="2" pixmap="skin_default/chan_p_bar.png" size="300,14" transparent="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="ServiceEvent" render="Label" position="824,390" zPosition="1" size="420,210" font="Regular;20" foregroundColor="#3ab297" transparent="1" >
+		<widget source="ServiceEvent" render="Label" position="824,374" zPosition="1" size="430,112" font="Regular;19" foregroundColor="#58bcff" transparent="1" >
 			<convert type="EventName">ExtendedDescription</convert>
-		</widget>
-		</screen>
+				   </widget>
+				   </screen>
 	<!-- 101 Choice Box  -->
 	<screen name="ChoiceBox" position="center,center" size="600,460" title="Input">
 	  <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="600,460" alphatest="on" />	
@@ -2029,11 +2046,11 @@ self.instance.move(ePoint((1280-wsizex)/2, (720-wsizey)/(count &gt; 7 and 2 or 3
 	<!--  107 EPG Selection ( 4 )-->
 	<screen name="EPGSelection" position="0,0" 	size="1280,720"  title="EPG Selection" >
 	 <ePixmap pixmap="skin_default/frame_base-fs8.png" position="0,0" zPosition="-1" size="1280,720"  />
-	  <ePixmap position="764,115" zPosition="2" size="26,390" pixmap="skin_default/scroll_fast.png" alphatest="blend" transparent="1" />
+	  <ePixmap position="764,115" zPosition="2" size="26,390" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 	  <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" /> 
 	    <ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
 	     	<ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
-	     <eLabel text="EPG Selection" position="80,35" zPosition="2" size="400,34" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="transpBlack" />  
+	     <eLabel text="EPG Selection" position="80,35" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/> 
      <widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>
 		<widget name="list" position="80,120" size="710,375" enableWrapAround="1" scrollbarMode="showOnDemand" transparent="1" />
 		<ePixmap position="56,650" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
@@ -2044,7 +2061,7 @@ self.instance.move(ePoint((1280-wsizex)/2, (720-wsizey)/(count &gt; 7 and 2 or 3
 		<widget name="key_green" position="362,650" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
 		<widget name="key_yellow" position="668,650" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="#a18120" transparent="1" />
 		<widget name="key_blue" position="974,650" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
-		<widget source="Event" render="Label" position="830,340" size="400,274" font="Regular;20" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+		<widget source="Event" render="Label" position="830,340" size="400,274" font="Regular;20" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 		<convert type="EventName">ExtendedDescription</convert>
 			</widget>
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -2054,10 +2071,10 @@ self.instance.move(ePoint((1280-wsizex)/2, (720-wsizey)/(count &gt; 7 and 2 or 3
 	<!-- 108 EPG Selection Multi ( 4 )-->
 	<screen name="EPGSelectionMulti" position="0,0" size="1280,720" title="EPG Selection Multi"  flags="wfNoBorder">
 	    <ePixmap pixmap="skin_default/frame_base-fs8.png" position="0,0" zPosition="-3" size="1280,720" alphatest="on" transparent="1" /> 
-	    <ePixmap position="1168,170" zPosition="2" size="26,438" pixmap="skin_default/scroll_multi.png" alphatest="blend" transparent="1" />
+	    <ePixmap position="1168,170" zPosition="2" size="26,438" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 	      <ePixmap position="80,160" zPosition="2" size="1120,460" pixmap="skin_default/r1120x460.png" alphatest="blend" transparent="1" /> 
 	      	<ePixmap position="1126,40" zPosition="4" size="74,36" pixmap="skin_default/buttons/key_menu1.png" transparent="1" alphatest="on" /> 
-	    <eLabel text="EPG Selection Multi" position="100,30" zPosition="2" size="400,32" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="#11362d" />  
+	    <eLabel text="EPG Selection Multi" position="100,30" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/>  
 		<widget name="now_button_sel" pixmap="skin_default/epg_now.png" 	position="265,97"	zPosition="3" size="750,40" alphatest="on" />
 		<widget name="next_button_sel" pixmap="skin_default/epg_next.png" position="265,97"	zPosition="3" size="750,40" alphatest="on" />
 		<widget name="more_button_sel" pixmap="skin_default/epg_more.png" position="265,97"	zPosition="3" size="750,40" alphatest="on" />
@@ -2066,10 +2083,10 @@ self.instance.move(ePoint((1280-wsizex)/2, (720-wsizey)/(count &gt; 7 and 2 or 3
 		<widget name="more_text" position="772,104"	zPosition="4" size="250,25" text="MORE" font="Regular;20" halign="center" foregroundColor="white" backgroundColor="grey" transparent="1" />
 		<widget name="date" position="20,100" size="200,28" font="Regular;24" valign="left" halign="right" backgroundColor="transpBlack" transparent="1"/>
 		<ePixmap pixmap="skin_default/icons/clock.png" position="1060,110" size="14,14" zPosition="1" alphatest="blend"/>
-		 <widget source="global.CurrentTime" 	render="Label" position="1100,100" 	size="140,34" zPosition="1"	font="LCD;32" valign="top" halign="left" foregroundColor="#3ab297"	backgroundColor="#11362d" transparent="1">
+		 <widget source="global.CurrentTime" 	render="Label" position="1100,100" 	size="140,34" zPosition="1"	font="LCD;32" valign="top" halign="left" foregroundColor="#58bcff"	backgroundColor="#11362d" transparent="1">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget source="global.CurrentTime" 	render="Label" position="1170,103" 	size="70,22" zPosition="1"	font="LCD;20" valign="top" halign="left" foregroundColor="#3ab297"	backgroundColor="#11362d" transparent="1">
+		<widget source="global.CurrentTime" 	render="Label" position="1170,103" 	size="70,22" zPosition="1"	font="LCD;20" valign="top" halign="left" foregroundColor="#58bcff"	backgroundColor="#11362d" transparent="1">
 			<convert type="ClockToText">Format::%S</convert>
 		</widget>
 		<widget name="list" position="100,175" size="1094,428" scrollbarMode="showOnDemand" transparent="1" />
@@ -2094,17 +2111,17 @@ self.instance.move(ePoint((1280-wsizex)/2, (720-wsizey)/(count &gt; 7 and 2 or 3
 	<!--  109 Event View ( 4 ) -->
 	<screen name="EventView" position="0,0"	size="1280,720" title="Eventview"  flags="wfNoBorder">
 	<ePixmap pixmap="skin_default/frame_base-fs8.png" position="0,0" zPosition="-3" size="1280,720"  /> 
-	 <ePixmap position="764,115" zPosition="2" size="26,383" pixmap="skin_default/scroll_fast.png" alphatest="blend" transparent="1" />
+	 <ePixmap position="764,115" zPosition="2" size="26,383" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 	 <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
 	    <ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
 	    <ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
 	    <ePixmap position="960,470" zPosition="-1" size="250,160" pixmap="skin_default/menu/eventview.png" alphatest="on" />
-	    <eLabel text="Event View" position="80,35" zPosition="2" size="400,34" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="transpBlack" />  
+	    <eLabel text="Event View" position="80,35" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/> 
         <widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>
-		<widget name="channel" 	position="830,360" 	size="380,28" 	font="Regular;28" halign="center" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" />
+		<widget name="channel" 	position="830,360" 	size="380,28" 	font="Regular;28" halign="center" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" />
 		<widget name="duration" position="830,400" 	size="380,28" 	font="Regular;24" halign="center" foregroundColor="white" backgroundColor="transpBlack" transparent="1" />
 		<widget name="datetime" position="80,520" 	size="380,28" 	font="Regular;24" halign="left" foregroundColor="white" backgroundColor="transpBlack" transparent="1" />
-		<widget name="epg_description" 	position="80,120" size="710,373" 	font="Regular;24"  foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" />
+		<widget name="epg_description" 	position="80,120" size="710,373" 	font="Regular;24"  foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" />
 		<ePixmap position="56,650" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
 		<ePixmap position="362,650" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
         <ePixmap position="668,650" size="250,40" pixmap="skin_default/buttons/yellow25.png" alphatest="on" zPosition="1" />
@@ -2121,20 +2138,20 @@ self.instance.move(ePoint((1280-wsizex)/2, (720-wsizey)/(count &gt; 7 and 2 or 3
 	<screen name="GraphMultiEPG" position="0,0" size="1280,720" title="Electronic Program Guide" flags="wfNoBorder" backgroundColor="transparent" >
 		<ePixmap pixmap="skin_default/frame_base-fs8.png" position="0,0" zPosition="-3" size="1280,720" alphatest="on" transparent="1" /> 
 		 <ePixmap position="58,81" zPosition="2" size="806,550" pixmap="skin_default/r806x550.png" alphatest="blend" transparent="1" />
-		<ePixmap position="834,155" zPosition="2" size="26,448" pixmap="skin_default/scroll_graph.png" alphatest="blend" transparent="1" />
+		<ePixmap position="834,155" zPosition="2" size="26,448" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 		<ePixmap position="914,270" zPosition="1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
-	    <eLabel text="Electronic Program Guide" position="80,30" zPosition="2" size="400,34" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="transpBlack" />  
+	    <eLabel text="Electronic Program Guide" position="80,30" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/> 
 		<widget name="timeline_text" position="70,110" size="800,30" transparent="1" />
 		<widget name="list" position="80,160" size="780,438" scrollbarMode="showOnDemand" EntryBorderColor="#11362d" EntryBackgroundColor="#2f4964" EntryBackgroundColorSelected="#073a6c" transparent="1" />
-		<eLabel position="70,160"  size="760,1" backgroundColor="#3ab297" />
-		<eLabel position="70,214" size="760,1" backgroundColor="#3ab297" />
-		<eLabel position="70,268" size="760,1" backgroundColor="#3ab297" />
-		<eLabel position="70,322" size="760,1" backgroundColor="#3ab297" />
-		<eLabel position="70,376" size="760,1" backgroundColor="#3ab297" />
-		<eLabel position="70,430" size="760,1" backgroundColor="#3ab297" />
-		<eLabel position="70,484" size="760,1" backgroundColor="#3ab297" />
-		<eLabel position="70,538" size="760,1" backgroundColor="#3ab297" />
-		<eLabel position="70,592" size="760,1" backgroundColor="#3ab297" />
+		<eLabel position="70,160"  size="760,1" backgroundColor="#58bcff" />
+		<eLabel position="70,214" size="760,1" backgroundColor="#58bcff" />
+		<eLabel position="70,268" size="760,1" backgroundColor="#58bcff" />
+		<eLabel position="70,322" size="760,1" backgroundColor="#58bcff" />
+		<eLabel position="70,376" size="760,1" backgroundColor="#58bcff" />
+		<eLabel position="70,430" size="760,1" backgroundColor="#58bcff" />
+		<eLabel position="70,484" size="760,1" backgroundColor="#58bcff" />
+		<eLabel position="70,538" size="760,1" backgroundColor="#58bcff" />
+		<eLabel position="70,592" size="760,1" backgroundColor="#58bcff" />
 		<widget name="timeline0" position="70,155" zPosition="1" size="1,442" pixmap="skin_default/timeline.png" />
 		<widget name="timeline1" position="70,155" zPosition="1" size="1,442" pixmap="skin_default/timeline.png" />
 		<widget name="timeline2" position="70,155" zPosition="1" size="1,442" pixmap="skin_default/timeline.png" />
@@ -2142,7 +2159,7 @@ self.instance.move(ePoint((1280-wsizex)/2, (720-wsizey)/(count &gt; 7 and 2 or 3
 		<widget name="timeline4" position="70,155" zPosition="1" size="1,442" pixmap="skin_default/timeline.png" />
 		<widget name="timeline5" position="70,155" zPosition="1" size="1,442" pixmap="skin_default/timeline.png" />
 		<widget name="timeline_now" position="70,153" zPosition="2" size="19,446" pixmap="skin_default/timeline-now.png" alphatest="on" />
-		<widget source="Event" render="Label" position="885,110" zPosition="1" size="350,80" font="Regular;24" halign="center" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+		<widget source="Event" render="Label" position="885,110" zPosition="1" size="350,80" font="Regular;24" halign="center" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="Event" render="Label" position="900,185" zPosition="1" size="300,48" font="Regular;22" halign="center" backgroundColor="transpBlack" transparent="1" >
@@ -2160,14 +2177,14 @@ self.instance.move(ePoint((1280-wsizex)/2, (720-wsizey)/(count &gt; 7 and 2 or 3
 		<widget source="Event" render="Progress" position="914,270" zPosition="2" pixmap="skin_default/chan_p_bar.png" size="300,14" transparent="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="Event" render="Label" position="920,300" zPosition="1" size="280,292" font="Regular;18" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+		<widget source="Event" render="Label" position="920,300" zPosition="1" size="280,292" font="Regular;18" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">ExtendedDescription</convert>
 		</widget>
 		<ePixmap pixmap="skin_default/icons/clock.png" position="990,640" size="14,14" zPosition="1" alphatest="blend"/>
-		 <widget source="global.CurrentTime" 	render="Label" position="1030,630" 	size="140,34" zPosition="1"	font="LCD;32" valign="top" halign="left" foregroundColor="#3ab297"	backgroundColor="#11362d" transparent="1">
+		 <widget source="global.CurrentTime" 	render="Label" position="1030,630" 	size="140,34" zPosition="1"	font="LCD;32" valign="top" halign="left" foregroundColor="#58bcff"	backgroundColor="#11362d" transparent="1">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget source="global.CurrentTime" 	render="Label" position="1100,633" 	size="70,22" zPosition="1"	font="LCD;20" valign="top" halign="left" foregroundColor="#3ab297"	backgroundColor="#11362d" transparent="1">
+		<widget source="global.CurrentTime" 	render="Label" position="1100,633" 	size="70,22" zPosition="1"	font="LCD;20" valign="top" halign="left" foregroundColor="#58bcff"	backgroundColor="#11362d" transparent="1">
 			<convert type="ClockToText">Format::%S</convert>
 		</widget>
 		<ePixmap position="130,640" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
@@ -2197,7 +2214,7 @@ self.instance.move(ePoint((1280-wsizex)/2, (720-wsizey)/(count &gt; 7 and 2 or 3
 	<!-- 114 HelpMenu -->
 	<screen name="HelpMenu" position="0,0" size="1280,720" title="Menu" flags="wfNoBorder">
 	 <ePixmap pixmap="skin_default/frame_base-fs8.png" zPosition="-1" position="0,0" size="1280,720" alphatest="on" />
-	 	 <ePixmap position="1164,135" zPosition="2" size="26,504" pixmap="skin_default/scroll_help.png" alphatest="blend" transparent="1" />
+	 	 <ePixmap position="1164,135" zPosition="2" size="26,504" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 		<eLabel text="help..." position="450,63" size="740,50" font="Regular;40" halign="center" backgroundColor="transpBlack" transparent="1"/>
 		<widget name="rc" position="150,105" size="154,500" pixmaps="skin_default/rc.png,skin_default/rcold.png" zPosition="10" alphatest="on" />
 		<widget name="long_key" position="80,585" size="300,30" font="Regular;24" halign="center" foregroundColor="transpBlack" backgroundColor="transpBlack" transparent="1" />
@@ -2210,7 +2227,7 @@ self.instance.move(ePoint((1280-wsizex)/2, (720-wsizey)/(count &gt; 7 and 2 or 3
 	<!-- 115 Language Selection -->
 	<screen name="LanguageSelection" position="center,center" size="710,520" title="Language selection" >
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,520" alphatest="on" />
-	 <ePixmap position="664,15" zPosition="2" size="26,460" pixmap="skin_default/scroll_gp.png" alphatest="blend" transparent="1" />	
+	 <ePixmap position="664,15" zPosition="2" size="26,460" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />	
 		<widget source="languages" render="Listbox" position="20,20" size="670,450" scrollbarMode="showNever" transparent="1" >
 			<convert type="TemplatedMultiContent">
 				{"template": [
@@ -2339,31 +2356,31 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<ePixmap pixmap="skin_default/frame_base-fs8.png" position="0,0" zPosition="-3" size="1280,720"  /> 
 	  <ePixmap position="902,290" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
 	  <ePixmap position="58,81" zPosition="2" size="790,550" pixmap="skin_default/r760x550_rec.png" alphatest="blend" transparent="1" />
-	<ePixmap position="814,105" zPosition="2" size="26,385" pixmap="skin_default/scroll_movie.png" alphatest="blend" transparent="1" />
-	    <eLabel text="Recorded files... /hdd/movie" position="80,30" zPosition="2" size="500,32" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="#11362d" /> 
+	<ePixmap position="814,105" zPosition="2" size="26,385" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
+	    <eLabel text="Recorded files... /hdd/movie" position="80,30" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/> 
 	    	<ePixmap position="902,111" zPosition="-1" size="304,174" pixmap="skin_default/tv_1-fs8.png" alphatest="on" />
       	<widget source="session.VideoPicture" render="Pig" position=" 906,114" size="296,166" zPosition="3" backgroundColor="#ff000000"/> 
 		<widget name="waitingtext" position="80,400" size="760,30" zPosition="4" font="Regular;22" halign="center" valign="center" transparent="1" />
 		<widget name="list" position="80,110" size="760,375" scrollbarMode="showOnDemand" transparent="1" />
 		<widget name="freeDiskSpace" position="80,590" zPosition="4" size="760,25" font="Regular;22" halign="left" transparent="1" />
 		<ePixmap pixmap="skin_default/icons/clock.png" position="80,548" size="14,14" zPosition="1" alphatest="blend"/>
-		 <widget source="global.CurrentTime" 	render="Label" position="120,538" 	size="140,34" zPosition="1"	font="LCD;32" valign="top" halign="left" foregroundColor="#3ab297"	backgroundColor="#11362d" transparent="1">
+		 <widget source="global.CurrentTime" 	render="Label" position="120,538" 	size="140,34" zPosition="1"	font="LCD;32" valign="top" halign="left" foregroundColor="#58bcff"	backgroundColor="#11362d" transparent="1">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<widget source="global.CurrentTime" 	render="Label" position="190,541" 	size="70,22" zPosition="1"	font="LCD;20" valign="top" halign="left" foregroundColor="#3ab297"	backgroundColor="#11362d" transparent="1">
+		<widget source="global.CurrentTime" 	render="Label" position="190,541" 	size="70,22" zPosition="1"	font="LCD;20" valign="top" halign="left" foregroundColor="#58bcff"	backgroundColor="#11362d" transparent="1">
 			<convert type="ClockToText">Format::%S</convert>
 		</widget>
 		<widget source="Service" render="Label" position="880,304" zPosition="4" size="350,50" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="transpBlack" transparent="1" >
 			<convert type="MovieInfo">RecordServiceName</convert>
 		</widget>
-		<widget source="Service" render="Label" position="880,326" zPosition="4" size="350,50" font="Regular;22" halign="center" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+		<widget source="Service" render="Label" position="880,326" zPosition="4" size="350,50" font="Regular;22" halign="center" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="MovieInfo">ShortDescription</convert>
 		</widget>
 		<widget source="Service" render="Label" position="880,375" zPosition="4" size="350,26" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="transpBlack" transparent="1" >
 			<convert type="ServiceTime">Duration</convert>
 			<convert type="ClockToText">AsLength</convert>
 		</widget>
-		<widget source="Service" render="Label" position="900,400" zPosition="4" size="350,210" font="Regular;20" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+		<widget source="Service" render="Label" position="900,400" zPosition="4" size="350,210" font="Regular;20" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">ExtendedDescription</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="902,290" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -2403,7 +2420,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!--  123 NumberZap -->
 	<screen name="NumberZap" position="center,center" size="440,230" title="Channel" flags="wfNoBorder" backgroundColor="transparent">
 		<ePixmap position="0,0" zPosition="0" size="440,230" pixmap="skin_default/channel.png" />
-		 <widget name="channel" position="155,30" size="130,28" zPosition="1" halign="center" valign="center" font="Regular;28" transparent="1" foregroundColor="#3ab297" backgroundColor="black"/>
+		 <widget name="channel" position="155,30" size="130,28" zPosition="1" halign="center" valign="center" font="Regular;28" transparent="1" foregroundColor="#58bcff" backgroundColor="black"/>
 		<widget name="number" position="20,65" size="400,84" zPosition="1" halign="center" valign="center" font="Regular;80" transparent="1" foregroundColor="grey" backgroundColor="black"/>
 	</screen>
 	<!-- 124 Numerical Text Input Help Dialog -->
@@ -2434,30 +2451,6 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="VKeyIcon" pixmap="skin_default/buttons/key_text.png" position="990,450" zPosition="10" size="60,48" transparent="1" alphatest="on"/>
 		<widget name="HelpWindow" position="180,450" zPosition="1" size="1,1" transparent="1" />
 	</screen>
-	
-	<!-- Crash Report Plugin -->
-   <!--   <screen name="CrashlogReportConfiguration" position="209,48" size="865,623" title="CrashlogReport Setting" flags="wfNoBorder" backgroundColor="transparent">   
-              <ePixmap pixmap="Vu_HD/Bg_EPG_list.png" zPosition="-1" position="0,0" size="865,623" alphatest="on" />
-              <ePixmap pixmap="Vu_HD/menu/ico_title_Setup.png" position="32,41" size="40,40" alphatest="blend"  transparent="1" />
-              <eLabel text="CrashlogReport Setting" position="90,50" size="600,32" font="Semiboldit;32" foregroundColor="#5d5d5d" backgroundColor="#27b5b9bd" transparent="1" />
-              <ePixmap pixmap="Vu_HD/icons/clock.png" position="750,55" zPosition="1" size="20,20" alphatest="blend" />
-              <widget source="global.CurrentTime" render="Label" position="770,57" zPosition="1" size="50,20" font="Regular;20" foregroundColor="#1c1c1c" halign="right" backgroundColor="#27d9dee2" transparent="1">
-                      <convert type="ClockToText">Format:%H:%M</convert>
-              </widget>
-              <ePixmap pixmap="Vu_HD/buttons/red.png" position="45,98" size="25,25" alphatest="blend" />
-              <ePixmap pixmap="Vu_HD/buttons/green.png" position="240,98" size="25,25" alphatest="blend" />
-              <ePixmap pixmap="Vu_HD/buttons/button_off.png" position="435,98" size="25,25" alphatest="blend" />
-              <ePixmap pixmap="Vu_HD/buttons/button_off.png" position="630,98" size="25,25" alphatest="blend" />
-              <widget source="key_red" render="Label" position="66,97" zPosition="1" size="150,25" font="Regular;20" halign="center" valign="center" backgroundColor="darkgrey" foregroundColor="#1c1c1c" transparent="1" />
-              <widget source="key_green" render="Label" position="268,97" zPosition="1" size="150,25" font="Regular;20" halign="center" valign="center" backgroundColor="darkgrey" foregroundColor="#1c1c1c" transparent="1" />
-              <widget name="config" zPosition="2" position="50,130" itemHeight="36" size="750,324" scrollbarMode="showOnDemand" transparent="1" />
-              <widget source="status" render="Label" position="160,525" size="540,60" zPosition="10" foregroundColor="#3c3c3c" backgroundColor="#27aeaeae" font="Regular;20" halign="center" valign="center" transparent="1"/>
-              <widget name="VKeyIcon" pixmap="Vu_HD/buttons/key_text.png" position="500,350" zPosition="10" size="35,25" transparent="1" alphatest="on" />
-              <widget name="HelpWindow" pixmap="Vu_HD/vkey_icon.png" position="310,400" zPosition="1" size="1,1" transparent="1" alphatest="on" />
-      </screen>-->
-	
-	
-	
 	 <!--  126 VideoEnhancementSetup  ( 4 )-->
 	<screen name="VideoEnhancementSetup" position="center,center" size="1130,520" title="VideoEnhancementSetup">
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1130,520" alphatest="on" />	
@@ -2470,7 +2463,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<widget source="key_yellow" render="Label" position="578,460" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
 			<widget source="key_blue" render="Label" position="854,460" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
 			<widget name="config" position="20,20" size="1090,350" scrollbarMode="showOnDemand" transparent="1" />
-			<widget source="introduction" render="Label" position="290,420" size="550,25" zPosition="10" font="Regular;22" halign="center" valign="center"  foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" />
+			<widget source="introduction" render="Label" position="290,420" size="550,25" zPosition="10" font="Regular;22" halign="center" valign="center"  foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" />
 		</screen>
 	 <!--  127 VideoEnhancementPreview  ( 2 )-->	
 		<screen name="VideoEnhancementPreview" position="center,center" size="710,240" title="VideoEnhancementPreview">
@@ -2501,7 +2494,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!--  132 Plugin Browser  ( 2 )-->
 	<screen name="PluginBrowser" 	position="center,center" size="700,520"  title="Plugin browser">
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="700,520" alphatest="on" />	
-	 <ePixmap position="629,5" zPosition="2" size="26,410" pixmap="skin_default/scroll_brow.png" alphatest="blend" transparent="1" />
+	 <ePixmap position="629,5" zPosition="2" size="26,410" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 		<widget name="list" 	position="45,10" size="610,400" scrollbarMode="showOnDemand" selectionPixmap="skin_default/icons/listselection650x50-fs8.png" backgroundColorSelected="#30000000" transparent="1"/>
 		<ePixmap position="66,460" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
         <ePixmap position="382,460" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
@@ -2511,9 +2504,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!--  133 Plugin Download Browser -->
 	<screen name="PluginDownloadBrowser" position="center,center" size="800,460" title="Downloadable plugins">
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="800,460" alphatest="on" />
-	<ePixmap position="629,5" zPosition="2" size="26,410" pixmap="skin_default/scroll_brow.png" alphatest="blend" transparent="1" />
-        <widget name="text" position="20,20" size="760,28" font="Regular;24"/>
-        <widget name="list" position="20,20" size="760,360" scrollbarMode="showOnDemand" transparent="1" />
+	<ePixmap position="754,45" zPosition="2" size="26,405" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
+        <widget name="text" position="20,10" size="760,28" font="Regular;24"/>
+        <widget name="list" position="20,50" size="760,400" scrollbarMode="showOnDemand" transparent="1" />
 	</screen>
 	<!-- 134 Radio InfoBar -->
 	<screen name="RadioInfoBar" position="0,490" size="1280,230" title="InfoBar" flags="wfNoBorder" zPosition="-1">
@@ -2580,7 +2573,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!-- 135 Channel selection - Radio  ( 4 )-->
 	<screen name="ChannelSelectionRadio" position="60,80" size="1160,410" title="Channel Selection"  >
 	    <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1160,410" alphatest="on" />
-	    <ePixmap position="1114,15" zPosition="4" size="26,318" pixmap="skin_default/scroll_radio.png" alphatest="blend" transparent="1" />		
+	    <ePixmap position="1114,15" zPosition="4" size="26,318" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />		
 		<widget name="list" position="20,20" size="1120,308" zPosition="3" scrollbarMode="showOnDemand" foregroundColorServiceNotAvail="#666666" serviceNumberFont="Regular;20" serviceNameFont="Regular;24" serviceInfoFont="Regular;24" colorServiceDescription="grey" picServiceEventProgressbar="skin_default/pl.png"  transparent="1" />
 		<ePixmap position="32,350" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
         <ePixmap position="314,350" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
@@ -2650,14 +2643,14 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<screen name="ScanSetup" position="center,center" size="700,500"  title="Service scan">
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="700,500" alphatest="on" />	
 		<widget name="config" position="10,10" size="680,425" transparent="1" />
-		<widget name="introduction" position="60,465" size="580,25" font="Regular;22" halign="center" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" />
+		<widget name="introduction" position="60,465" size="580,25" font="Regular;22" halign="center" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" />
 	</screen>
 	<!-- 141 Scan Simple -->
 	<screen name="ScanSimple" position="center,center" size="600,500"  title="Service scan">
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="600,500" alphatest="on" />	
 		<widget name="header" position="10,10" size="580,25" font="Regular;23" transparent="1" />
 		<widget name="config" position="10,55" size="580,350" scrollbarMode="showOnDemand" transparent="1" />
-		<widget name="footer" position="10,465" size="580,25" font="Regular;22" halign="center" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" />
+		<widget name="footer" position="10,465" size="580,25" font="Regular;22" halign="center" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" />
 	</screen>
 	<!-- 142 Service Info ( 4 )-->
 	  <screen name="ServiceInfo" position="center,center" size="1130,520" title="Serviceinfo">
@@ -2709,7 +2702,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!-- 145 Simple Channel Selection ( 4 )-->
 	<screen name="SimpleChannelSelection" position="center,center" size="1130,520" title="Channel Selection" >
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1130,520" alphatest="on" />
-	 	<ePixmap position="684,15" zPosition="2" size="26,410" pixmap="skin_default/scroll_brow.png" alphatest="blend" transparent="1" />		
+	 	<ePixmap position="684,15" zPosition="2" size="26,410" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />		
 		<widget name="list" position="20,20" size="1090,475" scrollbarMode="showOnDemand" transparent="1" />
 		<ePixmap position="26,460" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
         <ePixmap position="302,460" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
@@ -2723,14 +2716,14 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!--  146 Skin Selector  ( 1 )-->
 	<screen name="SkinSelector" position="0,0" size="1280,720" title="Choose your Skin" >
 			<ePixmap position="0,0" zPosition="-1" size="1280,720" pixmap="skin_default/frame_base-fs8.png"  />
-			<ePixmap position="764,95" zPosition="2" size="26,448" pixmap="skin_default/scroll_graph.png" alphatest="blend" transparent="1" />
+			<ePixmap position="764,95" zPosition="2" size="26,448" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 			<ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
-			 <eLabel text="Choose your Skin " position="80,30" zPosition="2" size="600,32" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="#11362d" />  	
+			 <eLabel text="Choose your Skin " position="80,30" zPosition="2" size="600,32" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#58bcff" backgroundColor="#11362d" />  	
 			<widget name="SkinList" position="80,100" size="710,414" scrollbarMode="showOnDemand" transparent="1" />
 			<widget name="Preview" position="930,170" size="280,210"  zPosition="1" alphatest="blend" transparent="1"/>	
 		    <ePixmap pixmap="skin_default/buttons/red25.png" position="300,646" size="250,40" alphatest="on" zPosition="1" />
 			<widget source="key_red" render="Label" position="300,650" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="left" foregroundColor="white" transparent="1"/>	
-	        <widget source="introduction" render="Label" position="120,570" size="600,28" zPosition="10" font="Regular;24" halign="center" valign="center" foregroundColor="#3ab297"  backgroundColor="transpBlack" transparent="1"/>	
+	        <widget source="introduction" render="Label" position="120,570" size="600,28" zPosition="10" font="Regular;24" halign="center" valign="center" foregroundColor="#58bcff"  backgroundColor="transpBlack" transparent="1"/>	
 	   </screen>
 	<!-- 147 Standby -->
 	<screen name="Standby" 	position="0,0" size="1280,720" title="Standby" flags="wfNoBorder" />
@@ -2872,23 +2865,23 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!--  161 Plugils MediaPlayer -->
    <screen name="MediaPlayer" position="0,0" size="1280,720" title="MediaPlayer" backgroundColor="black" flags="wfNoBorder" >
         <ePixmap position="0,0" zPosition="-10" size="1280,720" pixmap="skin_default/mediaplayer_bg.png"  />
-         <ePixmap position="1154,162" zPosition="2" size="26,290" pixmap="skin_default/scroll_mp.png" alphatest="blend" transparent="1" />
-        <ePixmap position="580,162" zPosition="2" size="26,290" pixmap="skin_default/scroll_mp.png" alphatest="blend" transparent="1" />
+         <ePixmap position="1154,162" zPosition="2" size="26,290" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
+        <ePixmap position="580,162" zPosition="2" size="26,290" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
         <ePixmap position="1128,46" zPosition="1" size="74,36" pixmap="skin_default/buttons/key_menu1.png" transparent="1" alphatest="on" /> 
 		<widget source="session.CurrentService" render="Label" position="130,512" size="200,30" font="Regular;24" zPosition="33" foregroundColor="white" backgroundColor="black" transparent="1" >
 			<convert type="ServicePosition">Length</convert>
 		</widget>
-		<eLabel text="Media Player" position="490,36" size="300,36" zPosition="1" font="RegularAA;32" halign="center" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" />
+		<eLabel text="Media Player" position="490,36" size="300,36" zPosition="1" font="RegularAA;32" halign="center" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" />
 		<eLabel text="F i l e l i s t" position="62,121"  size="580,30" zPosition="5" font="Regular;26" halign="center" foregroundColor="grey" backgroundColor="black" transparent="1" />
 		<widget name="filelist" position="100,168"  size="506,279" scrollbarMode="showOnDemand"  backgroundColor="black" transparent="1"  />
 		<eLabel text="P l a y l i s t" position="643,121"  size="580,30" zPosition="5" font="Regular;26" halign="center" foregroundColor="grey" backgroundColor="black" transparent="1" />
 		<widget name="playlist" position="674,168"  size="506,279" scrollbarMode="showOnDemand" backgroundColor="black" transparent="1"  />
 		<widget name="title" position="290,512" size="800,30" font="Regular;24" valign="top" transparent="1" backgroundColor="black" />
-		<widget name="artisttext" position="290,550" size="100,26" font="Regular;24" valign="top" foregroundColor="#3ab297" backgroundColor="black" transparent="1" />
+		<widget name="artisttext" position="290,550" size="100,26" font="Regular;24" valign="top" foregroundColor="#58bcff" backgroundColor="black" transparent="1" />
 		<widget name="artist" position="410,550" size="580,26" font="Regular;24" valign="top" backgroundColor="black" transparent="1" />
-		<widget name="albumtext" position="290,580" size="100,26" font="Regular;24" valign="top" foregroundColor="#3ab297" backgroundColor="black" transparent="1" />
+		<widget name="albumtext" position="290,580" size="100,26" font="Regular;24" valign="top" foregroundColor="#58bcff" backgroundColor="black" transparent="1" />
 		<widget name="album" position="410,580" size="580,26" font="Regular;24" valign="top" backgroundColor="black" transparent="1" />
-		<widget name="yeartext" position="290,610" size="100,26" font="Regular;24" valign="top" foregroundColor="#3ab297" backgroundColor="black" transparent="1" />
+		<widget name="yeartext" position="290,610" size="100,26" font="Regular;24" valign="top" foregroundColor="#58bcff" backgroundColor="black" transparent="1" />
 		<widget name="year" position="410,610" size="580,26" font="Regular;24" valign="top" backgroundColor="black" transparent="1" />
 		<widget name="coverArt" pixmap="skin_default/no_coverArt.png" position="110,550"  size="100,100" zPosition="1" alphatest="on"  />
 		<widget name="repeat" position="1120,655" size="50,30" pixmaps="skin_default/icons/repeat_off.png,skin_default/icons/repeat_on.png" transparent="1" alphatest="blend"/>
@@ -2936,7 +2929,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!-- 164 WebIfConfigScreen ( 3 )-->
 	<screen name="WebIfConfigScreen" position="center,center" size="950,340" title="Webinterface: Main Setup">
 		<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-2" position="0,0" size="950,340" alphatest="on" />
-		<ePixmap position="904,15" zPosition="2" size="26,250" pixmap="skin_default/scroll_epg.png" alphatest="blend" transparent="1" />	
+		<ePixmap position="904,15" zPosition="2" size="26,250" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />	
 			<ePixmap pixmap="skin_default/buttons/red25.png" position="50,280" zPosition="1" size="250,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green25.png" position="350,280" zPosition="1" size="250,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow25.png" position="650,280" zPosition="1" size="250,40" alphatest="on" />
@@ -2991,7 +2984,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!-- 168 DVD Burn - FileBrowser  ( 2 )-->
 	<screen name="FileBrowser" position="center,center" size="1130,460" title="DVD File Browser" >
 	<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1130,460" alphatest="on" />
-	<ePixmap position="1084,5" zPosition="2" size="26,370" pixmap="skin_default/scroll_em.png" alphatest="blend" transparent="1" />			
+	<ePixmap position="1084,5" zPosition="2" size="26,370" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />			
 			<ePixmap pixmap="skin_default/buttons/red25.png" position="210,400" zPosition="1" size="250,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green25.png" position="670,400" zPosition="1" size="250,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="210,400" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
@@ -3193,9 +3186,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	    <ePixmap position="0,0" zPosition="-10" size="1280,720" pixmap="skin_default/frame_base-fs8.png"/>
 	    <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
 	    <ePixmap position="832,252" zPosition="-1" size="378,378" pixmap="skin_default/r378x378.png" alphatest="on" />
-	     <ePixmap position="764,93" zPosition="3" size="26,494" pixmap="skin_default/scroll_tv.png" alphatest="blend" transparent="1" />
-	    <eLabel text="PicturePlayer" position="80,30" zPosition="2" size="400,34" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="transpBlack" />  
-		<widget source="label" render="Label" position="860,81" zPosition="2" size="260,160" font="Regular;20" foregroundColor="#3ab297" backgroundColor="transpBlack"  transparent="1"/>
+	     <ePixmap position="764,93" zPosition="3" size="26,494" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
+	    <eLabel text="PicturePlayer" position="80,30" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/> 
+		<widget source="label" render="Label" position="860,81" zPosition="2" size="260,160" font="Regular;20" foregroundColor="#58bcff" backgroundColor="transpBlack"  transparent="1"/>
 		<widget name="thn" position="890,287" size="260,300" alphatest="on"/>
 		<widget name="filelist" position="80,100" size="710,484" zPosition="3" scrollbarMode="showOnDemand"  transparent="1"/>
 		<ePixmap pixmap="skin_default/buttons/red25.png" position="56,650" size="250,40" alphatest="on"/>
@@ -3210,7 +3203,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!-- 178 Pic_Exif (Picture) ( 1 )-->
 	<screen name="Pic_Exif" position="center,center" size="710,340" title="Info">
 	<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,340" alphatest="on" />
-	  <ePixmap position="664,20" zPosition="4" size="26,250" pixmap="skin_default/scroll_epg.png" alphatest="blend" transparent="1" />	
+	  <ePixmap position="664,20" zPosition="4" size="26,250" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />	
 		<ePixmap pixmap="skin_default/buttons/red25.png" position="230,280" size="250,40" zPosition="1" alphatest="blend" />
 		<widget source="key_red" render="Label" position="230,280" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" transparent="1" backgroundColor="transpBlack"/>
 		<widget source="menu" render="Listbox" position="20,20" size="670,224" zPosition="3" scrollbarMode="showOnDemand" transparent="1" selectionDisabled="1">
@@ -3296,7 +3289,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<!-- 184 PluginManager (Extensions management) ( 4 )-->
 		<screen name="PluginManager" position="300,150" size="680,520" title="Extensions management" >
 		    <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="680,520" alphatest="on" />	
-			<ePixmap position="634,5" zPosition="2" size="26,370" pixmap="skin_default/scroll_em.png" alphatest="blend" transparent="1" />		
+			<ePixmap position="634,5" zPosition="2" size="26,370" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />		
 			<widget source="list" render="Listbox" position="20,5" size="640,360" scrollbarMode="showOnDemand" transparent="1">
 			<convert type="TemplatedMultiContent">
 			{"templates":
@@ -3317,7 +3310,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			}
 			</convert>
 			</widget>
-			<widget source="status" render="Label" position="70,360" zPosition="10" size="540,50" halign="center" valign="center" font="Regular;22" transparent="1" foregroundColor="#3ab297" shadowColor="black" shadowOffset="-1,-1" />
+			<widget source="status" render="Label" position="70,360" zPosition="10" size="540,50" halign="center" valign="center" font="Regular;22" transparent="1" foregroundColor="#58bcff" shadowColor="black" shadowOffset="-1,-1" />
 			<ePixmap pixmap="skin_default/buttons/red25.png" position="60,410" size="250,40" alphatest="on"/>
 			<ePixmap pixmap="skin_default/buttons/green25.png" position="370,410" size="250,40" alphatest="on"/>
 			<ePixmap pixmap="skin_default/buttons/yellow25.png" position="60,460" size="250,40" alphatest="on"/>
@@ -3398,7 +3391,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		     <!-- 191 PacketManager ( 2 )-->
 		<screen name="PacketManager" position="center,center" size="710,520" title="Packet manager" >
 		<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,520" alphatest="on" />
-			<ePixmap position="664,15" zPosition="2" size="26,370" pixmap="skin_default/scroll_em.png" alphatest="blend" transparent="1" />		
+			<ePixmap position="664,15" zPosition="2" size="26,370" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />		
 		    <ePixmap position="70,460" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
             <ePixmap position="390,460" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
 			<widget source="key_red" render="Label" position="70,460" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
@@ -3590,7 +3583,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<ePixmap position="0,0" zPosition="-10" size="1280,720" pixmap="skin_default/frame_base-fs8.png"/>
 		<ePixmap pixmap="skin_default/menu/posizioner.png" position="928,425" zPosition="2" size="250,160" alphatest="blend" transparent="1" /> 
 		  <ePixmap position="80,160" zPosition="2" size="1120,460" pixmap="skin_default/r1120x460.png" alphatest="blend" transparent="1" /> 
-	    <eLabel text="Positioner setup... " position="80,40" zPosition="2" size="400,32" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="#11362d" />  
+	    <eLabel text="Positioner setup... " position="80,40" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/>  
 		<widget name="list" 	position="100,170" 	size="1080,155" backgroundColor="black" transparent="1"/>
 		<widget name="snr_db" position="190,470" 	size="200,24" 	halign="center" valign="center" font="Regular;21" backgroundColor="background" transparent="1"/>
 		<eLabel text="SNR:" 	position="100,500" 	size="80,24" 	font="Regular;21" 	backgroundColor="darkgrey" transparent="1"/>
@@ -3672,7 +3665,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	 <!-- 210 myProviderSelection ( 4 )-->
 	<screen name="myProviderSelection" position="center,center" size="1160,560" title="Select provider to add..." >
 	<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-2" position="0,0" size="1160,560" alphatest="on" />	
-	  <ePixmap position="1114,10" zPosition="4" size="26,438" pixmap="skin_default/scroll_multi.png" alphatest="blend" transparent="1" />
+	  <ePixmap position="1114,10" zPosition="4" size="26,438" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 		<widget name="list" position="20,20" size="1120,420" 	zPosition="3" scrollbarMode="showOnDemand" transparent="1"/>
 		<ePixmap position="32,500" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
 		<ePixmap position="314,500" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
@@ -3686,7 +3679,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	 <!-- 211 myChannelSelection ( 4 )-->
 	<screen name="myChannelSelection" position="center,center" size="1160,560" title="Select service to add..." >
 	<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-2" position="0,0" size="1160,560" alphatest="on" />	
-	  <ePixmap position="1114,10" zPosition="4" size="26,438" pixmap="skin_default/scroll_multi.png" alphatest="blend" transparent="1" />
+	  <ePixmap position="1114,10" zPosition="4" size="26,438" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 		<widget name="list" position="20,20" size="1120,420" 	zPosition="3" scrollbarMode="showOnDemand" transparent="1"/>
 		<ePixmap position="32,500" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
 		<ePixmap position="314,500" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
@@ -3882,9 +3875,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!--  225 MyTubePlayerMainScreen ( 3+1 )-->
   <screen name="MyTubePlayerMainScreen" position="0,0" size="1280,720" title="MyTubePlayerMainScreen..." 	flags="wfNoBorder" >
 		<ePixmap position="0,0" zPosition="-10" size="1280,720" pixmap="skin_default/frame_base-fs8.png"/>
-		<ePixmap position="1184,170" zPosition="2" size="26,420" pixmap="skin_default/scroll_brow.png" alphatest="blend" transparent="1" />
+		<ePixmap position="1184,170" zPosition="2" size="26,420" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 		<ePixmap pixmap="skin_default/menu/mytube.png" position="60,120" zPosition="1" size="250,160" alphatest="blend" transparent="1" />
-	    <eLabel text="MyTubePlayerMainScreen... " position="80,30" zPosition="2" size="600,32" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="#11362d" />  
+	    <eLabel text="MyTubePlayerMainScreen... " position="80,30" zPosition="2" size="600,32" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#58bcff" backgroundColor="#11362d" />  
 		<widget name="config" 	position="550,120" size="660,28" zPosition="3" scrollbarMode="showNever" transparent="1"/>
 		<widget source="feedlist" render="Listbox" position="550,170" size="660,400" zPosition="1" scrollbarMode="showOnDemand"  transparent="1">
 			<convert type="TemplatedMultiContent">
@@ -3962,7 +3955,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 <!-- 229 MyTubeVideoInfoScreen ( 1 )-->
     <screen name="MyTubeVideoInfoScreen" position="center,center" size="1160,560" title="MyTubePlayerMainScreen..."  >
-    <ePixmap position="1074,220" zPosition="8" size="26,290" pixmap="skin_default/scroll_mp.png" alphatest="blend" transparent="1" />
+    <ePixmap position="1074,220" zPosition="8" size="26,290" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 		<widget name="title" position="20,20" size="1080,30" zPosition="5" valign="center" halign="left" font="Regular;26" backgroundColor="darkgrey" shadowColor="black" shadowOffset="-1,-1" transparent="1" noWrap="1"/>
 		<widget name="author" position="20,70" size="300,25" zPosition="10" font="Regular;22" transparent="1" halign="left" valign="top" />
 		<widget name="duration" position="20,100" size="300,25" zPosition="10" font="Regular;22" transparent="1" halign="left" valign="top" />
@@ -4148,7 +4141,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<widget name="config" zPosition="2" position="20,30" size="660,200" scrollbarMode="showOnDemand" transparent="1" />
 			</screen>
 		<!--237 BhMediatomb  ( 2 )-->		
-	<screen name="BhMediatomb" position="center,center" size="700,400" title="Black Hole UPnP Server Panel">
+	<screen name="BhMediatomb" position="center,center" size="700,400" title="Black PoleUPnP Server Panel">
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="700,400" alphatest="on" />
 			<widget name="lab1" position="20,10" size="680,260" font="Regular;22" valign="center" backgroundColor="transpBlack" transparent="1"/>
 			<widget name="lab2" position="20,280" size="300,30" font="Regular;24" valign="center" backgroundColor="transpBlack" transparent="1"/>
@@ -4160,7 +4153,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<widget name="key_green"  position="383,340" zPosition="1" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
 			</screen>
 		<!--238 BhDjmount  ( 2 )-->		
-	<screen name="BhDjmount" position="center,center" size="700,300" title="Black Hole UPnP Client Panel">
+	<screen name="BhDjmount" position="center,center" size="700,300" title="Black PoleUPnP Client Panel">
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="700,300" alphatest="on" />
 			<widget name="lab1" position="20,30" size="680,80" font="Regular;24" valign="center" backgroundColor="transpBlack" transparent="1"/>
 			<widget name="lab2" position="20,150" size="300,30" font="Regular;24" valign="center" backgroundColor="transpBlack" transparent="1"/>
@@ -4176,7 +4169,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<screen name="HdmiCecPlugin" position="0,0" size="1280,7200" title="HDMI-CEC Plugin" >
 			<ePixmap position="0,0" zPosition="-1" size="1280,720" pixmap="skin_default/frame_base-fs8.png"  />
 			 <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
-			<eLabel text="HDMI-CEC " position="80,30" zPosition="2" size="400,32" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="#11362d" />   
+			<eLabel text="HDMI-CEC " position="80,30" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/>   
 			 <ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
 			<ePixmap position="960,470" zPosition="-1" size="250,160" pixmap="skin_default/menu/hdmi.png" alphatest="on" />
 	     	<ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
@@ -4193,7 +4186,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			 <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
 		</widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -4207,12 +4200,12 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	   	 <ePixmap position="870,310" zPosition="-1" size="300,14" pixmap="skin_default/chan_p1_bar.png" alphatest="on" />
 	   	 <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
 	     	<ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
-	   <eLabel text="Browser Launcher " position="80,30" zPosition="2" size="400,32" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="#11362d" />
+	   <eLabel text="Browser Launcher " position="80,30" zPosition="2" size="800,38" font="RegularAA;34" halign="left" transparent="1" foregroundColor="#58bcff" backgroundColor="#11362d" />
 	       <widget source="session.VideoPicture" render="Pig" position=" 836,84" size="370,208" zPosition="3" backgroundColor="#ff000000"/>
 	    <widget source="session.CurrentService" render="Label" position="815,330" size="420,32" zPosition="2" font="Regular;28" halign="center" noWrap="1" transparent="1" foregroundColor="white" backgroundColor="background">
 		<convert type="ServiceName">Name</convert>
 		</widget>
-			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" >
+			<widget source="session.Event_Now" render="Label" position="850,380" size="350,100" zPosition="2" halign="center" font="Regular;24" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" >
 			<convert type="EventName">Name</convert>
 					</widget>		
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/chan_p_bar.png" size="300,14" position="870,310" zPosition="1"  backgroundColor="darkgrey" transparent="1">
@@ -4258,7 +4251,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<widget source="current" render="Label" position="210,200" zPosition="1" size="280,30" font="Regular;20" halign="center" valign="left" foregroundColor="white" transparent="1"/>
 			</screen>	
 		<!--245 Bh_Bpersonal_main ( 3 )-->	
-	   <screen name="Bh_Bpersonal_main" position="center,center" size="950,420" title="Black Hole Personal Backup" >
+	   <screen name="Bh_Bpersonal_main" position="center,center" size="950,420" title="Black PolePersonal Backup" >
 	        <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="950,420" alphatest="on" />	
 			<widget name="lab1" position="20,20" size="910,300" font="Regular;22" backgroundColor="transpBlack" transparent="1"/>
 			<ePixmap pixmap="skin_default/buttons/red25.png" position="50,360" size="250,40" alphatest="blend"/>
@@ -4269,7 +4262,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<widget name="key_yellow" position="650,360" size="250,40" zPosition="1" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1"/>
 			</screen>
 		<!--246 Bh_Bpersonal_setuP ( 2 )-->	
-	 <screen name="Bh_Bpersonal_setuP" position="center,center" size="950,420" title="Black Hole Personal Backup Setup" >
+	 <screen name="Bh_Bpersonal_setuP" position="center,center" size="950,420" title="Black PolePersonal Backup Setup" >
 		     <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="950,420" alphatest="on" />		
 			<widget name="config" position="20,20" size="910,290" scrollbarMode="showOnDemand" transparent="1" />
 			<ePixmap pixmap="skin_default/buttons/red25.png" position="150,360" size="250,40" alphatest="blend"/>
@@ -4278,7 +4271,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<widget name="key_green" position="550,360" size="250,40" zPosition="1" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1"/>
 			</screen>
 		<!--247 Bh_Bfull_main ( 2 )-->	
-	   <screen name="Bh_Bfull_main" position="center,center" size="950,420" title="Black Hole Full Backup" >
+	   <screen name="Bh_Bfull_main" position="center,center" size="950,420" title="Black PoleFull Backup" >
 	        <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="950,420" alphatest="on" />	
 		<widget name="config" position="20,20" size="910,290" scrollbarMode="showOnDemand" transparent="1" />
 			<ePixmap pixmap="skin_default/buttons/red25.png" position="150,360" size="250,40" alphatest="blend"/>
@@ -4295,16 +4288,16 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<widget source="key_green" render="Label" position="350,300" zPosition="1" size="250,40" font="Regular;24" halign="center" valign="center" transparent="1" />
 			<widget source="key_yellow" render="Label" position="650,300" zPosition="1" size="250,40" font="Regular;24" halign="center" valign="center" transparent="1" />
 			<widget name="config" zPosition="2" position="20,20" size="910,200" scrollbarMode="showOnDemand" transparent="1"/>
-			<widget name="current_entry" position="175,240" size="600,28" font="Regular;24" halign="center" valign="center" foregroundColor="#3ab297" backgroundColor="transpBlack"  transparent="1"/>
+			<widget name="current_entry" position="175,240" size="600,28" font="Regular;24" halign="center" valign="center" foregroundColor="#58bcff" backgroundColor="transpBlack"  transparent="1"/>
 			</screen>
 			<!--249 CrossEPG_Setup (1) -->		
 	<screen name="CrossEPG_Setup" position="0,0" size="1280,720" title="CrossEPG Configuration" flags="wfNoBorder" >
 		<ePixmap  position="0,0" zPosition="-1" size="1280,720" pixmap="skin_default/frame_base-fs8.png" />
 	    <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
 	    <ePixmap position="832,81" zPosition="-1" size="378,216" pixmap="skin_default/tv_2-fs8.png" alphatest="on" />
-		<eLabel text="CrossEPG Configuration" position="60,30" zPosition="2" size="400,36" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="transpBlack" />  
+		<eLabel text="CrossEPG Configuration" position="60,30" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/> 
 		<widget name="config" position="70,120" size="710,250" scrollbarMode="showOnDemand" zPosition="1" backgroundColor="transpBlack" transparent="1" />
-		<widget name="information" position="840,90" size="360,200" halign="center" valign="center" font="Regular;22" foregroundColor="#3ab297" backgroundColor="transpBlack" transparent="1" />
+		<widget name="information" position="840,90" size="360,200" halign="center" valign="center" font="Regular;22" foregroundColor="#58bcff" backgroundColor="transpBlack" transparent="1" />
 		<ePixmap position="310,650" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
 		<widget position="310,650" size="250,40" name="key_red" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" zPosition="3" />
 	</screen>
@@ -4312,10 +4305,10 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<screen name="CrossEPG_Menu" position="0,0" size="1280,720" title="CrossEPG Menu" flags="wfNoBorder" >
 		<ePixmap  position="0,0" zPosition="-1" size="1280,720" pixmap="skin_default/frame_base-fs8.png" />
 	    <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
-	     <ePixmap position="754,105" zPosition="2" size="26,504" pixmap="skin_default/scroll_help.png" alphatest="blend" transparent="1" />
+	     <ePixmap position="754,105" zPosition="2" size="26,504" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 		<ePixmap position="930,110" zPosition="2" size="280,210" pixmap="skin_default/prev.png" alphatest="blend" transparent="1" />
 		<ePixmap position="960,470" zPosition="1" size="250,160" pixmap="skin_default/menu/scan.png" alphatest="blend" transparent="1" />
-		<eLabel text="CrossEPG Menu" position="60,30" zPosition="2" size="400,32" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="transpBlack" />  
+		<eLabel text="CrossEPG Menu" position="60,30" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/> 
 		<widget source="list" render="Listbox" position="70,114" size="710,480" scrollbarMode="showOnDemand"  selectionPixmap="skin_default/icons/listselection450x38_S-fs8.png"  backgroundColorSelected="#10000000" transparent="1">
 			<convert type="TemplatedMultiContent">
 			{"template": [
@@ -4332,10 +4325,10 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<screen name="CrossEPG_Providers" position="0,0" size="1280,720" title="CrossEPG - Providers" backgroundColor="transparent" flags="wfNoBorder" >
 		<ePixmap  position="0,0" zPosition="-1" size="1280,720" pixmap="skin_default/frame_base-fs8.png" />
 	    <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
-	     <ePixmap position="754,105" zPosition="2" size="26,504" pixmap="skin_default/scroll_help.png" alphatest="blend" transparent="1" />
+	     <ePixmap position="754,105" zPosition="2" size="26,504" pixmap="skin_default/scroll.png" alphatest="blend" transparent="1" />
 		<ePixmap position="930,110" zPosition="2" size="280,210" pixmap="skin_default/prev.png" alphatest="blend" transparent="1" />
 		<ePixmap position="960,470" zPosition="1" size="250,160" pixmap="skin_default/menu/scan.png" alphatest="blend" transparent="1" />
-		<eLabel text="Provider XMLTV-OpenTV-XEPGDB-MHW2-M7-RAI" position="60,30" zPosition="2" size="900,32" font="RegularAA;26" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="transpBlack" />  
+		<eLabel text="Provider XMLTV-OpenTV-XEPGDB-MHW2-M7-RAI" position="60,30" zPosition="2" size="900,32" font="RegularAA;26" halign="left" transparent="1" foregroundColor="#58bcff" backgroundColor="transpBlack" />  
 		<widget source="list" render="Listbox" position="70,116" size="710,480" scrollbarMode="showOnDemand"  selectionPixmap="skin_default/icons/listselection710x30-fs8.png"  backgroundColorSelected="#10000000" transparent="1">
 			<convert type="TemplatedMultiContent">
 				{"template": [
@@ -4359,7 +4352,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<ePixmap  position="0,0" zPosition="-1" size="1280,720" pixmap="skin_default/frame_base-fs8.png" />
 		 <ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
 	    <ePixmap position="930,120" zPosition="2" size="280,210" pixmap="skin_default/prev.png" alphatest="blend" transparent="1" />
-		<eLabel text="CrossEPG DataBase Information" position="60,30" zPosition="2" size="600,32" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="transpBlack" />  
+		<eLabel text="CrossEPG DataBase Information" position="60,30" zPosition="2" size="600,32" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#58bcff" backgroundColor="transpBlack" />  
 		<widget name="version"            position="80,120" size="540,25" font="Regular;20" backgroundColor="transpBlack" transparent="1" />
 		<widget name="create"             position="80,150" size="540,25" font="Regular;20" backgroundColor="transpBlack" transparent="1" />
 		<widget name="last_update"        position="80,180" size="540,25" font="Regular;20" backgroundColor="transpBlack" transparent="1" />
@@ -4379,7 +4372,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<ePixmap  position="0,0" zPosition="-1" size="1280,720" pixmap="skin_default/frame_base-fs8.png" />
 		<ePixmap position="58,81" zPosition="2" size="760,550" pixmap="skin_default/r760x550.png" alphatest="blend" transparent="1" />
 		<ePixmap position="930,120" zPosition="2" size="280,210" pixmap="skin_default/prev.png" alphatest="blend" transparent="1" />
-		<eLabel text="CrossEPG About" position="60,30" zPosition="2" size="400,32" font="RegularAA;28" halign="left" transparent="1" foregroundColor="#3ab297" backgroundColor="transpBlack" />  
+		<eLabel text="CrossEPG About" position="60,30" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/> 
 		<widget name="about" position="80,120" size="700,360" font="Regular;18" backgroundColor="transpBlack" transparent="1" />
 		<widget name="rytec_pix" position="80,520" size="70,70" />
 		<widget name="krkadoni_pix" position="80,590" size="70,22" />
@@ -4406,7 +4399,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="config" zPosition="2" position="20,50" size="660,200" scrollbarMode="showOnDemand" transparent="1" />
 		</screen>
 		<!--257 BhNfsServer (3)-->	
-		<screen name="BhNfsServer" position="center,center" size="950,320" title="Black Hole Nfs Server Panel">
+		<screen name="BhNfsServer" position="center,center" size="950,320" title="Black PoleNfs Server Panel">
 		<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="950,320" alphatest="on" />
         <widget name="lab1" position="20,50" size="250,30" font="Regular;20" valign="center" backgroundColor="transpBlack" transparent="1"/>
         <widget name="labactive" position="270,50" size="150,30" font="Regular;20" valign="center" transparent="1"/>
@@ -4421,7 +4414,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
         <widget name="key_yellow" position="650,260" zPosition="1" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
     </screen>
        <!--258 BhTunerServer (3)--> 
-    <screen name="BhTunerServer" position="center,center" size="950,520" title="Black Hole Tuner Server Panel">
+    <screen name="BhTunerServer" position="center,center" size="950,520" title="Black PoleTuner Server Panel">
     <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="950,320" alphatest="on" />
         <widget name="lab1" position="20,4" size="910,400" font="Regular;20" backgroundColor="transpBlack" transparent="1"/>
         <widget name="lab2" position="20,400" size="910,30" font="Regular;20" valign="center" backgroundColor="transpBlack" transparent="1"/>
