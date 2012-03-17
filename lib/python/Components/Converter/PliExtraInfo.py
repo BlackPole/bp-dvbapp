@@ -42,11 +42,15 @@ class PliExtraInfo(Poll, Converter, object):
 			self.current_caid = data[1]
 			self.current_provid = data[2]
 			self.current_ecmpid = data[3]
+			self.current_bp_ecminfo = data[4]
+			self.current_bp_inuse = data[5]
 		else:
 			self.current_source = ""
 			self.current_caid = "0"
 			self.current_provid = "0"
 			self.current_ecmpid = "0"
+			self.current_bp_ecminfo = ""
+			self.current_bp_inuse = "Fta"
 	
 	def createCryptoBar(self,info):
 		res = ""
@@ -221,8 +225,9 @@ class PliExtraInfo(Poll, Converter, object):
 		if self.type == "TunerSystem":
 			return createTunerSystem(feraw,fedata)
 
+		self.getCryptoInfo(info)
+
 		if self.type == "All":
-			self.getCryptoInfo(info)
 			if config.usage.show_cryptoinfo.value:
 				return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(feraw,fedata)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
 				+ addspace(self.createSymbolRate(fedata)) + addspace(self.createFEC(fedata)) + addspace(self.createModulation(fedata)) + self.createOrbPos(feraw) + "\n"\
@@ -240,17 +245,15 @@ class PliExtraInfo(Poll, Converter, object):
 		if self.type == "CamName":
 			return self.get_caName()
 
+
 		if self.type == "EcmInfo":
-			data = self.ecmdata.getEcmData()
-			return data[4]
+			return self.current_bp_ecminfo
 		
 		if self.type == "E-C-N":
-			data = self.ecmdata.getEcmData()
-			return data[5]
+			return self.current_bp_inuse
 		
 		if self.type == "NetInfo":
-			data = self.ecmdata.getEcmData()
-			return data[0]
+			return self.current_source
 		
 
 		return _("invalid type")
