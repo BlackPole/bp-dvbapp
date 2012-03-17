@@ -43,6 +43,12 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 				{
 					m_event_name += replace_all(replace_all(convertDVBUTF8(sed->getEventName(), table, tsidonid), "\n", " "), "\t", " ");
 					m_short_description += convertDVBUTF8(sed->getText(), table, tsidonid);
+//BlackPole
+					int mypos;
+					mypos = m_event_name.find("digit.");
+					if(mypos!=std::string::npos)
+						m_event_name=m_short_description;
+//End
 					retval=1;
 				}
 				break;
