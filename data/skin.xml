@@ -203,11 +203,6 @@
 			<ePixmap position="0,0" zPosition="1" size="1280,720" pixmap="skin_default/infobar-fs8.png" />
 			<ePixmap position="539,69" zPosition="2" size="202,6" pixmap="skin_default/bar_snr_osd.png" alphatest="on" />
 			<ePixmap position="200,586" zPosition="2" size="21,14" pixmap="skin_default/icons/icon_event.png" alphatest="on" />
-		<!--	<ePixmap position="0,140" zPosition="2" size="1280,270" pixmap="skin_default/box_epg.png" alphatest="on" />-->
-			<!-- 	<eLabel position="fill" backgroundColor="transpBlack" zPosition="-50"/> -->
-	   <!--	<widget source="session.CurrentService" render="Label" position="60,45" size="700,80" transparent="1" zPosition="1" foregroundColor="foreground" font="Regular;20" valign="top" halign="left">
-			<convert type="PliExtraInfo">All</convert>
-		</widget>-->
 			<widget source="global.CurrentTime" render="Bhclock" position="1164,50" zPosition="4" size="40,40" transparent="1" >
 				<convert type="BhAnalogic">Hours</convert>	
 			</widget>
@@ -233,9 +228,18 @@
 			<widget source="global.CurrentTime" render="Label" position="860,100" 	size="300,22" zPosition="2"	font="Regular;18" halign="left" backgroundColor="transpBlack" foregroundColor="white" transparent="1" >
 				<convert type="ClockToText">Format:%d.%m.%Y</convert>
 				</widget>
-		    <widget source="session.CurrentService" render="Label" position="1060,656" size="160,80" transparent="1" zPosition="4" foregroundColor="foreground" font="Regular;20" valign="top" halign="right">
-			<convert type="PliExtraInfo">ResolutionString</convert>
-			</widget>	
+			
+			<widget source="session.CurrentService" render="Label" position="1060,656" size="70,30" transparent="1" zPosition="4" foregroundColor="foreground" font="Regular;20" valign="top" halign="right">
+				<convert type="ServiceInfo">VideoWidth</convert>
+			</widget>
+			<eLabel text="x" position="1135,656" size="15,30" transparent="1" zPosition="4" foregroundColor="foreground" font="Regular;20" valign="top" halign="left" />
+			<widget source="session.CurrentService" render="Label" position="1150,656" size="55,30" transparent="1" zPosition="4" foregroundColor="foreground" font="Regular;20" valign="top" halign="left">
+				<convert type="ServiceInfo">VideoHeight</convert>
+			</widget>
+			<widget source="session.CurrentService" render="Label" position="1205,656" size="47,30" transparent="1" zPosition="4" foregroundColor="foreground" font="Regular;20" valign="top" halign="left">
+				<convert type="ServiceInfo">Framerate</convert>
+			</widget>
+			
 			<widget source="session.CurrentService" render="Picon" position="60,571" size="130,80" zPosition="10" transparent="1" alphatest="on">
 				<convert type="ServiceName">Reference</convert>
 			</widget>
@@ -342,34 +346,43 @@
 				<convert type="ValueRange">3,3</convert>
 				<convert type="ConditionalShowHide"/>
 			</widget>
-				<widget source="session.CurrentService" render="Label" position="900,656" size="90,80" transparent="1" zPosition="3" foregroundColor="white" backgroundColor="transpBlack" font="Regular;20" valign="top" halign="left">
-			<convert type="PliExtraInfo">TunerType</convert>
-		</widget>
-	<!--  		<widget name="cam_info" zPosition="6" position="240,90" size="240,24" halign="left" font="Regular;20" foregroundColor="white" transparent="1" backgroundColor="transpBlack"/>
-			<widget name="ecm_info" position="608,38" size="540,20" halign="right" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack"/>
-			<widget name="netcard_info" position="60,38" size="590,20" halign="left" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack"/>
-			<widget name="orbital_pos" position="862,59" size="200,26" halign="right" font="Regular;20"  zPosition="3" foregroundColor="white" transparent="1" backgroundColor="transpBlack"/>	
-			<widget name="nfreq_info" position="60,59" size="320,26" halign="left" font="Regular;20" zPosition="3" transparent="1" foregroundColor="white" backgroundColor="transpBlack"/>
-	-->		
-				<widget source="session.CurrentService" render="Label" zPosition="6" position="310,88" size="240,24" halign="left" font="Regular;20" foregroundColor="white" transparent="1" backgroundColor="transpBlack">
-				<convert type="PliExtraInfo">CamName</convert>
+
+			<widget source="session.FrontendInfo" render="FixedLabel" text="DVB-S" position="900,656" size="90,80" transparent="1" zPosition="3" foregroundColor="white" backgroundColor="transpBlack" font="Regular;20" valign="top" halign="left">
+				<convert type="FrontendInfo">TYPE</convert>
+				<convert type="ValueRange">0,0</convert>
+				<convert type="ConditionalShowHide"/>
 			</widget>
-			<widget source="session.CurrentService" render="Label"  position="608,38" size="540,20" halign="right" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack">
-				<convert type="PliExtraInfo">EcmInfo</convert>
+			<widget source="session.FrontendInfo" render="FixedLabel" text="DVB-C" position="900,656" size="90,80" transparent="1" zPosition="3" foregroundColor="white" backgroundColor="transpBlack" font="Regular;20" valign="top" halign="left">
+				<convert type="FrontendInfo">TYPE</convert>
+				<convert type="ValueRange">1,1</convert>
+				<convert type="ConditionalShowHide"/>
 			</widget>
-			<widget source="session.CurrentService" render="Label"  position="60,38" size="590,20" halign="left" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack">
-				<convert type="PliExtraInfo">NetInfo</convert>
+			<widget source="session.FrontendInfo" render="FixedLabel" text="DVB-T" position="900,656" size="90,80" transparent="1" zPosition="3" foregroundColor="white" backgroundColor="transpBlack" font="Regular;20" valign="top" halign="left">
+				<convert type="FrontendInfo">TYPE</convert>
+				<convert type="ValueRange">2,2</convert>
+				<convert type="ConditionalShowHide"/>
 			</widget>
 			<widget source="session.CurrentService" render="Label" position="60,59" size="370,30" halign="left" font="Regular;20" zPosition="3" transparent="1" foregroundColor="white" backgroundColor="transpBlack">
-				<convert type="PliExtraInfo">AllFreq_info</convert>
+				<convert type="ServiceInfo">Freq_Info</convert>
+			</widget>
+			<widget source="session.CurrentService" render="Label"  position="60,38" size="590,20" halign="left" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack">
+				<convert type="BpExtraInfo">NetInfo</convert>
+			</widget>
+			<widget source="session.CurrentService" render="Label" position="60,88" size="240,30" backgroundColor="transpBlack" transparent="1" zPosition="2" foregroundColor="white" font="Regular;20" valign="top" halign="left">
+				<convert type="BpExtraInfo">CryptoBar</convert>
+			</widget>				
+			<widget source="session.CurrentService" render="Label" zPosition="6" position="310,88" size="240,24" halign="left" font="Regular;20" foregroundColor="white" transparent="1" backgroundColor="transpBlack">
+				<convert type="BpExtraInfo">CamName</convert>
+			</widget>
+			<widget source="session.CurrentService" render="Label"  position="608,38" size="540,20" halign="right" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack">
+				<convert type="BpExtraInfo">EcmInfo</convert>
+			</widget>
+			<widget source="session.CurrentService" render="Label" position="590,96" size="220,30" halign="left" font="OLED;26" zPosition="4" foregroundColor="#f23d21" transparent="1" backgroundColor="transpBlack">
+				<convert type="BpExtraInfo">E-C-N</convert>
 			</widget>
 			<widget source="session.CurrentService" render="Label" position="862,59" size="200,26" halign="right" font="Regular;20"  zPosition="3" foregroundColor="white" transparent="1" backgroundColor="transpBlack">
-				<convert type="PliExtraInfo">OrbitalPosition</convert>
+				<convert type="ServiceOrbitalPosition">Full</convert>
 			</widget>
-	<!--		<widget source="session.CurrentService" render="Label"  position="608,38" size="540,20" halign="right" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack">
-				<convert type="PliExtraInfo">CryptoSpecial</convert>
-			</widget>
-		-->
 			<eLabel text="Date:" zPosition="4" position="792,98" size="80,24" halign="center" font="Regular;20" foregroundColor="grey" transparent="1" backgroundColor="transpBlack" />
 			<eLabel text="Rsv/Fps:" zPosition="4" position="990,656" size="100,24" halign="center" font="Regular;20" foregroundColor="grey" transparent="1" backgroundColor="transpBlack" />
 			<eLabel text="Snr:" zPosition="3" position="426,59" size="70,24" halign="center" font="Regular;20" foregroundColor="grey" transparent="1" backgroundColor="transpBlack" />
@@ -382,26 +395,7 @@
 			<eLabel text="Ber:" zPosition="3" position="752,59" size="70,24" font="Regular;20" foregroundColor="grey" backgroundColor="transpBlack" transparent="1" />
 			<widget source="session.FrontendStatus" render="Label" 	position="814,59" zPosition="3" size="70,24" font="Regular;20" foregroundColor="white" backgroundColor="transpBlack" transparent="1" >
 				<convert type="FrontendInfo">BER</convert> 
-			</widget>	
-			<widget source="session.CurrentService" render="Label" position="60,88" size="240,30" backgroundColor="transpBlack" transparent="1" zPosition="2" foregroundColor="white" font="Regular;20" valign="top" halign="left">
-				<convert type="PliExtraInfo">CryptoBar</convert>
 			</widget>
-		<!--	<widget name="button_fta" text="Free to Air" backgroundColor="background"  transparent="1" position="590,100" size="220,24" halign="left" font="OLED;22" foregroundColor="#aaaaaa" zPosition="10" />
-			<widget name="button_card" text="Card" backgroundColor="background" transparent="1" position="590,100" size="220,24" halign="left" font="OLED;24" foregroundColor="#56C856" zPosition="11" />
-			<widget name="button_emu" text="Emulator" backgroundColor="background"  transparent="1" position="590,100" size="220,24" halign="left" font="OLED;24" foregroundColor="#fcc000" zPosition="12" />
-			<widget name="button_spider" text="Network" backgroundColor="background"  transparent="1" position="590,100" size="220,24" halign="left" font="OLED;24" foregroundColor="#f23d21" zPosition="13" />
-		-->	
-			<widget source="session.CurrentService" render="Label" position="590,96" size="220,30" halign="left" font="OLED;26" zPosition="4" foregroundColor="#f23d21" transparent="1" backgroundColor="transpBlack">
-				<convert type="PliExtraInfo">E-C-N</convert>
-			</widget>
-	<!--		<eLabel text="Now:" position="60,150" size="63,26" zPosition="3" font="Regular; 22" foregroundColor="white" transparent="1" />
-		<widget source="session.Event_Now" render="Label" position="60,188" size="570,370" font="Regular; 20" zPosition="3" transparent="1">
-			<convert type="EventName">ExtendedDescription</convert>
-		</widget>
-		<eLabel text="Next:" position="650,150" size="63,26" zPosition="3" font="Regular; 22" foregroundColor="white" transparent="1"  />
-		<widget source="session.Event_Next" render="Label" position="650,188" size="570,370" font="Regular; 20" zPosition="3" transparent="1">
-			<convert type="EventName">ExtendedDescription</convert>
-		</widget>-->
 		</screen> 
 	<!-- 8 Delite GreenPanel ( 4S )-->
 	<screen name="DeliteGreenPanel" position="0,0" size="1280,720" title="Black Pole Green Panel" backgroundColor="transparent" flags="wfNoBorder">

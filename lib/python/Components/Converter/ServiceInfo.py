@@ -1,6 +1,7 @@
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
+from Tools.Transponder import ConvertToHumanReadable
 
 class ServiceInfo(Converter, object):
 	HAS_TELETEXT = 0
@@ -23,7 +24,8 @@ class ServiceInfo(Converter, object):
 	HAS_HBBTV = 17
 	AUDIOTRACKS_AVAILABLE = 18
 	SUBTITLES_AVAILABLE = 19
-
+	FREQ_INFO = 20
+	
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.type, self.interesting_events = {
@@ -47,6 +49,7 @@ class ServiceInfo(Converter, object):
 				"HasHBBTV": (self.HAS_HBBTV, (iPlayableService.evUpdatedInfo,iPlayableService.evHBBTVInfo,)),
 				"AudioTracksAvailable": (self.AUDIOTRACKS_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
 				"SubtitlesAvailable": (self.SUBTITLES_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
+				"Freq_Info": (self.FREQ_INFO, (iPlayableService.evUpdatedInfo,)),
 			}[type]
 
 	def getServiceInfoString(self, info, what, convert = lambda x: "%d" % x):
@@ -107,7 +110,7 @@ class ServiceInfo(Converter, object):
 		info = service and service.info()
 		if not info:
 			return ""
-
+		
 		if self.type == self.XRES:
 			return self.getServiceInfoString(info, iServiceInformation.sVideoWidth)
 		elif self.type == self.YRES:
@@ -132,6 +135,32 @@ class ServiceInfo(Converter, object):
 			return self.getServiceInfoString(info, iServiceInformation.sFrameRate, lambda x: "%d fps" % ((x+500)/1000))
 		elif self.type == self.TRANSFERBPS:
 			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x/1024))
+		elif self.type == self.FREQ_INFO:
+			feinfo = service.frontendInfo()
+			if feinfo is None:
+				return ""
+			feraw = feinfo.getAll(False)
+			if feraw is None:
+				return ""
+			fedata = ConvertToHumanReadable(feraw)
+			if fedata is None:
+				return ""
+			frequency = fedata.get("frequency")
+			if frequency:
+				frequency = str(frequency / 1000)
+			sr_txt = "Sr:"
+			polarization = fedata.get("polarization_abbreviation")
+			if polarization is None:
+				polarization = ""
+			symbolrate = fedata.get("symbol_rate")
+			if symbolrate is None:
+				sr_txt = ""
+				symbolrate = ""
+			fec = fedata.get("fec_inner")
+			if fec is None:
+				fec = ""
+			out = "Freq: %s %s %s %s %s" % (frequency, polarization, sr_txt, symbolrate, fec)
+			return out
 		return ""
 
 	text = property(getText)
