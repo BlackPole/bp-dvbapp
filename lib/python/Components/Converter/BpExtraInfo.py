@@ -29,45 +29,40 @@ class BpExtraInfo(Poll, Converter, object):
 		)
 
 	def GetEcmInfo(self):
+		data = {}
 		try:
 			ecm = open('/tmp/ecm.info', 'rb').readlines()
-			bp_inuse_info = "Fta"
 			info = {}
 			for line in ecm:
 				d = line.split(':', 1)
 				if len(d) > 1:
 					info[d[0].strip()] = d[1].strip()
-			# info is dictionary
-			decCI = info.get('caid', '0')
-			provider = info.get('provider', ' ')
-			if provider == " ":
-				provider = info.get('prov', ' ')
-			#2
-			using = info.get('using', '')
-			decode = info.get('decode', '')
-			source = info.get('source', '')
-			reader = info.get('reader', '')
-			#6
-			address = info.get('address', 'Unknown')
-			addressO = info.get('from', 'Unknown')
-			hops = info.get('hops', '0')
-			ecm_time = info.get('ecm time', '?')
 			
-			
+			data['caid'] = info.get('caid', '0')
+			data['provider'] = info.get('provider', '')
+			if data['provider'] == '':
+				data['provider'] = info.get('prov', ' ')
+			data['using'] = info.get('using', '')
+			data['decode'] = info.get('decode', '')
+			data['source'] = info.get('source', '')
+			data['reader'] = info.get('reader', '')
+			data['address'] = info.get('address', 'Unknown')
+			data['address_from'] = info.get('from', 'Unknown')
+			data['hops'] = info.get('hops', '0')
+			data['ecm_time'] = info.get('ecm time', '?')
 		except:
-			ecm = None
-			decCI = '0'
-			provider = ''
-			using = ''
-			decode = ''
-			source = ''
-			reader = ''
-			address = ''
-			addressO = ''
-			hops = '0'
-			ecm_time = '0'
+			data['caid'] = '0x00'
+			data['provider'] = ''
+			data['using'] = ''
+			data['decode'] = ''
+			data['source'] = ''
+			data['reader'] = ''
+			data['address'] = ''
+			data['address_from'] = ''
+			data['hops'] = '0'
+			data['ecm_time'] = '0'
 			
-		return decCI, provider, using, decode, source, reader, address, addressO, hops, ecm_time
+		return data
 	
 	def get_caName(self):
 		try:
@@ -84,55 +79,53 @@ class BpExtraInfo(Poll, Converter, object):
 		if service is None:
 			return ""
 		info = service and service.info()
+		is_crypted = info.getInfo(iServiceInformation.sIsCrypted)
 		
-		if self.type == "NetInfo":
-			text = ''
+		if self.type == "CamName":
+			return self.get_caName()
+		
+		elif self.type == "NetInfo":
+			if is_crypted != 1:
+				return ''
 			data = self.GetEcmInfo()
-			if data[2]:
-				if data[2] != 'fta':
-					text = "Address: %s   Hops: %s   Ecm time: %ss" % (data[6], data[8], data[9])
-			elif data[5]:
-				text = "Address: %s   Hops: %s   Ecm time: %ss" % (data[7], data[8], data[9])
-			return text
+			if data['using']:
+				return "Address: %s   Hops: %s   Ecm time: %ss" % (data['address'], data['hops'], data['ecm_time'])
+			elif data['reader']:
+				return "Address: %s   Hops: %s   Ecm time: %ss" % (data['address_from'], data['hops'], data['ecm_time'])
 				
 		elif self.type == "EcmInfo":
-			text = ''
+			if is_crypted != 1:
+				return ''
 			data = self.GetEcmInfo()
-			text = "CaId: %s     Provider: %s" % (data[0], data[1])
-			if data[0] == "0x000" or data[0] == "0":
-				text = ""
-			return text
-		
+			return "CaId: %s     Provider: %s" % (data['caid'], data['provider'])
+			
 		elif self.type == "E-C-N":
-			text = 'Fta'
+			if is_crypted != 1:
+				return 'Fta'
 			data = self.GetEcmInfo()
-			if data[2]:
-				if data[2] == "fta":
-					text = 'Fta'
-				elif data[2] == 'emu':
-					text = "Emulator"
-				elif data[2] == 'sci':
-					text = "Card"
+			if data['using']:
+				if data['using'] == "fta":
+					return 'Fta'
+				elif data['using'] == 'emu':
+					return "Emulator"
+				elif data['using'] == 'sci':
+					return "Card"
 				else:
-					text = "Network"
-			elif data[5]:
-				text = "Card"
-				pos = data[7].find('.')
+					return "Network"
+			elif data['reader']:
+				pos = data['address_from'].find('.')
 				if pos > 1:
-					text = "Network"
-					
-			return text
-				
-		elif self.type == "CamName":
-			return self.get_caName()
+					return "Network"
+				else:
+					return "Card"
+			return "Fta"
 		
 		elif self.type == "CryptoBar":
 			data = self.GetEcmInfo()
-			self.current_caid= data[0]
 			res = ""
 			available_caids = info.getInfoObject(iServiceInformation.sCAIDs)	
 			for caid_entry in self.caid_data:
-				if int(self.current_caid, 16) >= int(caid_entry[0], 16) and int(self.current_caid, 16) <= int(caid_entry[1], 16):
+				if int(data['caid'], 16) >= int(caid_entry[0], 16) and int(data['caid'], 16) <= int(caid_entry[1], 16):
 					color="\c0000??00"
 				else:
 					color = "\c007?7?7?"
@@ -148,7 +141,8 @@ class BpExtraInfo(Poll, Converter, object):
 		
 			res += "\c00??????"
 			return res
-		return ""	
+				
+		return ""
 			
 	text = property(getText)
 
@@ -231,7 +225,7 @@ class BpExtraInfo(Poll, Converter, object):
 		if data is None:
 			return False
 
-		current_caid	= data[0]
+		current_caid	= data['caid']
 
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 
