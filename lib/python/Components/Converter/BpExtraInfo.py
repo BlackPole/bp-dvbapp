@@ -118,7 +118,7 @@ class BpExtraInfo(Poll, Converter, object):
 					return "Network"
 				else:
 					return "Card"
-			return "Fta"
+			return ""
 		
 		elif self.type == "CryptoBar":
 			data = self.GetEcmInfo()
