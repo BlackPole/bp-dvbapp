@@ -203,6 +203,7 @@
 			<ePixmap position="0,0" zPosition="1" size="1280,720" pixmap="skin_default/infobar-fs8.png" />
 			<ePixmap position="539,69" zPosition="2" size="202,6" pixmap="skin_default/bar_snr_osd.png" alphatest="on" />
 			<ePixmap position="200,586" zPosition="2" size="21,14" pixmap="skin_default/icons/icon_event.png" alphatest="on" />
+			
 			<widget source="global.CurrentTime" render="Bhclock" position="1164,50" zPosition="4" size="40,40" transparent="1" >
 				<convert type="BhAnalogic">Hours</convert>	
 			</widget>
@@ -227,7 +228,7 @@
 			</widget>
 			<widget source="global.CurrentTime" render="Label" position="860,100" 	size="300,22" zPosition="2"	font="Regular;18" halign="left" backgroundColor="transpBlack" foregroundColor="white" transparent="1" >
 				<convert type="ClockToText">Format:%d.%m.%Y</convert>
-				</widget>
+			</widget>
 			
 			<widget source="session.CurrentService" render="Label" position="1060,656" size="70,30" transparent="1" zPosition="4" foregroundColor="foreground" font="Regular;20" valign="top" halign="right">
 				<convert type="ServiceInfo">VideoWidth</convert>
@@ -346,7 +347,7 @@
 				<convert type="ValueRange">3,3</convert>
 				<convert type="ConditionalShowHide"/>
 			</widget>
-
+			
 			<widget source="session.FrontendInfo" render="FixedLabel" text="DVB-S" position="900,656" size="90,80" transparent="1" zPosition="3" foregroundColor="white" backgroundColor="transpBlack" font="Regular;20" valign="top" halign="left">
 				<convert type="FrontendInfo">TYPE</convert>
 				<convert type="ValueRange">0,0</convert>
@@ -705,6 +706,15 @@
 			<convert type="EventTime">Progress</convert>
             </widget>
 	</screen>
+	<!-- 24 BhSetupOSD3 (2) ################################ -->
+		<screen name="BhSetupOSD3" position="center,center" size="750,460" title="Osd Settings" >
+		<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="750,460" alphatest="on" />	
+			<widget name="config" position="20,20" size="710,375" scrollbarMode="showOnDemand"  transparent="1"/>
+		  <ePixmap position="83,400" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
+			<ePixmap position="417,400" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
+			<widget name="key_red" position="83,400" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
+			<widget name="key_green" position="417,400" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
+			</screen>
 	<!-- 24 Delite Osd Setup (1 ) -->
 		<screen name="DeliteSetupOSD2" position="center,center" size="710,340" title="Black Pole Osd Settings">
 		<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,340" alphatest="on" />	
@@ -729,6 +739,15 @@
          <ePixmap position="230,280" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
 		<widget name="key_red" position="230,280" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
     </screen>
+     <!--26 BhSetupIntEpg ( 2 ) ##################################### -->
+	   <screen name="BhSetupIntEpg" position="center,center" size="750,460" title="Internal Epg settings" >
+		<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="750,460" alphatest="on" />		
+			<widget name="config" position="20,20" size="710,375" scrollbarMode="showOnDemand"  transparent="1"/>
+			 <ePixmap position="83,400" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
+			<ePixmap position="417,400" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
+			<widget name="key_red" position="83,400" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
+			<widget name="key_green" position="417,400" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
+			</screen>
     	 <!--26 DeliteEpgPanel_EPG Settings ( 4 )-->
    <screen name="DeliteEpgPanel" position="center,center" size="1130,520" title="Black Pole EPG Settings">
    <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1130,520" alphatest="on" />	
@@ -2188,12 +2207,12 @@ self.instance.move(ePoint((1280-wsizex)/2, (720-wsizey)/(count &gt; 7 and 2 or 3
 	</screen>
 	<!-- 111 Hard disk Selection -->
 	<screen name="HarddiskSelection" position="center,center" size="710,460" title="Select HDD">
-	1 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,460" alphatest="on" />1
+	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,460" alphatest="on" />1
 		<widget name="hddlist" position="20,20" size="670,435" />
 	</screen>
 	<!-- 112 Hard disk Setup ( 1 )-->
 	<screen name="HarddiskSetup" position="center,center" size="710,460" title="Harddisk">
-	1<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,460" alphatest="on" />1	
+	<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,460" alphatest="on" />1	
 		<widget name="model" position="20,20" size="670,28" font="Regular;25" halign="center"/>
 		<widget name="capacity" position="20,60" size="560,28" font="Regular;25" halign="center"/>
 		<widget name="bus" position="20,100" size="560,28" font="Regular;25" halign="center"/>
@@ -2202,7 +2221,7 @@ self.instance.move(ePoint((1280-wsizex)/2, (720-wsizey)/(count &gt; 7 and 2 or 3
 		</screen>
 	<!-- 113 Hard disk Wait -->
 	<screen name="HarddiskWait" position="center,center" size="710,460" >
-	1 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,460" alphatest="on" />1	
+	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="710,460" alphatest="on" />1	
 		<widget name="wait" position="20,20" size="670,435" font="Regular;23" />
 	</screen>
 	<!-- 114 HelpMenu -->
@@ -2234,6 +2253,15 @@ self.instance.move(ePoint((1280-wsizex)/2, (720-wsizey)/(count &gt; 7 and 2 or 3
 			</convert>
 		</widget>
 	</screen>
+	<!-- 115 BhSetupAutolanguage (2) ######################################### -->
+			<screen name="BhSetupAutolanguage" position="center,center" size="750,520" title="Auto language settings" >
+			<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="750,520" alphatest="on" />1	
+			<widget name="config" position="20,15" size="710,450" scrollbarMode="showOnDemand"  transparent="1"/>
+			 <ePixmap position="83,460" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
+			<ePixmap position="417,460" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
+			<widget name="key_red" position="83,460" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
+			<widget name="key_green" position="417,460" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
+			</screen>		
 <!-- 116 Message Box -->
 	<screen name="MessageBox" position="340,250" size="700,10" title="Message">
 		<widget name="text" position="65,8"	size="620,0" font="Regular;22" transparent="1" />
@@ -2778,6 +2806,15 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!--152 Subtitle Display -->
 	<screen name="SubtitleDisplay" position="0,0" size="1280,720" zPosition="-1" flags="wfNoBorder" backgroundColor="transparent">    
     </screen>
+    <!-- 151 BhSetupSubtitle (2) ####################################### -->
+		    <screen name="BhSetupSubtitle" position="center,center" size="750,460" title="Subtitle settings" >
+		 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="750,460" alphatest="on" />	
+		<widget name="config" position="20,20" size="710,375" scrollbarMode="showOnDemand"  transparent="1"/>
+			 <ePixmap position="83,400" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
+			<ePixmap position="417,400" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
+			<widget name="key_red" position="83,400" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
+			<widget name="key_green" position="417,400" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
+		</screen>
      <!--  153 TimerEdit -->   
 	<screen name="TimerEdit" position="center,center" size="1160,560" title="Timer Edit"  >
 	 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="1160,560" alphatest="on" />	
@@ -3291,11 +3328,11 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			MultiContentEntryText(pos = (10, 1), size = (555, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
 			MultiContentEntryText(pos = (10, 25), size = (555, 24), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
 			MultiContentEntryPixmapAlphaTest(pos = (565, 0), size = (48, 48), png = 5), # index 5 is the status pixmap
-			MultiContentEntryPixmapAlphaTest(pos = (0, 49), size = (640, 2), png = 6), # index 6 is the div pixmap
+			MultiContentEntryPixmapAlphaTest(pos = (0, 0), size = (0, 0), png = 6), # index 6 is the div pixmap
 			]),
-			"category": (40,[
-			MultiContentEntryText(pos = (10, 0), size = (610, 22), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
-			MultiContentEntryText(pos = (10, 20), size = (610, 18), font=2, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the description
+			"category": (52,[
+			MultiContentEntryText(pos = (10, 2), size = (610, 22), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+			MultiContentEntryText(pos = (10, 22), size = (610, 18), font=2, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the description
 			MultiContentEntryPixmapAlphaTest(pos = (0, 0), size = (0, 0), png = 3), # index 3 is the div pixmap
 			])
 			},
@@ -3327,7 +3364,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 							MultiContentEntryText(pos = (50, 0), size = (250, 26), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
 							MultiContentEntryText(pos = (50, 27), size = (680, 23), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the state
 							MultiContentEntryPixmapAlphaTest(pos = (0, 1), size = (48, 48), png = 2), # index 2 is the status pixmap
-							MultiContentEntryPixmapAlphaTest(pos = (0, 48), size = (550, 2), png = 3), # index 3 is the div pixmap
+							MultiContentEntryPixmapAlphaTest(pos = (0, 0), size = (0, 0), png = 3), # index 3 is the div pixmap
 						],
 					"fonts": [gFont("Regular", 24),gFont("Regular", 22)],
 					"itemHeight": 50
@@ -3694,13 +3731,23 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
         <widget name="kRed" position="70,396" zPosition="5" size="250,40" valign="center" halign="center" font="Regular;22" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />         
         <widget name="kGreen" position="390,396" zPosition="5" size="250,40" valign="center" halign="center" font="Regular;22" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-1,-1" />
     </screen>
+     <!-- 213 BhSetupRecord ( 2 ) #############################################--> 
+		    <screen name="BhSetupRecord" position="center,center" size="750,520" title="Record Settings" >
+		<ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="750,520" alphatest="on" />	
+		<widget name="config" position="20,20" size="720,450" scrollbarMode="showOnDemand"  transparent="1"/>
+		<ePixmap position="83,460" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
+		<ePixmap position="417,460" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
+    	<widget name="key_red" position="83,460" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
+		<widget name="key_green" position="417,460" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
+		</screen>
     <!-- 213 RecordPathsSettings ( 2 )-->
-    <screen name="RecordPathsSettings" position="center,center" size="710,240"  title="Recording paths ">
-		<widget name="config" position="20,20" size="670,125"  transparent="1"/>
-		<ePixmap position="70,176" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
-		<ePixmap position="390,176" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
-		<widget source="key_red" render="Label" position="70,180" zPosition="2"	size="250,40" font="Regular;24" halign="center" backgroundColor="black" transparent="1" />
-		<widget source="key_green" render="Label" position="390,180" zPosition="2"	size="250,40" font="Regular;24" halign="center" backgroundColor="black" transparent="1" />
+    <screen name="RecordPathsSettings" position="center,center" size="750,320"  title="Recording paths ">
+    <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-2" position="0,0" size="750,320" alphatest="on" />	
+		<widget name="config" position="20,20" size="710,125"  transparent="1"/>
+		<ePixmap position="83,256" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
+		<ePixmap position="417,256" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
+		<widget source="key_red" render="Label" position="83,260" zPosition="2"	size="250,40" font="Regular;24" halign="center" backgroundColor="black" transparent="1" />
+		<widget source="key_green" render="Label" position="417,260" zPosition="2"	size="250,40" font="Regular;24" halign="center" backgroundColor="black" transparent="1" />
 		</screen>
 	<!-- 214 VideoSetup (VideoMode Plugin A/V Settings) ( 2 )-->
 	    <!-- LCD/OLED Screens -->
@@ -4431,6 +4478,15 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
         <widget name="key_red" position="100,460" zPosition="1" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
         <widget name="key_yellow" position="450,460" zPosition="1" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
         </screen>
+        <!--259 BhSetupHttpStream (2 ) ###############################-->  
+		     <screen name="BhSetupHttpStream" position="center,center" size="750,460" title="Http stream settings" >
+		 <ePixmap pixmap="skin_default/frame_box-fs8.png" zPosition="-1" position="0,0" size="750,460" alphatest="on" />
+		<widget name="config" position="20,20" size="710,375" scrollbarMode="showOnDemand"  transparent="1"/>
+		  <ePixmap position="83,400" size="250,40" pixmap="skin_default/buttons/red25.png" alphatest="on" zPosition="1" />
+			<ePixmap position="417,400" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
+			<widget name="key_red" position="83,400" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
+			<widget name="key_green" position="417,400" size="250,40" zPosition="2" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />	
+		</screen>   
 	</skin> 
 
 			
