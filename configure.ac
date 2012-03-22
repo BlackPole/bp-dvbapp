@@ -253,4 +253,5 @@ tools/Makefile
 tools/enigma2.sh
 enigma2.pc
 ])
+AC_DEFINE(BUILD_VUPLUS,1,[Define to 1 for vuplus])
 AC_OUTPUT

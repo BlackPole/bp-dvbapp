@@ -138,6 +138,7 @@ is usually caused by not marking PSignals as immutable.
 
 
 #define DEBUG
+#define BUILD_VUPLUS
 typedef long time_t;
 %include "typemaps.i"
 %include "std_string.i"
