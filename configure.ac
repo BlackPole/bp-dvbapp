@@ -65,6 +65,26 @@ if test x"$withtextlcd" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
 
+AC_ARG_WITH(graphiclcd,
+	AC_HELP_STRING([--with-graphiclcd], [use graphic based lcd, yes or no]),
+	[[withgraphiclcd=$withval]],
+	[[withgraphiclcd=no]]
+)
+if test x"$withgraphiclcd" != xno ; then
+	AC_DEFINE(HAVE_GRAPHICLCD, 1,[Define when using an graphic based vfd device])
+fi
+AM_CONDITIONAL(HAVE_GRAPHICLCD, test x"$withgraphiclcd != xno")
+
+AC_ARG_WITH(fullgraphiclcd,
+        AC_HELP_STRING([--with-fullgraphiclcd], [display right_half_vfd_icons from skin(for ultimo), yes or no]),
+        [[withfullgraphiclcd=$withval]],
+        [[withfullgraphiclcd=no]]
+)
+if test x"$withfullgraphiclcd" != xno ; then
+        AC_DEFINE(HAVE_FULLGRAPHICLCD, 1,[Define when display right_half_vfd_icons from skin, for ultimo])
+fi
+AM_CONDITIONAL(HAVE_FULLGRAPHICLCD, test x"$withfullgraphiclcd" != xno)
+
 AC_ARG_WITH(colorlcd,
 	AC_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
 	[[withcolorlcd=$withval]],
@@ -253,5 +273,4 @@ tools/Makefile
 tools/enigma2.sh
 enigma2.pc
 ])
-AC_DEFINE(BUILD_VUPLUS,1,[Define to 1 for vuplus])
 AC_OUTPUT

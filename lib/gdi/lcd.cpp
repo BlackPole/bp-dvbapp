@@ -14,6 +14,9 @@
 #include <lib/gdi/esize.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
+#ifdef HAVE_TEXTLCD
+	#include <lib/base/estring.h>
+#endif
 #include <lib/gdi/glcddc.h>
 
 eDBoxLCD *eDBoxLCD::instance;
@@ -52,6 +55,18 @@ void eLCD::unlock()
 	locked=0;
 }
 
+#ifdef HAVE_TEXTLCD
+void eLCD::renderText(ePoint start, const char *text)
+{
+	if (lcdfd >= 0 && start.y() < 5)
+	{
+		std::string message = text;
+		message = replace_all(message, "\n", " ");
+		::write(lcdfd, message.c_str(), message.size());
+	}
+}
+#endif
+
 eDBoxLCD::eDBoxLCD()
 {
 	int xres=132, yres=64, bpp=8;
@@ -60,14 +75,9 @@ eDBoxLCD::eDBoxLCD()
 	lcdfd = open("/dev/dbox/oled0", O_RDWR);
 	if (lcdfd < 0)
 	{
-		FILE *f=fopen("/proc/stb/lcd/oled_brightness", "w");
-		if (!f)
-			f = fopen("/proc/stb/fp/oled_brightness", "w");
-		if (f)
-		{
+		if (!access("/proc/stb/lcd/oled_brightness", W_OK) ||
+		    !access("/proc/stb/fp/oled_brightness", W_OK) )
 			is_oled = 2;
-			fclose(f);
-		}
 		lcdfd = open("/dev/dbox/lcd0", O_RDWR);
 	} else
 	{
@@ -75,8 +85,8 @@ eDBoxLCD::eDBoxLCD()
 		is_oled = 1;
 	}
 
-	if (lcdfd<0)
-		eDebug("couldn't open LCD - load lcd.o!");
+	if (lcdfd < 0)
+		eDebug("couldn't open LCD - load lcd.ko!");
 	else
 	{
 		int i=LCD_MODE_BIN;
@@ -107,7 +117,7 @@ eDBoxLCD::eDBoxLCD()
 		}
 	}
 #endif
-#ifdef SET_RIGHT_HALF_VFD_SKIN
+#ifdef HAVE_FULLGRAPHICLCD
 	fprintf(stdout,"SET RIGHT HALF VFD SKIN\n");
 	FILE *f = fopen("/proc/stb/lcd/right_half", "w");
 	fprintf(f,"skin");
@@ -128,13 +138,13 @@ int eDBoxLCD::setLCDContrast(int contrast)
 {
 #ifndef NO_LCD
 	int fp;
-	if((fp=open("/dev/dbox/fp0", O_RDWR))<=0)
+	if((fp=open("/dev/dbox/fp0", O_RDWR))<0)
 	{
 		eDebug("[LCD] can't open /dev/dbox/fp0");
 		return(-1);
 	}
 
-	if(ioctl(lcdfd, LCD_IOCTL_SRV, &contrast))
+	if(ioctl(lcdfd, LCD_IOCTL_SRV, &contrast)<0)
 	{
 		eDebug("[LCD] can't set lcd contrast");
 	}
@@ -159,13 +169,13 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 	else
 	{
 		int fp;
-		if((fp=open("/dev/dbox/fp0", O_RDWR))<=0)
+		if((fp=open("/dev/dbox/fp0", O_RDWR)) < 0)
 		{
 			eDebug("[LCD] can't open /dev/dbox/fp0");
 			return(-1);
 		}
 
-		if(ioctl(fp, FP_IOCTL_LCD_DIMM, &brightness)<=0)
+		if(ioctl(fp, FP_IOCTL_LCD_DIMM, &brightness) < 0)
 			eDebug("[LCD] can't set lcd brightness (%m)");
 		close(fp);
 	}
@@ -189,9 +199,7 @@ eDBoxLCD *eDBoxLCD::getInstance()
 
 void eDBoxLCD::update()
 {
-#ifdef BUILD_VUPLUS /* ikseong  */
-	return ;
-#endif
+#if defined(HAVE_GRAPHICLCD) && !defined(HAVE_TEXTLCD)
 	if (lcdfd >= 0)
 	{
 		if (!is_oled || is_oled == 2)
@@ -233,5 +241,20 @@ void eDBoxLCD::update()
 			write(lcdfd, raw, 64*64);
 		}
 	}
+#endif /*defined(DISPLAY_GRAPHICVFD) && !defined(DISPLAY_TEXTVFD)*/
 }
 
+#if defined(HAVE_TEXTLCD)
+void eDBoxLCD::updates(ePoint start,char *text)
+{
+	if((lcdfd >= 0) && (start.y() < 5))
+	{
+		int i = 0, text_len = strlen(text);
+		for(; i<text_len ; i++)
+		{
+					if(text[i]==0x0a) text[i] = 0x20;
+			}
+		write(lcdfd, text, text_len);
+	}
+}
+#endif /*defined(HAVE_TEXTLCD)*/
