@@ -100,14 +100,15 @@ gSurface::gSurface(eSize size, int _bpp, int accel)
 	
 	if (accel)
 	{
+		stride += 63;
+		stride &=~63;
+		
+		int pal_size = 0;
+		if (bpp == 8)
+			pal_size = 256 * 4;
+		
 		if (gAccel::getInstance())
-		{
-			stride += 63;
-			stride &= ~63;
-			int pal_size = (bpp == 8) ? 256 * 4 : 0;
-			if (gAccel::getInstance()->accelAlloc(data, data_phys, y * stride + pal_size) != 0)
-				eDebug("ERROR: accelAlloc failed");
-		}
+			eDebug("accel memory: %d", gAccel::getInstance()->accelAlloc(data, data_phys, y * stride + pal_size));
 		else
 			eDebug("no accel available");
 	}
@@ -320,6 +321,7 @@ static void blit_8i_to_32_ab(__u32 *dst, __u8 *src, __u32 *pal, int width)
 
 #define FIX 0x10000
 
+
 void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, int flag)
 {
 //	eDebug("blit: -> %d.%d %d:%d -> %d.%d %d:%d, flags=%d",
@@ -327,7 +329,6 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 //		clip.extends.x(), clip.extends.y(), clip.extends.width(), clip.extends.height(),
 //		flag);
 	eRect pos = _pos;
-	bool accel = (surface->data_phys && src.surface->data_phys && gAccel::getInstance());
 	
 //	eDebug("source size: %d %d", src.size().width(), src.size().height());
 	
@@ -380,6 +381,96 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 			continue;
 		}
 
+#ifdef SET_RIGHT_HALF_VFD_SKIN
+		if ((surface->bpp == 8) && (src.surface->bpp==8))
+		{
+			__u8 *srcptr=(__u8*)src.surface->data;
+			__u8 *dstptr=(__u8*)surface->data;
+			__u8 *nomptr = new __u8[area.width()];
+			unsigned char gray_max = 0;
+			unsigned char gray_min = 255;
+			unsigned char index = 0;
+			unsigned char gray_value = 0;
+			gRGB pixdata;
+//			printf("[bilt]srcarea.left:%d, src.surface->bypp : %d,srcarea.top() :%d,src.surface->stride : %d\n",srcarea.left(),src.surface->bypp,srcarea.top(),src.surface->stride);
+			srcptr+=srcarea.left()*src.surface->bypp+srcarea.top()*src.surface->stride;
+//			nomptr+=srcarea.left()*src.surface->bypp+srcarea.top()*src.surface->stride;
+			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
+			if(src.surface->clut.colors != 0)
+			{
+				for (int y=0; y<area.height(); y++)
+				{
+					for(int x=0;x<area.width();x++)
+					{
+						index = (unsigned char)(*(srcptr+x+y*src.surface->stride));
+						pixdata = src.surface->clut.data[index];
+						gray_value = ((pixdata.r+pixdata.g +pixdata.b)/3);
+	//					printf("%3d ",gray_value);
+						if(gray_value > gray_max)
+							gray_max = gray_value;
+						if(gray_value < gray_min)
+							gray_min = gray_value;
+					}
+	//				printf("\n");
+				}
+			}
+//			printf("\n[bilt] ### gray_min : %d, gray_max : %d\n\n",gray_min,gray_max);
+			for (int y=0; y<area.height(); y++)
+			{
+				if(src.surface->clut.colors != 0)
+				{
+					for(int x=0;x<area.width();x++)
+					{
+						pixdata = src.surface->clut.data[*(srcptr+x)];
+						gray_value = ((pixdata.r+pixdata.g +pixdata.b)/3);
+						if(gray_max==gray_min)
+							*(nomptr+x)=gray_value;
+/*						else if(y == 0 || y == area.height()-1 || x == 0 || x == area.width()-1)
+							*(nomptr+x) = 255;*/
+						else
+							*(nomptr+x)=( ((gray_value - gray_min)*255)/(gray_max-gray_min) );
+	//					printf("%3d ",*(nomptr+x));
+					}
+	//				printf("\n");
+				}
+				else
+				{
+					for(int x=0;x<area.width();x++)
+					{
+/*						if(y == 0 || y == area.height()-1 || x == 0 || x == area.width()-1)
+							*(nomptr+x) = 255;
+						else
+							*(nomptr+x)=*(srcptr+x);*/
+						*(nomptr+x)=*(srcptr+x);
+//						printf("%3d ",*(nomptr+x));
+					}
+//					printf("\n");
+				}
+				if (flag & (blitAlphaTest|blitAlphaBlend))
+				{
+  		      // no real alphatest yet
+					int width=area.width();
+//					unsigned char *src=(unsigned char*)srcptr;
+					unsigned char *src=(unsigned char*)nomptr;
+					unsigned char *dst=(unsigned char*)dstptr;
+						// use duff's device here!
+					while (width--)
+					{
+						if (!*src)
+						{
+							src++;
+							dst++;
+						} else
+							*dst++=*src++;
+					}
+				} else
+//					memcpy(dstptr, srcptr, area.width()*surface->bypp);
+					memcpy(dstptr, nomptr, area.width()*surface->bypp);
+				srcptr+=src.surface->stride;
+				dstptr+=surface->stride;
+			}
+			delete [] nomptr;
+#else
 		if ((surface->bpp == 8) && (src.surface->bpp==8))
 		{
 			__u8 *srcptr=(__u8*)src.surface->data;
@@ -387,56 +478,45 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 
 			srcptr+=srcarea.left()*src.surface->bypp+srcarea.top()*src.surface->stride;
 			dstptr+=area.left()*surface->bypp+area.top()*surface->stride;
-			if (flag & (blitAlphaTest|blitAlphaBlend))
+			for (int y=0; y<area.height(); y++)
 			{
-				for (int y = area.height(); y != 0; --y)
+				if (flag & (blitAlphaTest|blitAlphaBlend))
 				{
-					// no real alphatest yet
+  		      // no real alphatest yet
 					int width=area.width();
-					unsigned char *s = (unsigned char*)srcptr;
-					unsigned char *d = (unsigned char*)dstptr;
-					// use duff's device here!
+					unsigned char *src=(unsigned char*)srcptr;
+					unsigned char *dst=(unsigned char*)dstptr;
+						// use duff's device here!
 					while (width--)
 					{
-						if (!*s)
+						if (!*src)
 						{
-							s++;
-							d++;
-						} 
-						else
-						{
-							*d++ = *s++;
-						}
+							src++;
+							dst++;
+						} else
+							*dst++=*src++;
 					}
-					srcptr += src.surface->stride;
-					dstptr += surface->stride;
-				}
+				} else
+					memcpy(dstptr, srcptr, area.width()*surface->bypp);
+				srcptr+=src.surface->stride;
+				dstptr+=surface->stride;
 			}
-			else
-			{
-				int linesize = area.width()*surface->bypp;
-				for (int y = area.height(); y != 0; --y)
-				{
-					memcpy(dstptr, srcptr, linesize);
-					srcptr += src.surface->stride;
-					dstptr += surface->stride;
-				}
-			}
-		}
-		else if ((surface->bpp == 32) && (src.surface->bpp==32))
+#endif
+		} else if ((surface->bpp == 32) && (src.surface->bpp==32))
 		{
 			__u32 *srcptr=(__u32*)src.surface->data;
 			__u32 *dstptr=(__u32*)surface->data;
 
 			srcptr+=srcarea.left()+srcarea.top()*src.surface->stride/4;
 			dstptr+=area.left()+area.top()*surface->stride/4;
-			for (int y = area.height(); y != 0; --y)
+			for (int y=0; y<area.height(); y++)
 			{
 				if (flag & blitAlphaTest)
 				{
 					int width=area.width();
 					unsigned long *src=(unsigned long*)srcptr;
 					unsigned long *dst=(unsigned long*)dstptr;
+
 					while (width--)
 					{
 						if (!((*src)&0xFF000000))
@@ -481,14 +561,13 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 				srcptr+=src.surface->stride/4;
 				dstptr+=surface->stride/4;
 			}
-		}
-		else if ((surface->bpp == 32) && (src.surface->bpp==8))
+		} else if ((surface->bpp == 32) && (src.surface->bpp==8))
 		{	
 			__u8 *srcptr=(__u8*)src.surface->data;
 			__u8 *dstptr=(__u8*)surface->data; // !!
 			__u32 pal[256];
 
-			for (int i=0; i != 256; ++i)
+			for (int i=0; i<256; ++i)
 			{
 				if (src.surface->clut.data && (i<src.surface->clut.colors))
 					pal[i]=(src.surface->clut.data[i].a<<24)|(src.surface->clut.data[i].r<<16)|(src.surface->clut.data[i].g<<8)|(src.surface->clut.data[i].b);
@@ -513,14 +592,13 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 				srcptr+=src.surface->stride;
 				dstptr+=surface->stride;
 			}
-		}
-		else if ((surface->bpp == 16) && (src.surface->bpp==8))
+		} else if ((surface->bpp == 16) && (src.surface->bpp==8))
 		{
 			__u8 *srcptr=(__u8*)src.surface->data;
 			__u8 *dstptr=(__u8*)surface->data; // !!
 			__u32 pal[256];
 
-			for (int i=0; i != 256; ++i)
+			for (int i=0; i<256; ++i)
 			{
 				__u32 icol;
 				if (src.surface->clut.data && (i<src.surface->clut.colors))
@@ -553,8 +631,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 				srcptr+=src.surface->stride;
 				dstptr+=surface->stride;
 			}
-		}
-		else if ((surface->bpp == 16) && (src.surface->bpp==32))
+		} else if ((surface->bpp == 16) && (src.surface->bpp==32))
 		{
 			__u8 *srcptr=(__u8*)src.surface->data;
 			__u8 *dstptr=(__u8*)surface->data;
@@ -604,8 +681,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 				srcptr+=src.surface->stride;
 				dstptr+=surface->stride;
 			}
-		}
-		else
+		} else
 			eWarning("cannot blit %dbpp from %dbpp", surface->bpp, src.surface->bpp);
 	}
 }

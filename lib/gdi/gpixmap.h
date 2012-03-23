@@ -15,30 +15,8 @@ struct gRGB
 	gRGB(int r, int g, int b, int a=0): b(b), g(g), r(r), a(a)
 	{
 	}
-	gRGB(unsigned long val)
+	gRGB(unsigned long val): b(val&0xFF), g((val>>8)&0xFF), r((val>>16)&0xFF), a((val>>24)&0xFF)		// ARGB
 	{
-		if (val)
-		{
-			set(val);
-		}
-		else
-		{
-			b = g = r = a = 0;
-		}
-	}
-	gRGB(const char *colorstring)
-	{
-		unsigned long val = 0;
-		if (colorstring)
-		{
-			for (int i = 0; i < 8; i++)
-			{
-				if (i) val <<= 4;
-				if (!colorstring[i]) break;
-				val |= (colorstring[i]) & 0x0f;
-			}
-		}
-		set(val);
 	}
 	gRGB(): b(0), g(0), r(0), a(0)
 	{
@@ -49,17 +27,12 @@ struct gRGB
 		return (a<<24)|(r<<16)|(g<<8)|b;
 	}
 
-	void set(unsigned long val)
+	void operator=(unsigned long val)
 	{
 		b = val&0xFF;
 		g = (val>>8)&0xFF;
 		r = (val>>16)&0xFF;
 		a = (val>>24)&0xFF;
-	}
-
-	void operator=(unsigned long val)
-	{
-		set(val);
 	}
 	bool operator < (const gRGB &c) const
 	{
@@ -82,22 +55,6 @@ struct gRGB
 	bool operator==(const gRGB &c) const
 	{
 		return (b == c.b) && (g == c.g) && (r == c.r) && (a == c.a);
-	}
-	bool operator != (const gRGB &c) const
-	{
-		return (b != c.b) || (g != c.g) || (r != c.r) || (a != c.a);
-	}
-	operator const std::string () const
-	{
-		unsigned long val = argb();
-		std::string escapecolor = "\\c";
-		escapecolor.resize(10);
-		for (int i = 9; i >= 2; i--)
-		{
-			escapecolor[i] = 0x40 | (val & 0xf);
-			val >>= 4;
-		}
-		return escapecolor;
 	}
 };
 
