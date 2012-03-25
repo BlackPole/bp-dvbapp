@@ -152,8 +152,8 @@ class ServiceInfo(Converter, object):
 			polarization = fedata.get("polarization_abbreviation")
 			if polarization is None:
 				polarization = ""
-			symbolrate = fedata.get("symbol_rate")
-			if symbolrate is None:
+			symbolrate = str(int(fedata.get("symbol_rate", 0) / 1000))
+			if symbolrate == "0":
 				sr_txt = ""
 				symbolrate = ""
 			fec = fedata.get("fec_inner")
