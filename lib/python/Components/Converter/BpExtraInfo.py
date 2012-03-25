@@ -16,16 +16,16 @@ class BpExtraInfo(Poll, Converter, object):
 		self.poll_interval = 1000
 		self.poll_enabled = True
 		self.caid_data = (
+			("0x1700", "0x17ff", "Beta",    "B" ),
+			( "0x600",  "0x6ff", "Irdeto",  "I" ),
 			( "0x100",  "0x1ff", "Seca",    "S" ),
 			( "0x500",  "0x5ff", "Via",     "V" ),
-			( "0x600",  "0x6ff", "Irdeto",  "I" ),
-			( "0x900",  "0x9ff", "NDS",     "Nd"),
-			( "0xb00",  "0xbff", "Conax",   "Co"),
-			( "0xd00",  "0xdff", "CryptoW", "Cw"),
-			("0x1700", "0x17ff", "Beta",    "B" ),
 			("0x1800", "0x18ff", "Nagra",   "N" ),
-			("0x2600", "0x2600", "Biss",    "Bi"),
-			("0x4ae0", "0x4ae1", "Dre",     "D" )
+			("0x4ae0", "0x4ae1", "Dre",     "D" ),
+			( "0xd00",  "0xdff", "CryptoW", "CW"),
+			( "0x900",  "0x9ff", "NDS",     "ND"),
+			( "0xb00",  "0xbff", "Conax",   "CO"),
+			("0x2600", "0x2600", "Biss",    "BI")
 		)
 
 	def GetEcmInfo(self):
@@ -164,13 +164,13 @@ class BpExtraInfo(Poll, Converter, object):
 			request_caid = "I"
 			request_selected = False
 		elif self.type == "CryptoCaidNDSAvailable":
-			request_caid = "Nd"
+			request_caid = "ND"
 			request_selected = False
 		elif self.type == "CryptoCaidConaxAvailable":
-			request_caid = "Co"
+			request_caid = "CO"
 			request_selected = False
 		elif self.type == "CryptoCaidCryptoWAvailable":
-			request_caid = "Cw"
+			request_caid = "CW"
 			request_selected = False
 		elif self.type == "CryptoCaidBetaAvailable":
 			request_caid = "B"
@@ -179,7 +179,7 @@ class BpExtraInfo(Poll, Converter, object):
 			request_caid = "N"
 			request_selected = False
 		elif self.type == "CryptoCaidBissAvailable":
-			request_caid = "Bi"
+			request_caid = "BI"
 			request_selected = False
 		elif self.type == "CryptoCaidDreAvailable":
 			request_caid = "D"
@@ -194,13 +194,13 @@ class BpExtraInfo(Poll, Converter, object):
 			request_caid = "I"
 			request_selected = True
 		elif self.type == "CryptoCaidNDSSelected":
-			request_caid = "Nd"
+			request_caid = "ND"
 			request_selected = True
 		elif self.type == "CryptoCaidConaxSelected":
-			request_caid = "Co"
+			request_caid = "CO"
 			request_selected = True
 		elif self.type == "CryptoCaidCryptoWSelected":
-			request_caid = "Cw"
+			request_caid = "CW"
 			request_selected = True
 		elif self.type == "CryptoCaidBetaSelected":
 			request_caid = "B"
@@ -209,7 +209,7 @@ class BpExtraInfo(Poll, Converter, object):
 			request_caid = "N"
 			request_selected = True
 		elif self.type == "CryptoCaidBissSelected":
-			request_caid = "Bi"
+			request_caid = "BI"
 			request_selected = True
 		elif self.type == "CryptoCaidDreSelected":
 			request_caid = "D"

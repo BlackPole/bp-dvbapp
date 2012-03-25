@@ -369,7 +369,7 @@
 			<widget source="session.CurrentService" render="Label"  position="60,38" size="590,20" halign="left" font="Display;15" zPosition="4" foregroundColor="grey" transparent="1" backgroundColor="transpBlack">
 				<convert type="BpExtraInfo">NetInfo</convert>
 			</widget>
-			<widget source="session.CurrentService" render="Label" position="60,88" size="240,30" backgroundColor="transpBlack" transparent="1" zPosition="2" foregroundColor="white" font="Regular;20" valign="top" halign="left">
+			<widget source="session.CurrentService" render="Label" position="40,88" size="270,30" backgroundColor="transpBlack" transparent="1" zPosition="2" foregroundColor="white" font="Regular;20" valign="top" halign="left">
 				<convert type="BpExtraInfo">CryptoBar</convert>
 			</widget>				
 			<widget source="session.CurrentService" render="Label" zPosition="6" position="310,88" size="240,24" halign="left" font="Regular;20" foregroundColor="white" transparent="1" backgroundColor="transpBlack">
