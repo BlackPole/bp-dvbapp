@@ -7,7 +7,6 @@ driver_libenigma_driver_a_SOURCES = \
 	driver/etimezone.cpp \
 	driver/misc_options.cpp \
 	driver/rc.cpp \
-	driver/rcconsole.cpp \
 	driver/rcinput.cpp \
 	driver/rfmod.cpp \
 	driver/hdmi_cec.cpp
