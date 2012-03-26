@@ -5,12 +5,10 @@
 
 class eRCDeviceInputDev: public eRCDevice
 {
-	int iskeyboard, ismouse;
-	int consoleFd;
-	bool shiftState, capsState;
+	int iskeyboard;
 public:
 	void handleCode(long code);
-	eRCDeviceInputDev(eRCInputEventDriver *driver, int consolefd);
+	eRCDeviceInputDev(eRCInputEventDriver *driver);
 	const char *getDescription() const;
 	void setExclusive(bool);
 };

@@ -17,16 +17,13 @@ eRCConsoleDriver::eRCConsoleDriver(const char *filename): eRCDriver(eRCInput::ge
 		sn=eSocketNotifier::create(eApp, handle, eSocketNotifier::Read);
 		CONNECT(sn->activated, eRCConsoleDriver::keyPressed);
 	}
-
-	if (handle >= 0)
-	{
-			/* set console mode */
-		struct termios t;
-		tcgetattr(handle, &t);
-		ot = t;
-		t.c_lflag &= ~(ECHO | ICANON | ECHOK | ECHOE | ECHONL);
-		tcsetattr(handle, TCSANOW,&t);
-	}
+	
+		/* set console mode */
+	struct termios t;
+	tcgetattr(handle, &t);
+	ot = t;
+	t.c_lflag &= ~(ECHO | ICANON | ECHOK | ECHOE | ECHONL);
+	tcsetattr(handle, TCSANOW,&t);
 }
 
 eRCConsoleDriver::~eRCConsoleDriver()
@@ -48,7 +45,7 @@ void eRCConsoleDriver::keyPressed(int)
 	if (km == eRCInput::kmNone)
 		return;
 
-	while (num-- > 0)
+	while (num--)
 	{
 		code = *d++;
 //		eDebug("console code %02x\n", code);
@@ -101,6 +98,10 @@ int eRCConsole::getKeyCompatibleCode(const eRCKey &key) const
 	return key.code;
 }
 
+#ifdef VUPLUS_USE_RCKBD	
+eRCConsole* g_ConsoleDevice;
+#endif /*VUPLUS_USE_RCKBD*/
+
 class eRCConsoleInit
 {
 	eRCConsoleDriver driver;
@@ -108,6 +109,9 @@ class eRCConsoleInit
 public:
 	eRCConsoleInit(): driver("/dev/tty0"), device(&driver)
 	{
+#ifdef VUPLUS_USE_RCKBD	
+		g_ConsoleDevice = &device;
+#endif /*VUPLUS_USE_RCKBD*/
 	}
 };
 

@@ -4,8 +4,6 @@
 #include <list>
 #include <map>
 
-#include <linux/input.h>
-
 #include <lib/base/ebase.h>
 #include <libsig_comp.h>
 #include <string>
@@ -93,8 +91,6 @@ public:
 	
 	void enable(int en) { enabled=en; }
 	virtual void setExclusive(bool) { }
-	virtual bool isKeyboard() { return false; }
-	virtual bool isPointerDevice() { return false; }
 };
 
 class eRCShortDriver: public eRCDriver
@@ -112,8 +108,6 @@ class eRCInputEventDriver: public eRCDriver
 {
 protected:
 	int handle;
-	unsigned char evCaps[(EV_MAX / 8) + 1];
-	unsigned char keyCaps[(KEY_MAX / 8) + 1];
 	ePtr<eSocketNotifier> sn;
 	void keyPressed(int);
 public:
@@ -121,9 +115,6 @@ public:
 	eRCInputEventDriver(const char *filename);
 	~eRCInputEventDriver();
 	void setExclusive(bool b); // in exclusive mode data is not carried to console device
-	bool isKeyboard();
-	bool isPointerDevice();
-	bool hasCap(unsigned char *caps, int bit);
 };
 
 class eRCKey
