@@ -10,7 +10,7 @@ from Components.PluginComponent import plugins
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_SKIN_IMAGE, fileExists, pathExists, createDir
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
-from Plugins.SystemPlugins.SoftwareManager.plugin import PacketManager, PluginManager
+from Plugins.SystemPlugins.SoftwareManager.plugin import PacketManager, PluginManager, UpdatePlugin
 from os import system, listdir, chdir, getcwd, remove as os_remove
 from enigma import eDVBDB
 
@@ -175,24 +175,31 @@ class DeliteAddons(Screen):
 		res = (name, png, idx)
 		self.list.append(res)
 		
+		mypixmap = mypath + "icons/addons_manager.png"
+		png = LoadPixmap(mypixmap)
+		name = "Online Black Pole image update"
+		idx = 2
+		res = (name, png, idx)
+		self.list.append(res)
+		
 		mypixmap = mypath + "icons/nabpackpanel.png"
 		png = LoadPixmap(mypixmap)
 		name = "Manual Install Bh packges"
-		idx = 2
+		idx = 3
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/ipkpackpanel.png"
 		png = LoadPixmap(mypixmap)
 		name = "Manual Install Ipk packges"
-		idx = 3
+		idx = 4
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/uninstpanel.png"
 		png = LoadPixmap(mypixmap)
 		name = "Addons Uninstall Panel"
-		idx = 4
+		idx = 5
 		res = (name, png, idx)
 		self.list.append(res)
 		
@@ -209,10 +216,12 @@ class DeliteAddons(Screen):
 		elif self.sel == 1:	
 			self.session.open(PacketManager, "/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager")
 		elif self.sel == 2:
-			self.checkPanel()
+			self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to update your Black Pole image?")+"\n"+_("\nAfter pressing OK, please wait!"))
 		elif self.sel == 3:
-			self.checkPanel2()
+			self.checkPanel()
 		elif self.sel == 4:
+			self.checkPanel2()
+		elif self.sel == 5:
 			self.session.open(Nab_uninstPanel)
 	
 	
@@ -239,6 +248,11 @@ class DeliteAddons(Screen):
 		else:
 			mybox = self.session.open(MessageBox, "Nothing to install.\nYou have to Upload an ipk package in the /tmp directory before to install Addons", MessageBox.TYPE_INFO)
 			mybox.setTitle(_("Info"))
+			
+			
+	def runUpgrade(self, result):
+		if result:
+			self.session.open(UpdatePlugin, "/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager")
 
 class Nab_downPanel(Screen):
 	skin = """
