@@ -1772,9 +1772,14 @@ class PacketManager(Screen, NumericalTextInput):
 		self.ipkg.addCallback(self.ipkgCallback)
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.rebuildList)
+		
+		self.vumachine = file("/proc/stb/info/vumodel").read().strip()
 
 		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmAscii)		
+		if self.vumachine == "ultimo":
+			rcinput.setKeyboardMode(rcinput.kmNone)
+		else:
+			rcinput.setKeyboardMode(rcinput.kmAscii)		
 
 	def keyNumberGlobal(self, val):
 		key = self.getKey(val)
@@ -1808,7 +1813,10 @@ class PacketManager(Screen, NumericalTextInput):
 				for name in self.Console.appContainers.keys():
 					self.Console.kill(name)
 		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmNone)
+		if self.vumachine == "ultimo":
+			rcinput.setKeyboardMode(rcinput.kmAscii)
+		else:
+			rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close()
 
 	def reload(self):

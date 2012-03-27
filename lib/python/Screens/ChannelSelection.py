@@ -1267,14 +1267,21 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.lastChannelRootTimer = eTimer()
 		self.lastChannelRootTimer.callback.append(self.__onCreate)
 		self.lastChannelRootTimer.start(100,True)
+		self.vumachine = file("/proc/stb/info/vumodel").read().strip()
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmAscii)
+		if self.vumachine == "ultimo":
+			rcinput.setKeyboardMode(rcinput.kmNone)
+		else:
+			rcinput.setKeyboardMode(rcinput.kmAscii)
 
 	def asciiOff(self):
 		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmNone)
+		if self.vumachine == "ultimo":
+			rcinput.setKeyboardMode(rcinput.kmAscii)
+		else:
+			rcinput.setKeyboardMode(rcinput.kmNone)
 
 	def multibouquet_config_changed(self, val):
 		self.recallBouquetMode()

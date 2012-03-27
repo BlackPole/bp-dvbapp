@@ -15,15 +15,22 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.onSelectionChanged = [ ]
 		self.current = None
 		self.session = session
+		self.vumachine = file("/proc/stb/info/vumodel").read().strip()
 
 	def execBegin(self):
 		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmAscii)
+		if self.vumachine == "ultimo":
+			rcinput.setKeyboardMode(rcinput.kmNone)
+		else:
+			rcinput.setKeyboardMode(rcinput.kmAscii)
 		self.timer.callback.append(self.timeout)
 
 	def execEnd(self):
 		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmNone)
+		if self.vumachine == "ultimo":
+			rcinput.setKeyboardMode(rcinput.kmAscii)
+		else:
+			rcinput.setKeyboardMode(rcinput.kmNone)
 		self.timer.callback.remove(self.timeout)
 
 	def toggle(self):

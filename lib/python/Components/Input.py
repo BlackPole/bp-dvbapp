@@ -225,12 +225,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		if self.allmarked:
 			self.deleteAllChars()
 			self.allmarked = False
-		#self.insertChar(unichr(code), self.currPos, False, False);
-		from Components.config import getCharValue
-		newcode = getCharValue(code)
-		if newcode is None:
-			return
-		self.insertChar(newcode, self.currPos, False, False);
+		self.insertChar(unichr(code), self.currPos, False, False);
 		self.innerright()
 		self.update()
 
