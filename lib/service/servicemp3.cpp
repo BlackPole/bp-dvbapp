@@ -59,6 +59,9 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("m4a");
 		extensions.push_back("3gp");
 		extensions.push_back("3g2");
+		extensions.push_back("asf");
+		extensions.push_back("wmv");
+		extensions.push_back("wma");
 		sc->addServiceFactory(eServiceFactoryMP3::id, this, extensions);
 	}
 
@@ -234,8 +237,8 @@ PyObject* eStaticServiceMP3Info::getInfoObject(const eServiceReference &ref, int
 }
 
 // eServiceMP3
-int eServiceMP3::ac3_delay,
-    eServiceMP3::pcm_delay;
+int eServiceMP3::ac3_delay = 0,
+    eServiceMP3::pcm_delay = 0;
 
 eServiceMP3::eServiceMP3(eServiceReference ref)
 	:m_ref(ref), m_pump(eApp, 1)
@@ -254,6 +257,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_prev_decoder_time = -1;
 	m_decoder_time_valid_state = 0;
 	m_errorInfo.missing_codec = "";
+	audioSink = videoSink = NULL;
 
 	CONNECT(m_subtitle_sync_timer->timeout, eServiceMP3::pushSubtitles);
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
@@ -294,6 +298,11 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		m_sourceinfo.containertype = ctMP4;
 		m_sourceinfo.is_video = TRUE;
 	}
+	else if ( strcasecmp(ext, ".asf") == 0 || strcasecmp(ext, ".wmv") == 0)
+	{
+		m_sourceinfo.containertype = ctASF;
+		m_sourceinfo.is_video = TRUE;
+	}
 	else if ( strcasecmp(ext, ".m4a") == 0 )
 	{
 		m_sourceinfo.containertype = ctMP4;
@@ -301,6 +310,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	}
 	else if ( strcasecmp(ext, ".mp3") == 0 )
 		m_sourceinfo.audiotype = atMP3;
+	else if ( strcasecmp(ext, ".wma") == 0 )
+		m_sourceinfo.audiotype = atWMA;
 	else if ( (strncmp(filename, "/autofs/", 8) || strncmp(filename+strlen(filename)-13, "/track-", 7) || strcasecmp(ext, ".wav")) == 0 )
 		m_sourceinfo.containertype = ctCDA;
 	if ( strcasecmp(ext, ".dat") == 0 )
@@ -432,7 +443,17 @@ eServiceMP3::~eServiceMP3()
 
 	if (m_stream_tags)
 		gst_tag_list_free(m_stream_tags);
-	
+
+	if (audioSink)
+	{
+		gst_object_unref(GST_OBJECT(audioSink));
+		audioSink = NULL;
+	}
+	if (videoSink)
+	{
+		gst_object_unref(GST_OBJECT(videoSink));
+		videoSink = NULL;
+	}
 	if (m_gst_playbin)
 	{
 		gst_object_unref (GST_OBJECT (m_gst_playbin));
@@ -601,21 +622,28 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 
 	m_currentTrickRatio = ratio;
 
-	gint64 pos;
+	bool validposition = false;
+	gint64 pos = 0;
 	pts_t pts;
-	getPlayPosition(pts);
-	pos = pts * 11111LL;
+	if (getPlayPosition(pts) >= 0)
+	{
+		validposition = true;
+		pos = pts * 11111LL;
+	}
 
 	gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
 
-	if (ratio >= 0.0)
+	if (validposition)
 	{
-		gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
-	}
-	else
-	{
-		/* note that most elements will not support negative speed */
-		gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, 0, GST_SEEK_TYPE_SET, pos);
+		if (ratio >= 0.0)
+		{
+			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
+		}
+		else
+		{
+			/* note that most elements will not support negative speed */
+			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, 0, GST_SEEK_TYPE_SET, pos);
+		}
 	}
 
 	m_subtitle_pages.clear();
@@ -631,20 +659,21 @@ RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 		return -1;
 
 	pts_t ppos;
-	getPlayPosition(ppos);
+	if (getPlayPosition(ppos) < 0) return -1;
 	ppos += to * direction;
 	if (ppos < 0)
 		ppos = 0;
-	seekTo(ppos);
-	
-	return 0;
+	return seekTo(ppos);
+}
+
+gint eServiceMP3::match_sinktype(GstElement *element, gpointer type)
+{
+	return strcmp(g_type_name(G_OBJECT_TYPE(element)), (const char*)type);
 }
 
 RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 {
-	GstFormat fmt = GST_FORMAT_TIME;
 	gint64 pos;
-	GstElement *sink;
 	pts = 0;
 
 	if (!m_gst_playbin)
@@ -652,26 +681,19 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	if (m_state != stRunning)
 		return -1;
 
-	g_object_get (G_OBJECT (m_gst_playbin), "audio-sink", &sink, NULL);
-
-	if (!sink)
-		g_object_get (G_OBJECT (m_gst_playbin), "video-sink", &sink, NULL);
-
-	if (!sink)
-		return -1;
-
-	gchar *name = gst_element_get_name(sink);
-	gboolean use_get_decoder_time = strstr(name, "dvbaudiosink") || strstr(name, "dvbvideosink");
-	g_free(name);
-
-	if (use_get_decoder_time)
-		g_signal_emit_by_name(sink, "get-decoder-time", &pos);
-
-	gst_object_unref(sink);
-
-	if (!use_get_decoder_time && !gst_element_query_position(m_gst_playbin, &fmt, &pos)) {
-		eDebug("gst_element_query_position failed in getPlayPosition");
-		return -1;
+	if (audioSink || videoSink)
+	{
+		g_signal_emit_by_name(audioSink ? audioSink : videoSink, "get-decoder-time", &pos);
+		if (!GST_CLOCK_TIME_IS_VALID(pos)) return -1;
+	}
+	else
+	{
+		GstFormat fmt = GST_FORMAT_TIME;
+		if (!gst_element_query_position(m_gst_playbin, &fmt, &pos)) 
+		{
+			eDebug("gst_element_query_position failed in getPlayPosition");
+			return -1;
+		}
 	}
 
 	/* pos is in nanoseconds. we have 90 000 pts per second. */
@@ -1036,16 +1058,24 @@ int eServiceMP3::getCurrentTrack()
 
 RESULT eServiceMP3::selectTrack(unsigned int i)
 {
-	pts_t ppos;
-	getPlayPosition(ppos);
-	ppos -= 90000;
-	if (ppos < 0)
-		ppos = 0;
+	bool validposition = false;
+	pts_t ppos = 0;
+	if (getPlayPosition(ppos) >= 0)
+	{
+		validposition = true;
+		ppos -= 90000;
+		if (ppos < 0)
+			ppos = 0;
+	}
 
 	int ret = selectAudioStream(i);
-	if (!ret) {
-		/* flush */
-		seekTo(ppos);
+	if (!ret) 
+	{
+		if (validposition)
+		{
+			/* flush */
+			seekTo(ppos);
+		}
 	}
 
 	return ret;
@@ -1198,6 +1228,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				}	break;
 				case GST_STATE_CHANGE_READY_TO_PAUSED:
 				{
+					GstIterator *children;
 					GstElement *subsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
 					if (subsink)
 					{
@@ -1225,6 +1256,21 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						eDebug("eServiceMP3::subsink properties set!");
 						gst_object_unref(subsink);
 					}
+					if (audioSink)
+					{
+						gst_object_unref(GST_OBJECT(audioSink));
+						audioSink = NULL;
+					}
+					if (videoSink)
+					{
+						gst_object_unref(GST_OBJECT(videoSink));
+						videoSink = NULL;
+					}
+					children = gst_bin_iterate_recurse(GST_BIN(m_gst_playbin));
+					audioSink = GST_ELEMENT_CAST(gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, (gpointer)"GstDVBAudioSink"));
+					videoSink = GST_ELEMENT_CAST(gst_iterator_find_custom(children, (GCompareFunc)match_sinktype, (gpointer)"GstDVBVideoSink"));
+					gst_iterator_free(children);
+
 					setAC3Delay(ac3_delay);
 					setPCMDelay(pcm_delay);
 				}	break;
@@ -1238,6 +1284,16 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_READY:
 				{
+					if (audioSink)
+					{
+						gst_object_unref(GST_OBJECT(audioSink));
+						audioSink = NULL;
+					}
+					if (videoSink)
+					{
+						gst_object_unref(GST_OBJECT(videoSink));
+						videoSink = NULL;
+					}
 				}	break;
 				case GST_STATE_CHANGE_READY_TO_NULL:
 				{
@@ -1733,11 +1789,14 @@ void eServiceMP3::pushSubtitles()
 	while ( !m_subtitle_pages.empty() )
 	{
 		SubtitlePage &frontpage = m_subtitle_pages.front();
-		pts_t running_pts;
+		pts_t running_pts = 0;
 		gint64 diff_ms = 0;
 		gint64 show_pts = 0;
 
-		getPlayPosition(running_pts);
+		if (getPlayPosition(running_pts) < 0)
+		{
+			m_decoder_time_valid_state = 0;
+		}
 		if (m_decoder_time_valid_state < 4) {
 			++m_decoder_time_valid_state;
 			if (m_prev_decoder_time == running_pts)
@@ -1931,16 +1990,18 @@ void eServiceMP3::setAC3Delay(int delay)
 		return;
 	else
 	{
-		GstElement *sink;
 		int config_delay_int = delay;
-		g_object_get (G_OBJECT (m_gst_playbin), "video-sink", &sink, NULL);
 
-		if (sink)
+		/* 
+		 * NOTE: We only look for dvbmediasinks. 
+		 * If either the video or audio sink is of a different type,
+		 * we have no chance to get them synced anyway.
+		 */
+		if (videoSink)
 		{
 			std::string config_delay;
 			if(ePythonConfigQuery::getConfigValue("config.av.generalAC3delay", config_delay) == 0)
 				config_delay_int += atoi(config_delay.c_str());
-			gst_object_unref(sink);
 		}
 		else
 		{
@@ -1948,15 +2009,9 @@ void eServiceMP3::setAC3Delay(int delay)
 			config_delay_int = 0;
 		}
 
-		g_object_get (G_OBJECT (m_gst_playbin), "audio-sink", &sink, NULL);
-
-		if (sink)
+		if (audioSink)
 		{
-			gchar *name = gst_element_get_name(sink);
-			if (strstr(name, "dvbaudiosink"))
-				eTSMPEGDecoder::setHwAC3Delay(config_delay_int);
-			g_free(name);
-			gst_object_unref(sink);
+			eTSMPEGDecoder::setHwAC3Delay(config_delay_int);
 		}
 	}
 }
@@ -1968,16 +2023,18 @@ void eServiceMP3::setPCMDelay(int delay)
 		return;
 	else
 	{
-		GstElement *sink;
 		int config_delay_int = delay;
-		g_object_get (G_OBJECT (m_gst_playbin), "video-sink", &sink, NULL);
 
-		if (sink)
+		/* 
+		 * NOTE: We only look for dvbmediasinks. 
+		 * If either the video or audio sink is of a different type,
+		 * we have no chance to get them synced anyway.
+		 */
+		if (videoSink)
 		{
 			std::string config_delay;
 			if(ePythonConfigQuery::getConfigValue("config.av.generalPCMdelay", config_delay) == 0)
 				config_delay_int += atoi(config_delay.c_str());
-			gst_object_unref(sink);
 		}
 		else
 		{
@@ -1985,22 +2042,9 @@ void eServiceMP3::setPCMDelay(int delay)
 			config_delay_int = 0;
 		}
 
-		g_object_get (G_OBJECT (m_gst_playbin), "audio-sink", &sink, NULL);
-
-		if (sink)
+		if (audioSink)
 		{
-			gchar *name = gst_element_get_name(sink);
-			if (strstr(name, "dvbaudiosink"))
-				eTSMPEGDecoder::setHwPCMDelay(config_delay_int);
-			else
-			{
-				// this is realy untested..and not used yet
-				gint64 offset = config_delay_int;
-				offset *= 1000000; // milli to nano
-				g_object_set (G_OBJECT (m_gst_playbin), "ts-offset", offset, NULL);
-			}
-			g_free(name);
-			gst_object_unref(sink);
+			eTSMPEGDecoder::setHwPCMDelay(config_delay_int);
 		}
 	}
 }

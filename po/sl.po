@@ -1,17 +1,19 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: ENIGMA 1\n"
+"Project-Id-Version: ENIGMA 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-08 20:34+0100\n"
-"PO-Revision-Date: 2012-02-05 14:50+0100\n"
+"POT-Creation-Date: 2012-03-24 23:40+0100\n"
+"PO-Revision-Date: 2012-03-18 17:43+0100\n"
 "Last-Translator: \n"
-"Language-Team: Linux-Sprejemniki.info\n"
+"Language-Team: OldSkul from www.linux-sprejemniki.info\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Slovenian\n"
 "X-Poedit-Country: SLOVENIA\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=2 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
 
 #
 msgid ""
@@ -187,15 +189,42 @@ msgstr ""
 msgid "#ffffffff"
 msgstr ""
 
+#. TRANSLATORS: short time representation hour:minute
+#, python-format
+msgid "%2d:%02d"
+msgstr ""
+
+#. TRANSLATORS: full time representation hour:minute:seconds
+#, python-format
+msgid "%2d:%02d:%02d"
+msgstr ""
+
+#. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
+msgid "%A %e %B"
+msgstr ""
+
+#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
+msgid "%A %e %B %Y"
+msgstr ""
+
 #
 msgid "%H:%M"
 msgstr "%S:%M"
 
-#, python-format
+#. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
+msgid "%a %e/%m"
+msgstr ""
+
+#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
+msgid "%a %e/%m  %-H:%M"
+msgstr ""
+
+#, fuzzy, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d ura"
+msgstr[1] "%d uri"
+msgstr[2] "%d ur"
 
 #
 #, python-format
@@ -207,21 +236,23 @@ msgstr "%d opravil teče v ozadju"
 msgid "%d min"
 msgstr "%d min"
 
-#, python-format
+#, fuzzy, python-format
 msgid "%d minute"
 msgid_plural "%d minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d minuta"
+msgstr[1] "%d minuti"
+msgstr[2] "%d minut"
 
 #, python-format
 msgid "%d minutes"
 msgstr ""
 
-#, python-format
+#, fuzzy, python-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d sekunda"
+msgstr[1] "%d sekundi"
+msgstr[2] "%d sekund"
 
 #
 #, python-format
@@ -231,6 +262,10 @@ msgstr "%d kanalov najdenih!"
 #
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
+
+#. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
+msgid "%k:%M %e/%m"
+msgstr ""
 
 #
 #, python-format
@@ -400,7 +435,7 @@ msgstr ""
 "Želite obdržati vašo različico datoteke?"
 
 msgid "A demo plugin for TPM usage."
-msgstr ""
+msgstr "Poskusni vtičnik za TMP."
 
 #
 msgid ""
@@ -422,7 +457,6 @@ msgstr ""
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Grafični EPG za vse kanale izbranega paketa"
 
-#
 #, python-format
 msgid ""
 "A record has been started:\n"
@@ -522,8 +556,9 @@ msgstr "AB"
 msgid "AC3 downmix"
 msgstr "Pretvorba AC3 zvoka v stereo"
 
+#
 msgid "AC3/DTS downmix"
-msgstr ""
+msgstr "Pretvorba AC3/DTS zvoka v stereo"
 
 #
 msgid "Abort"
@@ -704,7 +739,7 @@ msgstr "Alternativni radio način"
 
 #
 msgid "Alternative services tuner priority"
-msgstr "Vrstni red tunerjev"
+msgstr "Vrstni red kanalnikov"
 
 msgid "Always ask"
 msgstr "Vedno vprašaj"
@@ -727,10 +762,6 @@ msgstr "Naj bo dnevnik napak anonimen?"
 
 msgid "Any activity"
 msgstr ""
-
-#
-msgid "April"
-msgstr "April"
 
 #
 msgid "Arabic"
@@ -817,10 +848,6 @@ msgstr "Jezik zvočne sledi - 3"
 #
 msgid "Audio language selection 4"
 msgstr "Jezik zvočne sledi - 4"
-
-#
-msgid "August"
-msgstr "Avgust"
 
 #
 msgid "Author: "
@@ -1049,6 +1076,9 @@ msgstr ""
 msgid "Cache Thumbnails"
 msgstr "Shrani sličice"
 
+msgid "Calculate"
+msgstr ""
+
 msgid "Calculate all positions"
 msgstr ""
 
@@ -1110,6 +1140,7 @@ msgstr ""
 msgid "Change step size"
 msgstr ""
 
+#
 msgid "Changelog"
 msgstr "Dnevnik sprememb"
 
@@ -1119,7 +1150,7 @@ msgstr "Kanal"
 
 #
 msgid "Channel Selection"
-msgstr "Izbira kanala"
+msgstr "Seznam kanalov"
 
 #
 msgid "Channel not in services list"
@@ -1155,7 +1186,7 @@ msgstr "Poteka preverjanje datotečnega sistema..."
 
 #
 msgid "Choose Tuner"
-msgstr "Izberite tuner"
+msgstr "Izberite kanalnik"
 
 #
 msgid "Choose a wireless network"
@@ -1186,7 +1217,7 @@ msgstr "Izberite vir za nadgrajevanje"
 
 #
 msgid "Choose your Skin"
-msgstr "Izberite vašo predlogo"
+msgstr "Izberite predlogo"
 
 #
 msgid "Circular left"
@@ -1275,7 +1306,7 @@ msgstr "Commited DiSEqC ukaz"
 
 #
 msgid "Common Interface"
-msgstr "Status CI vmesnika"
+msgstr "Stanje CI vmesnika"
 
 #
 msgid "Common Interface Assignment"
@@ -1577,10 +1608,6 @@ msgid "Date"
 msgstr "Datum"
 
 #
-msgid "December"
-msgstr "December"
-
-#
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
 msgstr ""
 
@@ -1627,7 +1654,6 @@ msgstr "Izbris vnosa"
 msgid "Delete failed!"
 msgstr "Brisanje neuspešno!"
 
-#
 #, python-format
 msgid ""
 "Delete no more configured satellite\n"
@@ -1645,8 +1671,9 @@ msgstr ""
 msgid "Depth"
 msgstr ""
 
+#
 msgid "Descramble http streams"
-msgstr ""
+msgstr "Dekodiranje HTTP tokov"
 
 #
 msgid "Description"
@@ -1665,7 +1692,7 @@ msgstr "Zaznani pogon:"
 
 #
 msgid "Detected NIMs:"
-msgstr "Zaznani tunerji:"
+msgstr "Zaznani kanalniki:"
 
 msgid "Devicename:"
 msgstr ""
@@ -2138,7 +2165,7 @@ msgstr "Čas konca"
 
 #
 msgid "EndTime"
-msgstr "Čas zaključk"
+msgstr "Čas zaključka"
 
 #
 msgid "English"
@@ -2342,10 +2369,6 @@ msgstr "Hiter del"
 msgid "Favourites"
 msgstr "Priljubljene"
 
-#
-msgid "February"
-msgstr "Februar"
-
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -2374,9 +2397,8 @@ msgstr "Zaključeno"
 msgid "Finished configuring your network"
 msgstr "Nastavljanje omrežja je zaključeno!"
 
-#
 msgid "Finished restarting your network"
-msgstr "Ponovni zagon omrežja je končan!"
+msgstr ""
 
 #
 msgid "Finnish"
@@ -2657,9 +2679,8 @@ msgstr "Barva"
 msgid "Hungarian"
 msgstr "Madžarščina"
 
-#
 msgid "IP Address"
-msgstr "IP naslov"
+msgstr ""
 
 #
 msgid "ISO file is too large for this filesystem!"
@@ -2717,14 +2738,17 @@ msgstr ""
 "Da bi se lahko izvedlo snemanje določeno s časovnikom, je bil TV prestavljen "
 "v način snemanja!\n"
 
+#
 msgid "Include AIT in http streams"
-msgstr ""
+msgstr "Prisotnost AIT podatkov v HTTP toku"
 
+#
 msgid "Include ECM in http streams"
-msgstr ""
+msgstr "Prisotnost ECM paketkov v HTTP toku"
 
+#
 msgid "Include EIT in http streams"
-msgstr ""
+msgstr "Prisotnost EIT podatkov v HTTP toku"
 
 #
 msgid "Include your email and name (optional) in the mail?"
@@ -2749,7 +2773,7 @@ msgstr "Informacijska vrstica"
 
 #
 msgid "Infobar timeout"
-msgstr "Trajanje prikaza informacijske vrstice (v sek)"
+msgstr "Trajanje prikaza informacijske vrstice (v sekundah)"
 
 #
 msgid "Information"
@@ -2761,11 +2785,11 @@ msgstr "Inicializacija"
 
 #
 msgid "Initial Fast Forward speed"
-msgstr "Začetna hitrost hitrega predvajanja"
+msgstr "Začetna hitrost hitrega predvajanja naprej"
 
 #
 msgid "Initial Rewind speed"
-msgstr "Začetna hitrost previjanja"
+msgstr "Začetna hitrost predvajanja nazaj"
 
 #
 msgid "Initial location in new timers"
@@ -2914,20 +2938,8 @@ msgid "Items per Page "
 msgstr ""
 
 #
-msgid "January"
-msgstr "Januar"
-
-#
 msgid "Job View"
 msgstr "Ogled opravila"
-
-#
-msgid "July"
-msgstr "Julij"
-
-#
-msgid "June"
-msgstr "Junij"
 
 #
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
@@ -3136,8 +3148,9 @@ msgstr "Glavni meni"
 msgid "Mainmenu"
 msgstr "Glavni meni"
 
+#
 msgid "Maintain old EPG data for"
-msgstr ""
+msgstr "Pretekli EPG podatki naj bodo dostopni še X minut"
 
 #
 msgid "Make this mark an 'in' point"
@@ -3175,10 +3188,6 @@ msgid "Manufacturer"
 msgstr "Proizvajalec"
 
 #
-msgid "March"
-msgstr "Marec"
-
-#
 msgid "Margin after record"
 msgstr "Meja po snemanju (v minutah)"
 
@@ -3189,10 +3198,6 @@ msgstr "Meja pred snemanjem (v minutah)"
 #
 msgid "Max. Bitrate: "
 msgstr "Največja bitna hitrost: "
-
-#
-msgid "May"
-msgstr "Maj"
 
 #
 msgid "Media player"
@@ -3535,7 +3540,7 @@ msgstr ""
 
 #
 msgid "No free tuner!"
-msgstr "Ni prostega tunerja!"
+msgstr "Ni prostega kanalnika!"
 
 #
 msgid "No network connection available."
@@ -3577,15 +3582,15 @@ msgstr "Ne za vse"
 
 #
 msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "Tuner ni nastavljen za delo z DiSEqC rotorjem!"
+msgstr "Kanalnik ni nastavljen za delo z DiSEqC rotorjem!"
 
 #
 msgid ""
 "No tuner is enabled!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
-"Ni možno najti aktivnega tunerja!\n"
-"Preden ponovno zaženete iskanje kanalov, spremenite nastavitve tunerja."
+"Ni možno najti aktivnega kanalnika!\n"
+"Preden ponovno zaženete iskanje kanalov, spremenite nastavitve kanalnika."
 
 #
 msgid ""
@@ -3702,15 +3707,11 @@ msgid ""
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 "Iskanje ni možno!\n"
-"Pred začetkom iskanja preverite nastavitve tunerja."
+"Pred začetkom iskanja preverite nastavitve kanalnika."
 
 #
 msgid "Nothing to upgrade"
 msgstr "Nadgradnja ni na voljo."
-
-#
-msgid "November"
-msgstr "November"
 
 #
 msgid "Now Playing"
@@ -3757,10 +3758,6 @@ msgid "OSD visibility"
 msgstr "Prozornost menija"
 
 #
-msgid "October"
-msgstr "Oktober"
-
-#
 msgid "Off"
 msgstr "Izklop"
 
@@ -3781,7 +3778,7 @@ msgstr "En"
 
 #
 msgid "Only Free scan"
-msgstr "Iskanje samo prosto dostopnih kanalov"
+msgstr "Iskanje samo prosto dostopnih kanalov (FTA)"
 
 #
 msgid "Only extensions."
@@ -4114,15 +4111,15 @@ msgstr ""
 
 #
 msgid "Please set up tuner B"
-msgstr "Nastavite tuner B"
+msgstr "Nastavite kanalnik B"
 
 #
 msgid "Please set up tuner C"
-msgstr "Nastavite tuner C"
+msgstr "Nastavite kanalnik C"
 
 #
 msgid "Please set up tuner D"
-msgstr "Nastavite tuner D"
+msgstr "Nastavite kanalnik D"
 
 #
 msgid ""
@@ -4170,10 +4167,8 @@ msgstr "Poteka nastavljanje omrežja... Prosim počakajte!"
 msgid "Please wait while we test your network..."
 msgstr ""
 
-#
-#
 msgid "Please wait while your network is restarting..."
-msgstr "Izvaja se ponovni zagon omrežja... Prosim počakajte!"
+msgstr ""
 
 #
 msgid "Please wait..."
@@ -4275,7 +4270,7 @@ msgstr "Ročno izbran podnapis naj ima prednost"
 
 #
 msgid "Preferred tuner"
-msgstr "Prednostni tuner"
+msgstr "Prednostni kanalnik"
 
 msgid "Prepare another USB stick for image flashing"
 msgstr ""
@@ -4456,6 +4451,12 @@ msgstr "Res želite ponovno zagnati sprejemnik?"
 msgid "Really shutdown now?"
 msgstr "Res želite izklopiti sprejemnik?"
 
+msgid "Really upgrade the frontprocessor and reboot now?"
+msgstr ""
+
+msgid "Really upgrade your settop box and reboot now?"
+msgstr ""
+
 #
 msgid "Reboot"
 msgstr "Ponovni zagon"
@@ -4495,7 +4496,7 @@ msgid "Recording paths"
 msgstr "Poti snemanja datotek"
 
 msgid "Recording type"
-msgstr ""
+msgstr "Vrsta snemanja"
 
 #
 msgid "Recording(s) are in progress or coming up in few seconds!"
@@ -4538,9 +4539,6 @@ msgid "Reloading bouquets and services..."
 msgstr ""
 
 msgid "Remember service PIN"
-msgstr ""
-
-msgid "Remember service PIN cancel"
 msgstr ""
 
 msgid "Remember these settings for each folder"
@@ -4596,7 +4594,7 @@ msgstr "Uspešno odstranjeno."
 
 #
 msgid "Removing"
-msgstr "Brisanje"
+msgstr "Brišem..."
 
 #
 #, python-format
@@ -4728,7 +4726,7 @@ msgstr "Nazaj na prejšnji kanal"
 
 #
 msgid "Rewind speeds"
-msgstr "Hitrosti previjanja"
+msgstr "Hitrosti predvajanja nazaj"
 
 #
 msgid "Rewrap teletext subtitles"
@@ -5107,10 +5105,6 @@ msgid "Seperate titles with a main menu"
 msgstr "Razdeljeni naslovi z glavnim menijem"
 
 #
-msgid "September"
-msgstr "September"
-
-#
 msgid "Sequence repeat"
 msgstr "Ponovi zaporedje"
 
@@ -5167,7 +5161,7 @@ msgid ""
 "Check tuner configuration!"
 msgstr ""
 "Kanal ni dostopen!\n"
-"Preverite nastavitve tunerja."
+"Preverite nastavitve kanalnika."
 
 #
 msgid "Serviceinfo"
@@ -5421,7 +5415,7 @@ msgstr "Časovnik spanja"
 
 #
 msgid "Sleep timer action:"
-msgstr "Akcija časovnika spanja:"
+msgstr "Stanje:"
 
 #
 msgid "Slideshow Interval (sec.)"
@@ -5712,7 +5706,7 @@ msgstr "Nedelja"
 
 #
 msgid "Swap SNR in db with SNR in percentage on OSD"
-msgstr "Prikaz moči signala v db zamenjaj s prikazom v odstotkih"
+msgstr "Zamenjava moči signala v db s prikazom v odstotkih"
 
 #
 msgid "Swap Services"
@@ -5735,7 +5729,7 @@ msgstr "Preklop na prejšnjo pod-storitev"
 
 #
 msgid "Switchable tuner types:"
-msgstr "Preklopljive vrste tunerjev:"
+msgstr "Preklopljive vrste kanalnikov:"
 
 #
 msgid "Symbol Rate"
@@ -5827,6 +5821,9 @@ msgstr "Širina obrobe pisave"
 msgid "Text font size"
 msgstr "Velikost podnapisov"
 
+msgid "Thai"
+msgstr ""
+
 #
 msgid ""
 "Thank you for using the wizard.\n"
@@ -5873,6 +5870,14 @@ msgstr "Vtičnik Softwaremanagement ni nameščen. Prosim, da ga namestite!"
 msgid ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
+msgstr ""
+
+msgid "The User Interface of your receiver is restarting"
+msgstr ""
+
+msgid ""
+"The User Interface of your receiver is restarting\n"
+"due to an error in mytest.py"
 msgstr ""
 
 #
@@ -6205,7 +6210,7 @@ msgid "Timer Editor"
 msgstr "Urejevalnik časovnikov"
 
 msgid "Timer Overview"
-msgstr ""
+msgstr "Pregled časovnikov"
 
 #
 msgid "Timer Type"
@@ -6241,7 +6246,7 @@ msgstr "Izbira časovnika"
 
 #
 msgid "Timer status:"
-msgstr "Status časovnika:"
+msgstr "Stanje časovnika:"
 
 #
 msgid "Timeshift"
@@ -6381,27 +6386,27 @@ msgstr "Napaka v sprejemu!"
 
 #
 msgid "Tuner"
-msgstr "Tuner"
+msgstr "Kanalnik"
 
 #
 msgid "Tuner "
-msgstr "Tuner"
+msgstr "Kanalnik "
 
 #
 msgid "Tuner Slot"
-msgstr "Reža tunerja"
+msgstr "Reža kanalnika"
 
 #
 msgid "Tuner configuration"
-msgstr "Nastavi tunerje"
+msgstr "Nastavitev kanalnikov"
 
 #
 msgid "Tuner status"
-msgstr "Status tunerja"
+msgstr "Stanje kanalnika"
 
 #
 msgid "Tuner type"
-msgstr "Vrsta tunerja"
+msgstr "Vrsta kanalnika"
 
 msgid "Tuning step size"
 msgstr ""
@@ -6598,7 +6603,7 @@ msgid ""
 msgstr ""
 "Uporabite tipki levo in desno za spreminjanje vrednosti.\n"
 "\n"
-"Prosim, nastavite Tuner A"
+"Prosim, nastavite kanalnik A"
 
 #
 msgid ""
@@ -7277,6 +7282,12 @@ msgstr ""
 "Programska oprema mora biti nadgrajena.\n"
 "Za začetek nadgradnje pritistite tipko OK."
 
+msgid ""
+"Your frontprocessor will be upgraded\n"
+"Please wait until your receiver reboots\n"
+"This may take a few minutes"
+msgstr ""
+
 #
 msgid ""
 "Your internet connection is not working!\n"
@@ -7292,6 +7303,12 @@ msgstr "Vaše ime:"
 #
 msgid "Your network configuration has been activated."
 msgstr "Vaše omrežne nastavitve so omogočene."
+
+msgid "Your receiver is rebooting"
+msgstr "Sprejemnik se bo ponovno zagnal..."
+
+msgid "Your receiver is shutting down"
+msgstr ""
 
 #
 msgid ""
@@ -7360,15 +7377,15 @@ msgstr ""
 
 #
 msgid "abort alternatives edit"
-msgstr "prekinitev alternativnega urejanja"
+msgstr "Prekinitev alternativnega urejanja"
 
 #
 msgid "abort bouquet edit"
-msgstr "prekinitev urejanja paketa"
+msgstr "Prekinitev urejanja paketa"
 
 #
 msgid "abort favourites edit"
-msgstr "prekinitev urejanja priljubljenih"
+msgstr "Prekinitev urejanja priljubljenih"
 
 #
 msgid "about to start"
@@ -7423,7 +7440,7 @@ msgstr "dodajanje datoteke v seznam za predvajanje"
 
 #
 msgid "add marker"
-msgstr "Dodajanje oznake"
+msgstr "Dodajanje oznak (tags)"
 
 #
 msgid "add recording (enter recording duration)"
@@ -7501,7 +7518,7 @@ msgstr "zvočni zapisi"
 
 #
 msgid "auto"
-msgstr "samodejno"
+msgstr "Samodejno"
 
 #
 msgid "available"
@@ -7558,11 +7575,11 @@ msgstr "poglavja"
 
 #
 msgid "circular left"
-msgstr "Levi cirkularni"
+msgstr "Cirkularna - levo"
 
 #
 msgid "circular right"
-msgstr "Desni cirkularni"
+msgstr "Cirkularna - desno"
 
 #
 msgid "clear playlist"
@@ -7690,7 +7707,7 @@ msgstr ""
 
 #
 msgid "edit alternatives"
-msgstr "urejanje alternativ"
+msgstr "Urejanje alternativ"
 
 #
 msgid "empty"
@@ -7718,11 +7735,11 @@ msgstr "vključeno"
 
 #
 msgid "end alternatives edit"
-msgstr "konec urejanja alternativ"
+msgstr "Konec urejanja alternativ"
 
 #
 msgid "end bouquet edit"
-msgstr "končaj urejanje paketa"
+msgstr "Konec urejanja paketa"
 
 #
 msgid "end cut here"
@@ -7833,7 +7850,7 @@ msgstr "skrij predvajalnik"
 
 #
 msgid "horizontal"
-msgstr "Horizontalno"
+msgstr "Horizontalna"
 
 #
 msgid "immediate shutdown"
@@ -8160,7 +8177,7 @@ msgstr "izbris za tem položajem"
 
 #
 msgid "remove all alternatives"
-msgstr "izbris vseh alternativ"
+msgstr "Izbris vseh alternativ"
 
 #
 msgid "remove all new found flags"
@@ -8240,15 +8257,14 @@ msgstr "izvaja se iskanje... - %d%% končano!"
 
 #
 msgid "scan state"
-msgstr "status iskanja"
+msgstr "stanje iskanja"
 
 #
 msgid "second cable of motorized LNB"
 msgstr "drugi kabel motoriziranega LNB-a"
 
-#
 msgid "seconds"
-msgstr "sekund"
+msgstr ""
 
 #
 msgid "select"
@@ -8515,7 +8531,7 @@ msgstr "uporabniško določeno"
 
 #
 msgid "vertical"
-msgstr "Vertikalno"
+msgstr "Vertikalna"
 
 #
 msgid "view extensions..."
@@ -8687,6 +8703,18 @@ msgstr "preklopljen"
 #~ "\n"
 #~ "Izberite sliko (image) za obnovitev sistema ali za izbris:"
 
+#~ msgid "%d Minute"
+#~ msgid_plural "%d Minut"
+#~ msgstr[0] "%d Minuta"
+#~ msgstr[1] "%d Minuti"
+#~ msgstr[2] "%d Minut"
+
+#~ msgid "%d Second"
+#~ msgid_plural "%d sekund"
+#~ msgstr[0] "%d sekunda"
+#~ msgstr[1] "%d sekundi"
+#~ msgstr[2] "%d sekund"
+
 #
 #~ msgid "%i ms"
 #~ msgstr "%i ms"
@@ -8739,16 +8767,8 @@ msgstr "preklopljen"
 #~ msgstr "3 sekunde"
 
 #
-#~ msgid "30 minutes"
-#~ msgstr "30 minut"
-
-#
 #~ msgid "4 seconds"
 #~ msgstr "4 sekunde"
-
-#
-#~ msgid "5 minutes"
-#~ msgstr "5 minut"
 
 #
 #~ msgid "5 seconds"
@@ -8757,10 +8777,6 @@ msgstr "preklopljen"
 #
 #~ msgid "6 seconds"
 #~ msgstr "6 sekund"
-
-#
-#~ msgid "60 minutes"
-#~ msgstr "60 minut"
 
 #
 #~ msgid "7 seconds"
@@ -8773,14 +8789,6 @@ msgstr "preklopljen"
 #
 #~ msgid "9 seconds"
 #~ msgstr "9 sekund"
-
-#
-#~ msgid ""
-#~ "A mount entry with this name already exists!\n"
-#~ "Update existing entry and continue?\n"
-#~ msgstr ""
-#~ "Omrežna naprava s tem imenom že obstaja!\n"
-#~ "Vseeno nadaljujem?\n"
 
 #
 #~ msgid "AC3 default"
@@ -8807,18 +8815,6 @@ msgstr "preklopljen"
 #~ msgstr "Aktivacija"
 
 #
-#~ msgid "Active"
-#~ msgstr "Aktivno omrežje"
-
-#
-#~ msgid ""
-#~ "Active/\n"
-#~ "Inactive"
-#~ msgstr ""
-#~ "Aktivno/\n"
-#~ "Neaktivno"
-
-#
 #~ msgid "Active:"
 #~ msgstr "V delovanju:"
 
@@ -8831,16 +8827,8 @@ msgstr "preklopljen"
 #~ msgstr "Nov časovnik"
 
 #
-#~ msgid "Add a new NFS or CIFS mount point to your Dreambox."
-#~ msgstr "NFS ali CIFS"
-
-#
 #~ msgid "Add new AutoTimer"
 #~ msgstr "Dodajanje novega AutoTimer"
-
-#
-#~ msgid "Add new network mount point"
-#~ msgstr "Dodajanje nove omrežne naprave"
 
 #
 #~ msgid "Added: "
@@ -8884,6 +8872,10 @@ msgstr "preklopljen"
 #
 #~ msgid "An error occured."
 #~ msgstr "Prišlo je do napake."
+
+#
+#~ msgid "April"
+#~ msgstr "April"
 
 #~ msgid "Are you ready to create a backup ?"
 #~ msgstr "Želite ustvariti varnostno kopijo?"
@@ -8929,23 +8921,11 @@ msgstr "preklopljen"
 #~ msgstr "Ste prepričani, da želite shranite podatke na:\n"
 
 #
-#~ msgid ""
-#~ "Are you sure you want to save this network mount?\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Ste prepričani, da želite shraniti izbrano omrežno napravo?\n"
-#~ "\n"
-
-#
 #~ msgid "Ascending"
 #~ msgstr "Vzpenjajoče"
 
 #~ msgid "Atheros"
 #~ msgstr "Atheros"
-
-#
-#~ msgid "Attempt to recover lost mounts (in background)"
-#~ msgstr "Poskus obnovitve mrežnih naprav (v ozadju)."
 
 #
 #~ msgid "Attempt to recover lost mounts (in background)."
@@ -8959,6 +8939,10 @@ msgstr "preklopljen"
 #
 #~ msgid "Audio Sync Setup"
 #~ msgstr "Sinhronizacija zvoka"
+
+#
+#~ msgid "August"
+#~ msgstr "Avgust"
 
 #
 #~ msgid "Australia"
@@ -9050,10 +9034,6 @@ msgstr "preklopljen"
 #~ msgstr "Brazilija"
 
 #
-#~ msgid "Browse network neighbourhood"
-#~ msgstr "Omrežna soseščina"
-
-#
 #~ msgid "Button Setup"
 #~ msgstr "Nastavitve tipk na daljincu"
 
@@ -9062,10 +9042,6 @@ msgstr "preklopljen"
 
 #~ msgid "CDInfo"
 #~ msgstr "CDInfo"
-
-#
-#~ msgid "CIFS share"
-#~ msgstr "CIFS"
 
 #, fuzzy
 #~ msgid "Can't connect to server. Please check your network!"
@@ -9115,10 +9091,6 @@ msgstr "preklopljen"
 #~ msgstr "Menjava mape"
 
 #
-#~ msgid "Change hostname"
-#~ msgstr "Sprememba imena sprejemnika"
-
-#
 #~ msgid "Change service pin"
 #~ msgstr "Sprememba PIN kode kanala"
 
@@ -9131,10 +9103,6 @@ msgstr "preklopljen"
 #~ msgstr "Sprememba nastavitvene PIN kode"
 
 #
-#~ msgid "Change the hostname of your Dreambox."
-#~ msgstr "Sprememba mrežnega imena satelitskega sprejemnika."
-
-#
 #~ msgid "Channel +/- button mode"
 #~ msgstr "Dogodek ob pritisku na tipki + in -"
 
@@ -9143,7 +9111,7 @@ msgstr "preklopljen"
 #~ msgstr "Seznam kanalov"
 
 #
-#~ msgid "Channel Selection (TV)"
+#~ msgid "Channel Selection TV"
 #~ msgstr "Seznam TV kanalov"
 
 #
@@ -9284,11 +9252,11 @@ msgstr "preklopljen"
 
 #
 #~ msgid "Current Status"
-#~ msgstr "Trenutni status"
+#~ msgstr "Trenutno stanje"
 
 #
 #~ msgid "Current Status:"
-#~ msgstr "Trenutni status:"
+#~ msgstr "Trenutno stanje:"
 
 #
 #~ msgid "Custom (%s)"
@@ -9327,6 +9295,10 @@ msgstr "preklopljen"
 #~ msgstr "Podrobno"
 
 #
+#~ msgid "December"
+#~ msgstr "December"
+
+#
 #~ msgid "Decrease delay"
 #~ msgstr "Zmanjšanje zamika"
 
@@ -9349,10 +9321,6 @@ msgstr "preklopljen"
 #
 #~ msgid "Delay"
 #~ msgstr "Zamik"
-
-#
-#~ msgid "Delete mount"
-#~ msgstr "Izbris mrežne naprave"
 
 #
 #~ msgid "Descending"
@@ -9420,10 +9388,6 @@ msgstr "preklopljen"
 #~ msgstr ""
 #~ "Ste prepričani da želite ponastaviti trdi disk?\n"
 #~ "Vsi podatki bodo izbrisani!"
-
-#
-#~ msgid "Do you want to enter a username and password for this host?\n"
-#~ msgstr "Želite vnesti uporabniško ime in geslo za tega gostitelja?\n"
 
 #
 #~ msgid "Do you want to install default sat lists?"
@@ -9628,16 +9592,8 @@ msgstr "preklopljen"
 #~ msgstr "Hitro predvajanje naprej s hitrostjo:"
 
 #
-#~ msgid "Enter IP to scan..."
-#~ msgstr "Vnesite IP naslov:"
-
-#
 #~ msgid "Enter Rewind at speed"
 #~ msgstr "Previjanje s hitrostjo:"
-
-#
-#~ msgid "Enter new hostname for your Dreambox"
-#~ msgstr "Vnesite novo gostiteljsko ime za sprejemnik"
 
 #
 #~ msgid "Enter options:"
@@ -9646,18 +9602,6 @@ msgstr "preklopljen"
 #
 #~ msgid "Enter password:"
 #~ msgstr "Vnesite geslo:"
-
-#
-#~ msgid "Enter share directory:"
-#~ msgstr "Vnesite deljeno mapo:"
-
-#
-#~ msgid "Enter share name:"
-#~ msgstr "Vnesite deljeno ime:"
-
-#
-#~ msgid "Enter user and password for host: "
-#~ msgstr "Vnesite uporabniško ime in geslo za gostitelja"
 
 #
 #~ msgid "Enter your search term(s)"
@@ -9718,6 +9662,10 @@ msgstr "preklopljen"
 #
 #~ msgid "Fan on or off in standby?"
 #~ msgstr "Uporaba ventilatorja v stanju pripravljenosti"
+
+#
+#~ msgid "February"
+#~ msgstr "Februar"
 
 #
 #~ msgid "Filesystem contains uncorrectable errors"
@@ -9868,10 +9816,6 @@ msgstr "preklopljen"
 #~ msgstr "IMDb iskanje"
 
 #
-#~ msgid "IP:"
-#~ msgstr "IP:"
-
-#
 #~ msgid "IPK Installer"
 #~ msgstr "Namestite IPK datoteko"
 
@@ -9973,8 +9917,20 @@ msgstr "preklopljen"
 #~ msgstr "Italija"
 
 #
+#~ msgid "January"
+#~ msgstr "Januar"
+
+#
 #~ msgid "Japan"
 #~ msgstr "Japonska"
+
+#
+#~ msgid "July"
+#~ msgstr "Julij"
+
+#
+#~ msgid "June"
+#~ msgstr "Junij"
 
 #
 #~ msgid "Just change channels"
@@ -9991,6 +9947,12 @@ msgstr "preklopljen"
 #
 #~ msgid "Last backup date:"
 #~ msgstr "Datum zadnje kopije:"
+
+#~ msgid "Last upgrade"
+#~ msgstr "Zadnja nadg."
+
+#~ msgid "Last upgrade:"
+#~ msgstr "Zadnja nadg."
 
 #
 #~ msgid "Limit Debug log size (MB)"
@@ -10011,10 +9973,6 @@ msgstr "preklopljen"
 #
 #~ msgid "Load/Save"
 #~ msgstr "Izberi/Shrani"
-
-#
-#~ msgid "Local share name"
-#~ msgstr "Ime omrežne naprave"
 
 #
 #~ msgid "Logs"
@@ -10041,10 +9999,6 @@ msgstr "preklopljen"
 #~ msgstr "Upravljanje z vtičniki in razširitvami sprejemnika!"
 
 #
-#~ msgid "Manage network shares"
-#~ msgstr "Upravljanje z mrežnimi napravami"
-
-#
 #~ msgid ""
 #~ "Manage you devices\n"
 #~ "mounpoints."
@@ -10065,12 +10019,12 @@ msgstr "preklopljen"
 #~ msgstr "Upravljanje s t.i. cron jobsi"
 
 #
-#~ msgid "Manage your network shares..."
-#~ msgstr "Upravljanje z mrežnimi napravami."
-
-#
 #~ msgid "Manual"
 #~ msgstr "Prenos"
+
+#
+#~ msgid "March"
+#~ msgstr "Marec"
 
 #
 #~ msgid "Match title"
@@ -10083,6 +10037,10 @@ msgstr "preklopljen"
 #
 #~ msgid "Maximum duration (in m)"
 #~ msgstr "Največje trajanje (v minutah)"
+
+#
+#~ msgid "May"
+#~ msgstr "Maj"
 
 #
 #~ msgid "Mexico"
@@ -10113,44 +10071,8 @@ msgstr "preklopljen"
 #~ msgstr "Upravljanje z zunanjimi pogoni"
 
 #
-#~ msgid "Mount again"
-#~ msgstr "Ponovno dodajanje"
-
-#
 #~ msgid "Mount failed"
 #~ msgstr "Pripajanje neuspešno"
-
-#
-#~ msgid "Mount informations"
-#~ msgstr "Informacije o mrežnih napravah"
-
-#
-#~ msgid "Mount options"
-#~ msgstr "Napredne NFS nastavitve"
-
-#
-#~ msgid "Mount type"
-#~ msgstr "CIFS ali NFS (izberite)"
-
-#
-#~ msgid "MountManager"
-#~ msgstr "Dodajanje mrežnih naprav"
-
-#
-#~ msgid ""
-#~ "Mounted/\n"
-#~ "Unmounted"
-#~ msgstr ""
-#~ "Dodano/\n"
-#~ "Nedodano"
-
-#
-#~ msgid "Mountpoints management"
-#~ msgstr "Upravljanje z mrežnimi napravami"
-
-#
-#~ msgid "Mounts management"
-#~ msgstr "Upravljaj"
 
 #
 #~ msgid "Move plugin screen"
@@ -10232,16 +10154,8 @@ msgstr "preklopljen"
 #~ msgstr "NFS nastavitve"
 
 #
-#~ msgid "NFS share"
-#~ msgstr "NFS"
-
-#
 #~ msgid "Network SSID"
 #~ msgstr "Omrežni SSID"
-
-#
-#~ msgid "NetworkBrowser"
-#~ msgstr "Iskalnik mrežnih naprav"
 
 #
 #~ msgid "Never"
@@ -10324,10 +10238,6 @@ msgstr "preklopljen"
 #~ "Nastavitvene datoteke se nahajajo v /etc/tuxbox/config"
 
 #
-#~ msgid "No network devices found!"
-#~ msgstr "Ni najdenih mrežnih naprav!"
-
-#
 #~ msgid "No playable video found! Stop playing this movie?"
 #~ msgstr "Posnetka ni možno predvajati! Naj ustavim predvajanje?"
 
@@ -10356,8 +10266,16 @@ msgstr "preklopljen"
 #~ msgstr "Ne, odstrani jih"
 
 #
+#~ msgid "November"
+#~ msgstr "November"
+
+#
 #~ msgid "OScam Info"
 #~ msgstr "Informacije o delovanju OScam"
+
+#
+#~ msgid "October"
+#~ msgstr "Oktober"
 
 #
 #~ msgid "Offset after recording (in m)"
@@ -10484,23 +10402,11 @@ msgstr "preklopljen"
 #~ msgid "Please wait (Step 2)"
 #~ msgstr "Prosim počakajte (korak 2)"
 
-#
-#~ msgid "Please wait for activation of your network mount..."
-#~ msgstr "Poteka aktivacija mrežne naprave... Prosim počakajte!"
-
-#
-#~ msgid "Please wait while removing your network mount..."
-#~ msgstr "Poteka odstranjevanje mrežne naprave... Prosim počakajte!"
-
 #~ msgid "Please wait while starting\n"
 #~ msgstr "Prosim počakajte, emulator se zaganja...\n"
 
 #~ msgid "Please wait while stopping\n"
 #~ msgstr "Prosim počakajte, emulator se ustavlja...\n"
-
-#
-#~ msgid "Please wait while updating your network mount..."
-#~ msgstr "Vaše omrežne naprave se posodabljajo... Prosim počakajte."
 
 #
 #~ msgid "Plugin Browser"
@@ -10539,24 +10445,8 @@ msgstr "preklopljen"
 #~ msgstr "Izberite skripto, ki jo želite uporabiti"
 
 #
-#~ msgid "Press OK to collapse this host"
-#~ msgstr "Če želite razširiti pogled pritisnite OK."
-
-#
 #~ msgid "Press OK to edit selected settings."
 #~ msgstr "Za spremembo izbranih nastavitev pritisnite OK."
-
-#
-#~ msgid "Press OK to expand this host"
-#~ msgstr "Za razširitev pogleda pritisnite OK."
-
-#
-#~ msgid "Press OK to mount this share!"
-#~ msgstr "Za vklop mrežne naprave pritisnite OK."
-
-#
-#~ msgid "Press OK to mount!"
-#~ msgstr "Za pripojitev mrežne napreva pritisnite OK!"
 
 #
 #~ msgid "Press OK to save settings."
@@ -10698,7 +10588,7 @@ msgstr "preklopljen"
 #~ msgstr "Ponovi"
 
 #~ msgid "Repeat how often"
-#~ msgstr "Ponovitev - kako pogosto"
+#~ msgstr "Ponovitev - kako pogosto?"
 
 #
 #~ msgid "Require description to be unique"
@@ -10710,11 +10600,11 @@ msgstr "preklopljen"
 
 #
 #~ msgid "Reset count"
-#~ msgstr "Ponstavi števec"
+#~ msgstr "Ponastavi števec"
 
 #
 #~ msgid "Reset saved position"
-#~ msgstr "Ponstavi shranjeno lokacijo"
+#~ msgstr "Ponastavi shranjeno lokacijo"
 
 #
 #~ msgid "Restart Enigma2."
@@ -10813,10 +10703,6 @@ msgstr "preklopljen"
 #~ msgstr "Shranite vrednosti in zapri zaslon"
 
 #
-#~ msgid "Scan NFS share"
-#~ msgstr "Iskanje NFS"
-
-#
 #~ msgid "Scan range"
 #~ msgstr "Razpon iskanja"
 
@@ -10853,14 +10739,6 @@ msgstr "preklopljen"
 #~ msgstr "Iskanje kategorije:"
 
 #
-#~ msgid "Search for network shares"
-#~ msgstr "Iskanje mrežnih naprav"
-
-#
-#~ msgid "Search for network shares..."
-#~ msgstr "Iskanje mrežnih naprav."
-
-#
 #~ msgid "Search region:"
 #~ msgstr "Področje iskanja:"
 
@@ -10871,14 +10749,6 @@ msgstr "preklopljen"
 #
 #~ msgid "Search type"
 #~ msgstr "Vrsta iskanja"
-
-#
-#~ msgid "Searching your network. Please wait..."
-#~ msgstr "Poteka pregledovanje omrežja... Prosim počakajte!"
-
-#
-#~ msgid "Seconds"
-#~ msgstr "sekund"
 
 #
 #~ msgid "Seekbar sensibility"
@@ -10966,12 +10836,8 @@ msgstr "preklopljen"
 #~ msgstr "Pošlji"
 
 #
-#~ msgid "Server IP"
-#~ msgstr "IP serverja"
-
-#
-#~ msgid "Server share"
-#~ msgstr "Izberite pot do mape na serverju"
+#~ msgid "September"
+#~ msgstr "September"
 
 #
 #~ msgid "Service delay"
@@ -11103,10 +10969,6 @@ msgstr "preklopljen"
 
 #
 #~ msgid "Softcam Setup"
-#~ msgstr "Nastavitve"
-
-#
-#~ msgid "Softcam setup..."
 #~ msgstr "Nastavitve"
 
 #
@@ -11568,6 +11430,10 @@ msgstr "preklopljen"
 #~ msgstr "Upravljanje z uporabniki"
 
 #
+#~ msgid "Usermanager"
+#~ msgstr "Upravljanje z uporabniki"
+
+#
 #~ msgid "Username:"
 #~ msgstr "Uporab. ime"
 
@@ -11601,15 +11467,6 @@ msgstr "preklopljen"
 
 #~ msgid "View Progress"
 #~ msgstr "Ogled dogajanja"
-
-#
-#~ msgid "View, edit or delete mountpoints on your Dreambox."
-#~ msgstr "Poglejte, spremenite ali brišite mrežne naprave na sprejemniku."
-
-#
-#~ msgid "View, edit or delete usernames and passwords for your network."
-#~ msgstr ""
-#~ "Glejte, spremenite ali brišite gesla in uporabniška imena mrežnih naprav."
 
 #
 #~ msgid "Views: "
@@ -11818,18 +11675,6 @@ msgstr "preklopljen"
 #~ "Vaš sprejemnik bo prešel v stanje pripravljenosti.\n"
 #~ "Želite dovoliti to dejanje?"
 
-#
-#~ msgid "Your network mount has been activated."
-#~ msgstr "Vaša omrežna naprava je omogočene."
-
-#
-#~ msgid "Your network mount has been removed."
-#~ msgstr "Vaša omrežna naprava je odstranjena."
-
-#
-#~ msgid "Your network mount has been updated."
-#~ msgstr "Vaša omrežna naprava je posodobljena."
-
 #~ msgid ""
 #~ "Your receiver isn't connected to the internet properly. Please check it "
 #~ "and try again."
@@ -11985,7 +11830,7 @@ msgstr "preklopljen"
 
 #
 #~ msgid "select Slot"
-#~ msgstr "Izberite tuner"
+#~ msgstr "Izberite kanalnik"
 
 #
 #~ msgid "select image from server"
@@ -12029,7 +11874,7 @@ msgstr "preklopljen"
 
 #
 #~ msgid "use as HDD replacement"
-#~ msgstr "uporaba namesto trdega diska"
+#~ msgstr "Uporaba namesto trdega diska"
 
 #
 #~ msgid "wireless networks found!"

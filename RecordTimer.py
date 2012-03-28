@@ -128,7 +128,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 		self.log_entries = []
 		self.resetState()
-	
+
+	def __repr__(self):
+		return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay)
+
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
 		print "[TIMER]", msg
@@ -243,7 +246,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					open(self.Filename + ".ts", "w").close()
 					# Give the Trashcan a chance to clean up
 					try:
-						Trashcan.instance.cleanIfIdle()
+						Trashcan.instance.cleanIfIdle(self.Filename)
 					except Exception, e:
 						 print "[TIMER] Failed to call Trashcan.instance.cleanIfIdle()"
 						 print "[TIMER] Error:", e
@@ -295,6 +298,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					# retry
 					self.begin = time() + self.backoff
 					return False
+
+				# Tell the trashcan we started recording. The trashcan gets events,
+				# but cannot tell what the associated path is.
+				Trashcan.instance.markDirty(self.Filename)
 
 				return True
 		elif next_state == self.StateEnded:
@@ -389,10 +396,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# TODO: this has to be done.
 		elif event == iRecordableService.evStart:
 			text = _("A record has been started:\n%s") % self.name
+			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby
 			if self.dirnameHadToFallback:
 				text = '\n'.join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
-
-			if config.usage.show_message_when_recording_starts.value:
+				notify = True
+			if notify:
 				Notifications.AddPopup(text = text, type = MessageBox.TYPE_INFO, timeout = 3)
 		elif event == iRecordableService.evRecordAborted:
 			NavigationInstance.instance.RecordTimer.removeEntry(self)
@@ -499,11 +507,10 @@ class RecordTimer(timer.Timer):
 		self.stateChanged(w)
 
 	def isRecording(self):
-		isRunning = False
 		for timer in self.timer_list:
 			if timer.isRunning() and not timer.justplay:
-				isRunning = True
-		return isRunning
+				return True
+		return False
 	
 	def loadTimer(self):
 		# TODO: PATH!
