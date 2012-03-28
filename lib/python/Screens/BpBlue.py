@@ -152,7 +152,10 @@ class DeliteBluePanel(Screen):
             	client_socket.close()
 				
 	def keyYellow(self):
-		self.session.open(BhsysInfo)
+		if fileExists("/proc/blackhole/version"):
+			self.session.open(MessageBox, "Wrong kernel version. Please install Black Pole image in Flash.", MessageBox.TYPE_INFO)
+		else:
+			self.session.open(BhsysInfo)
 
 	def keyBlue(self):
 		from Screens.BpSet import DeliteSettings
@@ -225,12 +228,16 @@ class BhsysInfo(Screen):
  		text += "Chipset:\t" + f.readline() +"\n"
  		f.close()
 		text += "MEMORY\n"
-		f = open("/proc/meminfo",'r')
-		text += f.readline()
-		text += f.readline()
-		text += f.readline()
-		text += f.readline()
-		f.close()
+		memTotal = memFree = 0
+		for line in open("/proc/meminfo",'r'):
+			parts = line.split(':')
+			key = parts[0].strip()
+			if key == "MemTotal":
+				memTotal = parts[1].strip()
+			elif key in ("MemFree", "Buffers", "Cached"):
+				memFree += int(parts[1].strip().split(' ',1)[0])
+		text += "Total memory:\t%s\n" % memTotal
+		text += "Free memory:\t%s kB\n"  % memFree
 		text += "\nSTORAGE\n"
 		f = open("/tmp/syinfo.tmp",'r')
 		line = f.readline()
@@ -248,7 +255,7 @@ class BhsysInfo(Screen):
 		f.close()
 		os_remove("/tmp/syinfo.tmp")
 		
-		text += "\nSoftware\n"
+		text += "\nSOFTWARE\n"
 		f = open("/etc/bpversion",'r')
 		text += "Firmware v.:\t" + f.readline()
 		f.close()
