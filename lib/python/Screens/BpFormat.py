@@ -40,41 +40,7 @@ Push red button to continue when you are ready and your usb is disconnected.
 		self.step = 1
 		self.devices = []
 		self.device = None
-
-		
-	def step_Bump(self):
-		if self.step == 1:
-			self.stepOne()
-		elif self.step == 2:
-			self.stepTwo()
-		elif self.step == 3:
-			self.stepThree()
-		elif self.step == 4:
-			self.stepFour()
-			
-	def get_Devicelist(self):
-		devices = []
-		folder = listdir("/sys/block")
-		for f in folder:
-			if f.find('sd') != -1:
-				devices.append(f)
-		return devices
-			
-	def get_Deviceinfo(self, device):
-		info = vendor = model = size = ""
-		filename = "/sys/block/%s/device/vendor" % (device)
-		if fileExists(filename):
-			vendor = file(filename).read().strip()
-			filename = "/sys/block/%s/device/model" % (device)
-			model = file(filename).read().strip()
-			filename = "/sys/block/%s/size" % (device)
-			size = int(file(filename).read().strip())
-			cap = size / 1000 * 512 / 1000
-			size = "%d.%03d GB" % (cap/1000, cap%1000)
-		info = "Model: %s %s\nSize: %s\nDevice: /dev/%s" % (vendor, model, size, device)
-		return info
-		
-		
+	
 	
 	def stepOne(self):
 		msg = """Connect your usb storage to your Vu+ box
@@ -115,8 +81,7 @@ Press red button to continue.
 			self.do_Format()
 		else:
 			self.do_Part()
-			
-		
+					
 
 	def do_Part(self):
 		device = "/dev/%s" % (self.device)
@@ -129,7 +94,41 @@ Press red button to continue.
 		cmd = "echo -e 'Formatting: %s \n\n'" % (device)
 		cmd2 = "/sbin/mkfs.ext4 %s" % (device)
 		self.session.open(Console, title="Formatting...", cmdlist=[cmd, cmd2], finishedCallback = self.succesS)
-		
+	
+	def step_Bump(self):
+		if self.step == 1:
+			self.stepOne()
+		elif self.step == 2:
+			self.stepTwo()
+		elif self.step == 3:
+			self.stepThree()
+		elif self.step == 4:
+			self.stepFour()
+			
+	def get_Devicelist(self):
+		devices = []
+		folder = listdir("/sys/block")
+		for f in folder:
+			if f.find('sd') != -1:
+				devices.append(f)
+		return devices
+			
+	def get_Deviceinfo(self, device):
+		info = vendor = model = size = ""
+		filename = "/sys/block/%s/device/vendor" % (device)
+		if fileExists(filename):
+			vendor = file(filename).read().strip()
+			filename = "/sys/block/%s/device/model" % (device)
+			model = file(filename).read().strip()
+			filename = "/sys/block/%s/size" % (device)
+			size = int(file(filename).read().strip())
+			cap = size / 1000 * 512 / 1000
+			size = "%d.%03d GB" % (cap/1000, cap%1000)
+		info = "Model: %s %s\nSize: %s\nDevice: /dev/%s" % (vendor, model, size, device)
+		return info
+	
+	
+	
 	def succesS(self):
 		self.wizClose("Usb storage formatted.\nYou can now use the Black Pole Devices Manager to assign your preferred mount point.")
 
