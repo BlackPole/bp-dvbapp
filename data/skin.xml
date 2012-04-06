@@ -3619,7 +3619,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<ePixmap pixmap="skin_default/menu/posizioner.png" position="928,425" zPosition="2" size="250,160" alphatest="blend" transparent="1" /> 
 		  <ePixmap position="80,160" zPosition="2" size="1120,460" pixmap="skin_default/r1120x460.png" alphatest="blend" transparent="1" /> 
 	    <eLabel text="Positioner setup... " position="80,40" zPosition="2" size="800,38" font="RegularAA;34" halign="left" foregroundColor="#004c74" backgroundColor="transpBlack" transparent="1"/>  
-		<widget name="list" 	position="100,170" 	size="1080,155" backgroundColor="black" transparent="1"/>
+		<widget name="list" 	position="100,170" 	size="1080,180" backgroundColor="black" transparent="1"/>
 		<widget name="snr_db" position="190,470" 	size="200,24" 	halign="center" valign="center" font="Regular;21" backgroundColor="background" transparent="1"/>
 		<eLabel text="SNR:" 	position="100,500" 	size="80,24" 	font="Regular;21" 	backgroundColor="darkgrey" transparent="1"/>
 		<widget name="snr_bar" position="190,500" 	size="200,20" 	borderWidth="1" 	backgroundColor="darkgrey" transparent="1"/>
@@ -3639,10 +3639,11 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<ePixmap position="362,650" size="250,40" pixmap="skin_default/buttons/green25.png" alphatest="on" zPosition="1" />
         <ePixmap position="668,650" size="250,40" pixmap="skin_default/buttons/yellow25.png" alphatest="on" zPosition="1" />
         <ePixmap position="974,650" size="250,40" pixmap="skin_default/buttons/blue25.png" alphatest="on" zPosition="1" />
-		<widget name="red" position="56,650" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
-		<widget name="green" position="362,650" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
-		<widget name="yellow" position="668,650" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="#a18120" transparent="1" />
-		<widget name="blue" position="974,650" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
+		<widget name="key_red" position="56,650" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
+		<widget name="key_green" position="362,650" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
+		<widget name="key_yellow" position="668,650" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="#a18120" transparent="1" />
+		<widget name="key_blue" position="974,650" zPosition="2" size="250,40" font="Regular;24" halign="center" valign="center" backgroundColor="transpBlack" transparent="1" />
+                <widget name="status_bar" position="100,583" size="460,26" font="Regular;22" foregroundColor="red" backgroundColor="transpBlack" transparent="1"/>
 	</screen>
 	<!-- 205 CiSelection -->
 	<screen name="CiSelection" 	position="center,center" size="710,240" title="Common Interface" >
