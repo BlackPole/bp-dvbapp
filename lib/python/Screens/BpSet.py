@@ -10,6 +10,7 @@ from Components.Network import iNetwork
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists, pathExists, resolveFilename, SCOPE_CURRENT_SKIN
 from os import system, remove as os_remove, rename as os_rename, popen, getcwd, chdir
+from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
 
 
 
@@ -53,7 +54,6 @@ class DeliteSettings(Screen):
 			from Screens.BpDevice import DeliteDevicesPanel
 			self.session.open(DeliteDevicesPanel)
 		elif self.sel == 1:
-			from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
 			self.session.open(BhNetBrowser)
 		elif self.sel == 2:
 			from Screens.BpFormat import Bp_UsbFormat
