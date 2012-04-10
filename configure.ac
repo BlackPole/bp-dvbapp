@@ -55,15 +55,6 @@ AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
 AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
 
-AC_ARG_WITH(remote-keyboard,
-        AC_HELP_STRING([--with-remote-keyboard], [use remote keyboard on dvbapp, yes or no]),
-        [[withrckbd=$withval]],
-        [[withrckbd=no]]
-)
-if test x"$withrckbd" != xno ; then
-        AC_DEFINE(VUPLUS_USE_RCKBD, 1,[Define when using a rc-keyboard on dvbapp])
-fi
-
 AC_ARG_WITH(textlcd,
 	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
 	[[withtextlcd=$withval]],
@@ -73,26 +64,6 @@ if test x"$withtextlcd" != xno ; then
 	AC_DEFINE(HAVE_TEXTLCD, 1,[Define when using an ascii based lcd device])
 fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
-
-AC_ARG_WITH(graphiclcd,
-	AC_HELP_STRING([--with-graphiclcd], [use graphic based lcd, yes or no]),
-	[[withgraphiclcd=$withval]],
-	[[withgraphiclcd=no]]
-)
-if test x"$withgraphiclcd" != xno ; then
-	AC_DEFINE(HAVE_GRAPHICLCD, 1,[Define when using an graphic based vfd device])
-fi
-AM_CONDITIONAL(HAVE_GRAPHICLCD, test x"$withgraphiclcd != xno")
-
-AC_ARG_WITH(fullgraphiclcd,
-        AC_HELP_STRING([--with-fullgraphiclcd], [display right_half_vfd_icons from skin(for ultimo), yes or no]),
-        [[withfullgraphiclcd=$withval]],
-        [[withfullgraphiclcd=no]]
-)
-if test x"$withfullgraphiclcd" != xno ; then
-        AC_DEFINE(HAVE_FULLGRAPHICLCD, 1,[Define when display right_half_vfd_icons from skin, for ultimo])
-fi
-AM_CONDITIONAL(HAVE_FULLGRAPHICLCD, test x"$withfullgraphiclcd" != xno)
 
 AC_ARG_WITH(colorlcd,
 	AC_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
