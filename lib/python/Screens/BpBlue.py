@@ -228,7 +228,7 @@ class BhsysInfo(Screen):
  		text += "Chipset:\t" + f.readline() +"\n"
  		f.close()
 		text += "MEMORY\n"
-		memTotal = memFree = 0
+		memTotal = memFree = swapTotal = swapFree = 0
 		for line in open("/proc/meminfo",'r'):
 			parts = line.split(':')
 			key = parts[0].strip()
@@ -236,8 +236,14 @@ class BhsysInfo(Screen):
 				memTotal = parts[1].strip()
 			elif key in ("MemFree", "Buffers", "Cached"):
 				memFree += int(parts[1].strip().split(' ',1)[0])
+			elif key == "SwapTotal":
+				swapTotal = parts[1].strip()
+			elif key == "SwapFree":
+				swapFree = parts[1].strip()
 		text += "Total memory:\t%s\n" % memTotal
 		text += "Free memory:\t%s kB\n"  % memFree
+		text += "Swap total:\t%s \n"  % swapTotal
+		text += "Swap free:\t%s \n"  % swapFree
 		text += "\nSTORAGE\n"
 		f = open("/tmp/syinfo.tmp",'r')
 		line = f.readline()
