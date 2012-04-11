@@ -59,25 +59,28 @@ class DeliteSettings(Screen):
 			from Screens.BpFormat import Bp_UsbFormat
 			self.session.open(Bp_UsbFormat)
 		elif self.sel == 3:
-			self.session.open(BhSetupOSD3)
+			from Screens.BpDevice import BlackPoleSwap
+			self.session.open(BlackPoleSwap)
 		elif self.sel == 4:
+			self.session.open(BhSetupOSD3)
+		elif self.sel == 5:
 			from Plugins.SystemPlugins.UIPositionSetup.plugin import UIPositionSetup
 			self.session.open(UIPositionSetup)
-		elif self.sel == 5:
+		elif self.sel == 6:
 			from Plugins.SystemPlugins.UI3DSetup.plugin import UI3DSetupScreen
 			self.session.open(UI3DSetupScreen)
-		elif self.sel == 6:
-			self.session.open(BhSetupIntEpg)
 		elif self.sel == 7:
-			self.session.open(BhSetupRecord)
+			self.session.open(BhSetupIntEpg)
 		elif self.sel == 8:
+			self.session.open(BhSetupRecord)
+		elif self.sel == 9:
 			from Screens.RecordPaths import RecordPathsSettings
 			self.session.open(RecordPathsSettings)
-		elif self.sel == 9:
-			self.session.open(BhSetupSubtitle)
 		elif self.sel == 10:
-			self.session.open(BhSetupAutolanguage)
+			self.session.open(BhSetupSubtitle)
 		elif self.sel == 11:
+			self.session.open(BhSetupAutolanguage)
+		elif self.sel == 12:
 			self.session.open(BhSetupHttpStream)
 		else:
 			self.noYet()
@@ -114,66 +117,73 @@ class DeliteSettings(Screen):
 		res = (name, png, idx)
 		self.list.append(res)
 		
-		mypixmap = mypath + "icons/infopanel_osd.png"
+		mypixmap = mypath + "icons/swapsettings.png"
 		png = LoadPixmap(mypixmap)
-		name = "Osd settings"
+		name = "Swap File settings"
 		idx = 3
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/infopanel_osd.png"
 		png = LoadPixmap(mypixmap)
-		name = "Osd Position setup"
+		name = "Osd settings"
 		idx = 4
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/infopanel_osd.png"
 		png = LoadPixmap(mypixmap)
-		name = "Osd 3D setup"
+		name = "Osd Position setup"
 		idx = 5
+		res = (name, png, idx)
+		self.list.append(res)
+		
+		mypixmap = mypath + "icons/infopanel_osd.png"
+		png = LoadPixmap(mypixmap)
+		name = "Osd 3D setup"
+		idx = 6
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/infopanel_samba.png"
 		png = LoadPixmap(mypixmap)
 		name = "Internal Epg settings"
-		idx = 6
+		idx = 7
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/infopanel_cron.png"
 		png = LoadPixmap(mypixmap)
 		name = "Record settings"
-		idx = 7
+		idx = 8
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/infopanel_space.png"
 		png = LoadPixmap(mypixmap)
 		name = "Recording paths"
-		idx = 8
+		idx = 9
 		res = (name, png, idx)
 		self.list.append(res)
 				
 		mypixmap = mypath + "icons/infopanel_kmod.png"
 		png = LoadPixmap(mypixmap)
 		name = "Subtitle settings"
-		idx = 9
+		idx = 10
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/inadynsettings.png"
 		png = LoadPixmap(mypixmap)
 		name = "Auto language settings"
-		idx = 10
+		idx = 11
 		res = (name, png, idx)
 		self.list.append(res)
 		
 		mypixmap = mypath + "icons/infopanel_samba.png"
 		png = LoadPixmap(mypixmap)
 		name = "Http stream settings"
-		idx = 11
+		idx = 12
 		res = (name, png, idx)
 		self.list.append(res)
 		

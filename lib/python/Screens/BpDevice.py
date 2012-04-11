@@ -1,7 +1,8 @@
-# Black Pole Devices Manager coded by meo.
+# Black Pole Devices Manager & Swap File coded by meo.
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 from Screens.Standby import TryQuitMainloop
 from Components.ActionMap import ActionMap
 from Components.Sources.List import List
@@ -11,8 +12,9 @@ from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, ConfigSelection, NoSave
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists, pathExists, resolveFilename, SCOPE_CURRENT_SKIN
-from os import system, listdir, remove as os_remove, rename as os_rename
+from os import system, listdir, remove as os_remove, rename as os_rename, stat as os_stat
 from enigma import eTimer
+import stat
 
 
 class DeliteDevicesPanel(Screen):
@@ -205,4 +207,107 @@ class DeliteSetupDevicePanelConf(Screen, ConfigListScreen):
 			self.close()
 	
 	
+class BlackPoleSwap(Screen):
+	skin = """
+	<screen position="center,center" size="420,240" title="Black Pole Swap File Manager">
+		<widget name="lab1" position="10,20" size="400,150" font="Regular;20" transparent="1"/>
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,190" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,190" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,190" size="140,40" alphatest="on" />
+		<widget name="key_red" position="0,190" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget name="key_green" position="140,190" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="key_yellow" position="280,190" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+	</screen>"""
+	
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		
+		self["lab1"] = Label(_("Swap status: disabled"))
+		self["key_red"] = Label(_("Create"))
+		self["key_green"] = Label(_("Remove"))
+		self["key_yellow"] = Label(_("Close"))
+		
+		self["actions"] = ActionMap(["WizardActions", "ColorActions"],
+		{
+			"back": self.close,
+			"red": self.keyRed,
+			"green": self.keyGreen,
+			"yellow": self.close
+		})
+
+		self.onLayoutFinish.append(self.updateSwap)
+		
+	
+	def updateSwap(self):
+		self.swap_file = ""
+		swapinfo = "Swap status: disabled"
+		f = open("/proc/swaps",'r')
+ 		for line in f.readlines():
+			if line.find('swapfile') != -1:
+				parts = line.split()
+				self.swap_file = parts[0].strip()
+				size = int(parts[2].strip()) / 1024
+				swapinfo = "Swap status: active\nSwap file: %s \nSwap size: %d M \nSwap used: %s Kb" % (self.swap_file, size, parts[3].strip())
+
+		f.close()
+		self["lab1"].setText(swapinfo)
+		
+		
+	def keyGreen(self):
+		if self.swap_file:
+			cmd = "swapoff %s" % self.swap_file
+			rc = system(cmd)
+			try:
+				os_remove("/etc/bp_swap")
+				os_remove(self.swap_file)
+			except:
+				pass
+			self.updateSwap()
+		else:
+			self.session.open(MessageBox, "Swap already disabled.", MessageBox.TYPE_INFO)	
+	
+	def keyRed(self):
+		if self.swap_file:
+			self.session.open(MessageBox, "Swap file is active.\nRemove it before to create a new swap space.", MessageBox.TYPE_INFO)
+		else:
+			options =[]
+			f = open("/proc/mounts",'r')
+			for line in f.readlines():
+				if line.find('/media/sd') != -1:
+					continue
+				elif line.find('/media/') != -1:
+					if line.find(' ext') != -1:
+						parts = line.split()
+						options.append([parts[1].strip(), parts[1].strip()])
+			f.close()
+			if len(options) == 0:
+				self.session.open(MessageBox, "Sorry no valid device found.\nBe sure your device is Linux formatted and mapped.\nPlease use Black Pole format wizard and Black Pole device manager to prepare and map your usb stick.", MessageBox.TYPE_INFO)
+			else:
+				self.session.openWithCallback(self.selectSize,ChoiceBox, title="Select the Swap File device:", list=options)
+	
+
+	def selectSize(self, device):
+		if device:
+			self.new_swap = device[1] + "/swapfile"
+			options = [['16 Mega', '16384'], ['32 Mega', '32768'], ['64 Mega', '65536'], ['128 Mega', '131072'], ['256 Mega', '262144']]	
+			self.session.openWithCallback(self.swapOn,ChoiceBox, title="Select the Swap File Size:", list=options)
+			
+		
+	def swapOn(self, size):
+		if size:
+			cmd = "dd if=/dev/zero of=%s bs=1024 count=%s 2>/dev/null" % (self.new_swap, size[1])
+			rc = system(cmd)
+			if rc == 0:
+				cmd = "mkswap %s" % (self.new_swap)
+				rc = system(cmd)
+				cmd = "swapon %s" % (self.new_swap)
+				rc = system(cmd)
+				out = open("/etc/bp_swap", "w")
+				out.write(self.new_swap)
+				out.close()
+				self.session.open(MessageBox, "Swap File created.", MessageBox.TYPE_INFO)
+				self.updateSwap()
+			else:
+				self.session.open(MessageBox, "Swap File creation Failed. Check for available space.", MessageBox.TYPE_INFO)
+			
 
