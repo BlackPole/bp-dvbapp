@@ -10,7 +10,7 @@ from Components.PluginComponent import plugins
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_SKIN_IMAGE, fileExists, pathExists, createDir
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
-from Plugins.SystemPlugins.SoftwareManager.plugin import PacketManager, PluginManager, UpdatePlugin
+#from Plugins.SystemPlugins.SoftwareManager.plugin import PacketManager, PluginManager, UpdatePlugin
 from os import system, listdir, chdir, getcwd, remove as os_remove
 from enigma import eDVBDB
 
@@ -212,8 +212,10 @@ class DeliteAddons(Screen):
 			self.sel = self.sel[2]
 			
 		if self.sel == 0:
+			from Plugins.SystemPlugins.SoftwareManager.plugin import PluginManager
 			self.session.open(PluginManager, "/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager")
-		elif self.sel == 1:	
+		elif self.sel == 1:
+			from Plugins.SystemPlugins.SoftwareManager.plugin import PacketManager
 			self.session.open(PacketManager, "/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager")
 		elif self.sel == 2:
 			self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to update your Black Pole image?")+"\n"+_("\nAfter pressing OK, please wait!"))
@@ -252,6 +254,7 @@ class DeliteAddons(Screen):
 			
 	def runUpgrade(self, result):
 		if result:
+			from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin
 			self.session.open(UpdatePlugin, "/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager")
 
 class Nab_downPanel(Screen):
