@@ -10,7 +10,6 @@ from Components.PluginComponent import plugins
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_SKIN_IMAGE, fileExists, pathExists, createDir
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
-#from Plugins.SystemPlugins.SoftwareManager.plugin import PacketManager, PluginManager, UpdatePlugin
 from os import system, listdir, chdir, getcwd, remove as os_remove
 from enigma import eDVBDB
 
