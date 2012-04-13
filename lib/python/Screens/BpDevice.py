@@ -11,7 +11,7 @@ from Components.Pixmap import Pixmap
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, ConfigSelection, NoSave
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import fileExists, pathExists, resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import fileExists, pathExists, createDir, resolveFilename, SCOPE_CURRENT_SKIN
 from os import system, listdir, remove as os_remove, rename as os_rename, stat as os_stat
 from enigma import eTimer
 import stat
@@ -39,6 +39,10 @@ class DeliteDevicesPanel(Screen):
 		self.gO()
 	
 	def gO(self):
+		paths = ["/media/hdd","/media/usb","/media/downloads","/media/music","/media/personal","/media/photo","/media/video"]
+		for path in paths:
+			if not pathExists(path):
+				createDir(path)
 # hack !
 		self.activityTimer.start(1)
 		
@@ -50,10 +54,12 @@ class DeliteDevicesPanel(Screen):
 		
 		f = open("/tmp/blkid.log",'r')
 		for line in f.readlines():
-			parts = line.strip().split(':')
-			device = parts[0][5:-1]
-			partition = parts[0][5:]
-			uuid = parts[1].strip().replace('UUID="', '').replace('"', '')
+			parts = line.strip().split()
+			device = parts[0][5:-2]
+			partition = parts[0][5:-1]
+			pos = line.find("UUID") + 6
+			end = line.find('"', pos)
+			uuid = line[pos:end]
 			dtype = self.get_Dtype(device)
 			category = dtype[0]
 			png = LoadPixmap(dtype[1])
