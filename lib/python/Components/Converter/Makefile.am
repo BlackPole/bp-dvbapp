@@ -7,4 +7,4 @@ install_PYTHON = \
 	StaticMultiList.py ServiceTime.py MovieInfo.py MenuEntryCompare.py StringListSelection.py \
 	ServiceOrbitalPosition.py TextCase.py BhAnalogic.py BpExtraInfo.py \
 	ValueBitTest.py TunerInfo.py ConfigEntryTest.py TemplatedMultiContent.py ProgressToText.py \
-	Combine.py SensorToText.py ValueToPixmap.py.
+	Combine.py SensorToText.py ValueToPixmap.py 
