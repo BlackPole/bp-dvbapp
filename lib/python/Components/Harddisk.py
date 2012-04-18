@@ -589,6 +589,7 @@ class HarddiskManager:
 			("/media/net1", _("Network Mount") + " 1"),
 			("/media/net2", _("Network Mount") + " 2"),
 			("/media/net3", _("Network Mount") + " 3"),
+			("/media/upnp", _("DLNA")),
 			("/media/ram", _("Ram Disk")),
 			("/media/usb", _("USB Stick")),
 			("/", _("Internal Flash"))
